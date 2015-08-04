@@ -45,7 +45,7 @@ class FoodsController < ApplicationController
     if @admin
       food = Food.find(food_params[:id])
       if !food.nil?
-        render html: food.destroy! ? flash[:notice]: "Food deleted successfully" : "Error! #{food.errors.messages}"
+        render html: food.destroy! ? flash[:notice]="Food deleted successfully" : "Error! #{food.errors.messages}"
       else
         render html: "Food with id: #{food_params[:id]} doesn't exist!"
       end
