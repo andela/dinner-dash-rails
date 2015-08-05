@@ -1,0 +1,47 @@
+<header >
+	<div class="row">
+		<div class="col s12">
+
+			<%= image_tag("logo.png", :alt => "logo", :class => "img-logo") %>
+			<nav class="z-depth-3">
+				<div class="nav-wrapper">
+					<a href="#!" class="brand-logo">
+						Dinner dash
+					</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="/foods"><i class="material-icons left">settings_input_svideo</i>Our foods</a></li>
+						<li><a href="/contact"><i class="material-icons left">settings_phone</i>Find us</a></li>
+						<li><a href="/faq"><i class="material-icons left">chat</i>FAQ</a></li>
+						<!-- Dropdown Trigger -->
+						<li>
+							<div class="col s2">
+								<%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %>
+							</div>
+							<div class="col s10">
+								<span class="black-text">
+									<a class="dropdown-button" href="#!" data-activates="dropdown1">Daisi logged on<i class="material-icons right">arrow_drop_down</i></a>
+										<ul id="dropdown1" class="dropdown-content">
+											<li><a href="#!"><i class="material-icons left">perm_identity</i>My profile</a></li>
+											<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+											<li class="divider"></li>
+											<li><a href="#!"><i class="material-icons left">play_arrow</i>Log out</a></li>
+										</ul>
+								</span>
+							</div>
+
+						</li>
+					</ul>
+
+					<ul id="slide-out" class="side-nav">
+						<li><a href="/foods"><i class="material-icons left">settings_input_svideo</i>Our foods</a></li>
+						<li><a href="/contact"><i class="material-icons left">settings_phone</i>Find us</a></li>
+						<li><a href="/faq"><i class="material-icons left">chat</i>FAQ</a></li>
+						<!-- Dropdown Trigger -->
+						<li><%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %><a class="dropdown-button" href="#!" > My profile<i class="material-icons right">arrow_drop_down</i></a></li>
+					</ul>
+					<a href="#" data-activates="slide-out" class="button-collapse right"><i class="mdi-navigation-menu"></i></a>
+				</div>
+			</nav>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,45 @@
+The Food model, controller and tests
+
+The model
+
+The Food model contains name, description and price of the food.
+
+A food item has many orders through order item, as orders have food through order item
+
+A food item belongs to a category
+
+
+test
+
+The Food model can save and hold data for food.
+
+A user's ordered item should be directly accessible from the user model
+
+Controller
+
+GET Index action ('/foods')
+
+1. All foods offered by dinner_dash should be made available
+
+2. All categories must also be available
+
+POST Create action ('/foods')
+
+1. A food item is added if the category isi supplied.
+
+2. If the save is successful, the user is redirected to the list of registered food under the same Category as the Food with a notice depicting a successful save.
+
+3. For an unsuccessful save, the user is directed back to the add food pages with a notice depicting an unsuccessful save.
+
+GET Show action ('/foods/1')
+
+1. Full details of the food is available for the view.
+
+2. The user ratings and comments need to be updated.
+
+
+PATCH Update action ('/foods/1/edit')
+
+1. The food is updated only by the admin.
+
+2. After successful update, there should be a redirect to /foods or show_path

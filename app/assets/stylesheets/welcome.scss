@@ -2,3 +2,76 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "materialize";
+
+$top-pad: 20px;
+$bottom-pad: 20px;
+
+.main {
+	position:relative;
+	top: 20px;
+	bottom: 20px;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background-size: cover;
+	background-image: image-url('restaurant3.jpg');
+}
+header  {
+	padding-top: $top-pad;
+}
+main {
+	flex: 1 0 auto;
+	background: #FFF;
+	min-height: calc(100% - $top-pad - $bottom-pad);
+}
+
+footer {
+	bottom: 0px;
+	left: 15%;
+	position: fixed;
+	right: 15%;
+}
+
+nav {
+	.ul{
+		.li{
+			padding-top: 6px;
+		}
+	}
+}
+.background {
+	top: 0;
+	bottom: 10px;
+  position: fixed;
+}
+@media only screen and (max-width: 1200px) {
+  .background {
+    max-width: 100%;
+		right: 0;
+	  left: 0;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .background {
+    max-width: 85%;
+		right: 10%;
+	  left: 10%;
+  }
+}
+.small {
+	max-width: 50px;
+	padding-top: 6px;
+}
+footer.page-footer {
+	color: #FFFFFF;
+    padding-bottom: $bottom-pad;
+}
+.img-logo {
+	top: -15px !important;
+  max-height: 70px !important;
+  float: left;
+  position: relative;
+}
