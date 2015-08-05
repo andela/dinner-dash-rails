@@ -1,0 +1,46 @@
+<div class="row">
+<div class="col s3">
+<ul id="slide-out" class="side-nav fixed">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  </div>
+  <div class="col s9">
+ <div class="row"> 
+  <% @foods.each do |food|%>
+    <div class="card col s3 item">
+      <div class="card-image waves-effect waves-block waves-light">
+      <%= image_tag("nigerian-jollof-rice.jpg", :size => "300x180" ,:alt => "food") %>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"> <%= food.name%> N<%= food.price%><i class="material-icons right">more_vert</i></span>
+        <p><a href="#">Add to cart</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
+        <p><%= food.price%></p>
+        <p><%= food.description%></p>
+      </div>
+    </div>
+  <% end %>
+  </div>
+ </div>
+</div>
+
+  
+  </div>
+  <!-- <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="images/office.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
+  </div>
+ -->
