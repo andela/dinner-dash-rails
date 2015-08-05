@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150805111216) do
 
+  
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
