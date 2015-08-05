@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Food, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 
   describe "when a user visits the 'Our food' page" do
     it "displays the categories of all the food" do
