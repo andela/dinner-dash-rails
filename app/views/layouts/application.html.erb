@@ -7,14 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-	<div class="background">
-    <%= render 'layouts/header' %>
-    <main>
-      <%= yield %>
-    </main><!--End of main-->
-    <%= render 'layouts/footer' %>
-  </div><!-- end of container main-->
-  
+  <div class="bg-cover">
+  	<div class="background">
+      <%= render 'layouts/header' %>
+      <main>
+        <%= yield %>
+      </main><!--End of main-->
+      <%= render 'layouts/footer' %>
+    </div><!-- end of container main-->
+  </div>
 </body>
 </html>

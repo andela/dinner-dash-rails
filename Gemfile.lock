@@ -239,7 +239,6 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
-
   material_design_icons_rails (~> 1.0.0)
   material_icons
   materialize-sass

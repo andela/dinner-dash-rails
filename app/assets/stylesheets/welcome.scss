@@ -18,6 +18,14 @@ body {
 	flex-direction: column;
 	background-size: cover;
 	background-image: image-url('restaurant3.jpg');
+
+}
+.bg-cover {
+	top: 0;
+	bottom:0;
+	left:0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.1)
 }
 header  {
 	padding-top: $top-pad;
@@ -33,9 +41,12 @@ footer {
 	left: 15%;
 	position: fixed;
 	right: 15%;
+	background-color: #3e2511 !important;
+	z-index: 10;
 }
 
 nav {
+	background-color: #3e2511 !important;
 	.ul{
 		.li{
 			padding-top: 6px;
@@ -46,6 +57,8 @@ nav {
 	top: 0;
 	bottom: 10px;
   position: fixed;
+	background-color: rgba(255,255,255,0.7);
+	padding: 0 20px 0 20px;
 }
 @media only screen and (max-width: 1200px) {
   .background {
