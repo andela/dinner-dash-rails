@@ -1,14 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
-<<<<<<< HEAD
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
-=======
-require File.expand_path('../../config/environment', __FILE__)
-# Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
->>>>>>> ba9a4a15a7146918358e367e0a136d95fcd142f1
+
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
