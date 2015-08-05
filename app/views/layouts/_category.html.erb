@@ -1,0 +1,8 @@
+<div class="col s3">
+  <ul id="slide-out" class="side-nav fixed">
+    <% @categories = @categories.nil? ? Category.all : @categories %>
+    <% @categories.each do |category| %>
+      <li><%= link_to category.title, category_path(category) %></li>
+    <% end %>
+  </ul>
+</div>
