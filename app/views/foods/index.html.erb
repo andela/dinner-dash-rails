@@ -1,11 +1,4 @@
 <div class="row">
-<!-- <div class="col s3">
-<ul id="slide-out" class="side-nav fixed">
-    <li><a href="#!">First Sidebar Link</a></li>
-    <li><a href="#!">Second Sidebar Link</a></li>
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-  </div> -->
   <%=render 'layouts/category' %>
   <div class="col s9"> 
   <div class="row"> <% @foods = (!@category.nil?) ? @category.foods : @foods  %> 
@@ -16,7 +9,7 @@
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4"> <%= food.name%> N<%= food.price%><i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Add to cart</a></p>
+        <%= button_to "Add to Cart", order_items_path(food_id: food.id) %>
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
@@ -28,20 +21,5 @@
   </div>
  </div>
 </div>
-
+</div>
   
-  </div>
-  <!-- <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="images/office.jpg">
-    </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-      <p><a href="#">This is a link</a></p>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
-    </div>
-  </div>
- -->
