@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :foods
   resources :categories
   resources :cart_items
+  resources :carts
 
   # You can have the root of your site routed with "root"
 
