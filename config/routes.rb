@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root "welcome#index"
   resources :foods
   resources :categories
   resources :cart_items
