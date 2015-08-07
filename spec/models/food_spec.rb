@@ -1,7 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Food, type: :model do
-
   describe "when a user visits the 'Our food' page" do
     it "displays the categories of all the food" do
 
@@ -13,5 +12,4 @@ RSpec.describe Food, type: :model do
 
     end
   end
-
 end
