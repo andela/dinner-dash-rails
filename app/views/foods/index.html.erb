@@ -7,7 +7,7 @@
   <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
   <div class="col s9">
- <div class="row"> 
+ <div class="row">
   <% @foods.each do |food|%>
     <div class="card col s3 item">
       <div class="card-image waves-effect waves-block waves-light">
@@ -21,6 +21,7 @@
         <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
         <p><%= food.price%></p>
         <p><%= food.description%></p>
+        <%= button_to 'Add to cart', cart_items_path(food.id) %>
       </div>
     </div>
   <% end %>
@@ -28,7 +29,7 @@
  </div>
 </div>
 
-  
+
   </div>
   <!-- <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
