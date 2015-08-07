@@ -29,20 +29,32 @@ body {
 }
 header  {
 	padding-top: $top-pad;
+	.row {
+		.col {
+			padding:0 !important;
+		}
+	}
 }
 main {
 	flex: 1 0 auto;
-	background: #FFF;
-	min-height: calc(100% - $top-pad - $bottom-pad);
+	overflow: scroll;
+	position: fixed;
+	top: 100px;
+	bottom: 40px;
+	left: 10%;
+	right: 10%;
+	padding: 20px;
 }
 
 footer {
-	bottom: 0px;
-	left: 15%;
+	bottom: 0;
 	position: fixed;
-	right: 15%;
-	background-color: #3e2511 !important;
+	background-color: #BCAAA4 !important;
 	z-index: 10;
+	left: 10%;
+	right: 10%;
+	margin: 0 20px 0 20px;
+	min-height: 10px;
 }
 
 nav {
@@ -54,7 +66,7 @@ nav {
 	}
 }
 .background {
-	top: 0;
+	top: 10px;
 	bottom: 10px;
   position: fixed;
 	background-color: rgba(255,255,255,0.7);
@@ -79,12 +91,22 @@ nav {
 	padding-top: 6px;
 }
 footer.page-footer {
-	color: #FFFFFF;
-    padding-bottom: $bottom-pad;
+	color: #3e2511;
+	margin: 3px 0 10px 0 !important;
+  padding-bottom: 2px;
+	padding-top: 3px !important;
+	text-align: center;
+
 }
 .img-logo {
 	top: -15px !important;
   max-height: 70px !important;
   float: left;
   position: relative;
+}
+.rel {
+	position: relative !important;
+}
+.mini-pad {
+	padding-top: 5px !important;
 }
