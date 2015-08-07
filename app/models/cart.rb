@@ -1,20 +1,22 @@
-class Cart < ActiveRecord::Base
-	attr_reader :data
+class Cart
+	attr_reader :cart_data
 
 	def initialize(cart_data)
 		@cart_data = cart_data || {}
 	end
 
-	def update(item_id)
-		@cart_data[:item_id] ||= 0
-		@cart_data[:item_id] += 1
+	def increment(item_id)
+		@cart_data[item_id] ||= 0
+		increment_cart_item_by_one(item_id)
 	end
 
-	def destroy!
+	def destroy
 		@cart_data = nil
 	end
 
-	def data
-		@cart_data
+	private
+
+	def increment_cart_item_by_one(item_id)
+		@cart_data[item_id] += 1
 	end
 end

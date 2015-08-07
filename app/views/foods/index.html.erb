@@ -14,14 +14,13 @@
       <%= image_tag("nigerian-jollof-rice.jpg", :size => "300x180" ,:alt => "food") %>
       </div>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"> <%= food.name%> N<%= food.price%><i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Add to cart</a></p>
+        <span class="card-title activator grey-text text-darken-4"> <%= food.name %> N<%= food.price%><i class="material-icons right">more_vert</i></span>
+        <p><%= button_to 'Add to cart', cart_items_path(food_id: food.id) %></p>
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
         <p><%= food.price%></p>
         <p><%= food.description%></p>
-        <%= button_to 'Add to cart', cart_items_path(food.id) %>
       </div>
     </div>
   <% end %>
