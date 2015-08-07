@@ -16,7 +16,7 @@ F2 = Food.create(
       name: "Steaks",
       description: "Nice mix of african specials and barbecue sauce",
       price: 750 )
-    
+
 F3 = Food.create(name: "Lobsters",
       description: "Crispy sea food delicacy to make your holiday",
       price: 1200 )
