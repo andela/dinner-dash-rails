@@ -1,9 +1,8 @@
-# «require 'rails_helper'
+# require 'rails_helper'
 #
 # RSpec.describe Cart, type: :model do
 #   before(:each) do
 #     food_id = 1
-#     session[:cart] = { "1": 1, "3", 4 }
 #     @cart = Cart.new(session[:cart])
 #     @cart.increment(food_id)
 #     # session[:cart] = @cart.cart_data
