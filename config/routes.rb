@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :cart_items
   resources :carts
 
+  delete 'cart_items/:id/', to: 'cart_items#delete', as: "cart_item_delete"
+
 
   # You can have the root of your site routed with "root"
 

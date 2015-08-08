@@ -10,6 +10,10 @@ class CartItemsController < ApplicationController
 		session.delete(:cart)
 	end
 
+	def delete
+		@cart.delete(:item_id)
+  end
+
 	private
 
 	def cart_params

@@ -14,6 +14,10 @@ class Cart
 	  @cart_data = nil
 	end
 
+	def delete
+		@cart_data[item_id]
+	end 
+
 	private
 
 	def increment_cart_item_by_one(item_id)

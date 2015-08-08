@@ -20,6 +20,7 @@
       <td><%= food.price %></td>
       <td><%= quantity%></td>
       <td>N<%= food.price * quantity %></td>
+      <td><%= button_to 'Remove', cart_item_delete_path(food.id), method: :destroy %></td>
     </tr>
   </tbody>
   <% end %>
