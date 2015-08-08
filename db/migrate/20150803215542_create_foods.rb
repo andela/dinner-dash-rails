@@ -4,8 +4,8 @@ class CreateFoods < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.float :price
-
       t.timestamps null: false
+      t.belongs_to :category
     end
   end
 end

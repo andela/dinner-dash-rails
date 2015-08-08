@@ -59,6 +59,5 @@ class FoodsController < ApplicationController
 
   def food_params
     require params.require(:food).permit(:id, :name, :description, :price, :category_id)
-
   end
 end
