@@ -5,9 +5,9 @@ class CartsController < ApplicationController
      @ordered_food = []
      @total = 0
      @cart_items.each do |food_id, qty|
-      food = Food.where(id: food_id).first
+      food = Food.find(food_id)
       @ordered_food << [food , qty]
       @total += (food.price * qty)
-    end 
+    end
   end
 end
