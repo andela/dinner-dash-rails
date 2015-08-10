@@ -1,0 +1,35 @@
+<div class="row container full-height scroll-bar">
+<h4>SignUp</h4>
+  <%= form_for @user, :html => { :class => "col s12" } do |f| %>
+    <div class="row">
+      <div class="input-field col s6">
+        <%=f.text_field :first_name, :class => "validate" %>
+        <%= f.label :first_name %>
+      </div>
+      <div class="input-field col s6">
+        <%=f.text_field :last_name, :class => "validate" %>
+        <%= f.label :last_name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.email_field :email, :class => "validate" %>
+        <%= f.label :email %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.password_field :password, :class => "validate" %>
+        <%= f.label :password %>
+      </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+        <%=f.password_field :password_confirmation, :class => "validate" %>
+        <%= f.label :password_confirmation %>
+    </div>
+  </div>
+  <%= f.submit "Sign up" %>
+  <% end %>
+</div>
+
