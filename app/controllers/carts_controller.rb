@@ -1,14 +1,18 @@
 class CartsController < ApplicationController
-
   def index
-    @cart_items = session[:cart]
+   @cart_items = session[:cart]
     @ordered_food = []
     @total = 0
     @cart_items.each do |food_id, qty|
-      food = Food.where(id: food_id).first
+      food = Food.find(food_id)
       @ordered_food << [food , qty]
       @total += (food.price * qty)
-    end if @cart_items.nil?
+    end if !session[:cart].nil?
   end
 
+  def destroy
+    food_id = params[:id]
+    @cart.cart_data.delete(food_id)
+    redirect_to carts_path
+  end
 end
