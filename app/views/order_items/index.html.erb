@@ -18,13 +18,8 @@
       <td><%= food.name %></td>
       <td><%= food.description %></td>
       <td><%= food.price %></td>
-      <td><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: food.id, id: quantity}, method: :patch  do |f| %>
-        <%= f.number_field :qty, :value => quantity %>
-        <%= submit_tag "Update", method: :patch %>
-        <% end %>
-      </td>
+      <td><%= quantity%></td>
       <td>N<%= food.price * quantity %></td>
-      <td><%= button_to 'Remove', cart_item_delete_path(food.id), method: :delete %></td>
     </tr>
   </tbody>
   <% end %>
@@ -40,5 +35,8 @@
   </tfoot>
 </table>
 
-<%= link_to 'Checkout', root_path %>
+<%= button_to 'Checkout', root_path %>
 <% end %>
+
+
+
