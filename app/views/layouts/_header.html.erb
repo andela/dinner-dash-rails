@@ -17,20 +17,24 @@
 						 #{items_in_cart}", carts_path, class: "cart left no_left_pad", id: "cart" %></li>
 						<!-- Dropdown Trigger -->
 						<li>
+						<% if @user %>
 							<div class="col s2">
 								<%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %>
 							</div>
 							<div class="col s10">
 								<span class="black-text">
 									<a class="dropdown-button" href="#!" data-activates="dropdown1">Daisi logged on<i class="material-icons right">arrow_drop_down</i></a>
-										<ul id="dropdown1" class="dropdown-content">
-											<li><a href="user"><i class="material-icons left">perm_identity</i>My profile</a></li>
-											<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
-											<li class="divider"></li>
-											<li><a href="#!"><i class="material-icons left">play_arrow</i>Log out</a></li>
-										</ul>
+									<ul id="dropdown1" class="dropdown-content">
+										<li><a href="user"><i class="material-icons left">perm_identity</i>My profile</a></li>
+										<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+										<li class="divider"></li>
+										<li><a href="#!"><i class="material-icons left">play_arrow</i>Log out</a></li>
+									</ul>
 								</span>
 							</div>
+						<% else %>
+							<div><%= link_to "Log in", user_login_path, :class =>"in-line" %> | <%= link_to "Sign up", new_user_path, :class =>"in-line" %></div>
+						<% end %>
 
 						</li>
 					</ul>
