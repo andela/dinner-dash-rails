@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
-
   def index
-    # require 'pry'; binding.pry
    @cart_items = session[:cart]
     @ordered_food = []
     @total = 0
