@@ -8,7 +8,7 @@ class CartsController < ApplicationController
       food = Food.where(id: food_id).first
       @ordered_food << [food , qty]
       @total += (food.price * qty)
-    end if !@cart_items.nil? 
+    end if @cart_items.nil? 
   end
 
 end
