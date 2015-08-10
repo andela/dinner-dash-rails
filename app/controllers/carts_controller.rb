@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
-
   def index
-    # require 'pry'; binding.pry
    @cart_items = session[:cart]
     @ordered_food = []
     @total = 0
@@ -17,7 +15,4 @@ class CartsController < ApplicationController
     @cart.cart_data.delete(food_id)
     redirect_to carts_path
   end
-
-
-
 end
