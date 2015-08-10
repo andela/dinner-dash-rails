@@ -29,8 +29,6 @@ ActiveRecord::Schema.define(version: 20150806151022) do
     t.integer  "category_id"
   end
 
-  add_index "foods", ["category_id"], name: "index_foods_on_category_id"
-
   create_table "order_items", force: :cascade do |t|
     t.integer  "quantity"
     t.datetime "created_at", null: false
