@@ -38,7 +38,6 @@ header  {
 }
 main {
 	flex: 1 0 auto;
-	overflow: scroll;
 	position: fixed;
 	top: 100px;
 	bottom: 40px;
@@ -104,6 +103,7 @@ footer.page-footer {
   max-height: 70px !important;
   float: left;
   position: relative;
+	margin: 0 10px;
 }
 .rel {
 	position: relative !important;
@@ -129,7 +129,7 @@ ul.slides {
 }
 .price-tag {
 	position: relative;
-	background: #00695c;
+	background: #388e3c;
 	color: #EEEEEE;
 	top: 0;
 	left: 0;
@@ -138,7 +138,7 @@ ul.slides {
 	background-color: #00695C
 }
 .side-nav .first {
-	background-color: #F57F17;
+	background-color: #66bb6a;
 	cursor: pointer;
 	color: #EEEEEE;
 }
@@ -160,4 +160,11 @@ ul.slides {
 }
 .no-right-margin {
 	margin-right: 0 !important;
+}
+.table-cloth {
+	background-image: image-url("table-cloth.png");
+}
+.table-top {
+	background-image: image-url("table-top.png");
+	border-radius: 10px;
 }
