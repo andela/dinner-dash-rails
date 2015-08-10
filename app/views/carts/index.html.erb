@@ -24,11 +24,7 @@
         <% end %>
       </td>
       <td>N<%= food.price * quantity %></td>
-<<<<<<< HEAD
-      <td></td>
-=======
       <td><%= button_to 'Remove', cart_item_delete_path(food.id), method: :delete %></td>
->>>>>>> master
     </tr>
   </tbody>
   <% end %>
@@ -44,11 +40,5 @@
     </tr>
   </tfoot>
 </table>
-
-<<<<<<< HEAD
-<%= button_to 'Checkout', root_path %>
+<%= button_to 'Checkout'%>
 <% end %>
-=======
-<%= link_to 'Checkout', root_path %>
-<% end %>
->>>>>>> master
