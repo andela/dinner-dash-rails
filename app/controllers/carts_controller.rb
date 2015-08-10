@@ -12,9 +12,12 @@ class CartsController < ApplicationController
     end 
   end
 
-  # def destroy
-  #   food_id = params[:food_id]
-  #   require 'pry'; binding.pry
-  #   # session.delete(:cart[""])
-  # end
+  def destroy
+    food_id = params[:id]
+    @cart.cart_data.delete(food_id)
+    redirect_to carts_path
+  end
+
+
+
 end

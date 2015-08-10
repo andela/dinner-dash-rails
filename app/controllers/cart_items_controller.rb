@@ -14,6 +14,13 @@ class CartItemsController < ApplicationController
 		@cart.delete(:item_id)
   end
 
+  def update 
+    food_id = params[:food_id]
+    quantity = params[:quantity][:qty]
+    session[:cart][food_id] = quantity.to_i
+    redirect_to carts_path
+  end
+
 	private
 
 	def cart_params
