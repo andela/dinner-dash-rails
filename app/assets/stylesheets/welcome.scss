@@ -18,6 +18,7 @@ body {
 	flex-direction: column;
 	background-size: cover;
 	background-image: image-url('restaurant3.jpg');
+	color: #3e2723;
 
 }
 .bg-cover {
@@ -37,7 +38,6 @@ header  {
 }
 main {
 	flex: 1 0 auto;
-	overflow: scroll;
 	position: fixed;
 	top: 100px;
 	bottom: 40px;
@@ -69,7 +69,7 @@ nav {
 	top: 10px;
 	bottom: 10px;
   position: fixed;
-	background-color: rgba(255,255,255,0.7);
+	background-color: rgba(255,255,255,0.9);
 	padding: 0 20px 0 20px;
 }
 @media only screen and (max-width: 1200px) {
@@ -103,6 +103,7 @@ footer.page-footer {
   max-height: 70px !important;
   float: left;
   position: relative;
+	margin: 0 10px;
 }
 .rel {
 	position: relative !important;
@@ -112,4 +113,58 @@ footer.page-footer {
 }
 .no_left_pad {
 	padding-left: 0 !important;
+}
+ul.slides {
+	border-radius: 10px;
+	li {
+		border-radius: 10px;
+	}
+}
+.slider {
+	max-height: 450px;
+	overflow-y: hidden;
+}
+.image-thumb {
+	position: relative;
+}
+.price-tag {
+	position: relative;
+	background: #388e3c;
+	color: #EEEEEE;
+	top: 0;
+	left: 0;
+}
+.col.s3.z-depth-3 {
+	background-color: #00695C
+}
+.side-nav .first {
+	background-color: #66bb6a;
+	cursor: pointer;
+	color: #EEEEEE;
+}
+.full-height {
+	height: 100% !important;
+	max-height: 100% !important;
+}
+.scroll-bar {
+	overflow: scroll !important;
+}
+.header-panel {
+	margin: 0px 10px;
+	padding: 5px 10px;
+	background-color: #F1FFFF;
+	color: #4E342E;
+}
+.card-action {
+	padding: 10px !important;
+}
+.no-right-margin {
+	margin-right: 0 !important;
+}
+.table-cloth {
+	background-image: image-url("table-cloth.png");
+}
+.table-top {
+	background-image: image-url("table-top.png");
+	border-radius: 10px;
 }

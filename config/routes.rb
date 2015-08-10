@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :cart_items
   resources :carts
+  resources :about
 
   delete 'carts/:item_id/', to: 'carts#destroy', as: "cart_item_delete"
   # delete 'carts', to: 'carts#destroy', as: "checkout"
