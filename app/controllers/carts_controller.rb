@@ -15,7 +15,4 @@ class CartsController < ApplicationController
     @cart.cart_data.delete(food_id)
     redirect_to carts_path
   end
-
-
-
 end
