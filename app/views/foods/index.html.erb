@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row full-height">
 <!-- <div class="col s3">
 <ul id="slide-out" class="side-nav fixed">
     <li><a href="#!">First Sidebar Link</a></li>
@@ -8,23 +8,33 @@
 <<<<<<< HEAD
   </div> -->
  <%=render 'layouts/category' %>
- <div class="col s9">
+ <div class="col s9 full-height scroll-bar">
+   <div class="panel header-panel flow-text z-depth-3"><%= (!@category.nil?) ? @category.title : "All cuisines"  %></div>
   <div class="row"> <% @foods = (!@category.nil?) ? @category.foods : @foods  %>
   <% @foods.each do |food| %>
-    <div class="card col s3 item">
-      <div class="card-image waves-effect waves-block waves-light">
-      <%= image_tag("nigerian-jollof-rice.jpg", :size => "300x180" ,:alt => "food") %>
+      <div class="col s12 m6 l4">
+        <div class="card">
+          <div class="card-image">
+            <span class="price-tag"> N<%= food.price%></span>
+            <span class="activator"><i class="material-icons right">more_vert</i></span>
+            <%= link_to(food) do %>
+              <%= image_tag("nigerian-jollof-rice.jpg", :width => "100%", :height => "auto", :style => "max-width:100%", :class => "image-thumb", :alt => "food") %>
+              <span class="card-title"><%= food.name %></span>
+            <% end %>
+          </div>
+          <div class="card-action">
+            <div class="right"><i class="material-icons left no-right-margin">shopping_cart</i><%= link_to ":
+						 #{this_food_in_cart(food)}", carts_path, class: "cart left no_left_pad no-right-margin", id: "cart" %></div>
+            <%= button_to "Add to cart", cart_items_path(food_id: food.id) %>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
+            <p><%= food.price%></p>
+            <p><%= food.description%></p>
+          </div>
+        </div>
       </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"> <%= food.name %> N<%= food.price%><i class="material-icons right">more_vert</i></span>
-        <p><%= button_to 'Add to cart', cart_items_path(food_id: food.id) %></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
-        <p><%= food.price%></p>
-        <p><%= food.description%></p>
-      </div>
-    </div>
+
   <% end %>
   </div>
  </div>
