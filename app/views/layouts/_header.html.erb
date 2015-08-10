@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col s12">
 
-			<% @items_in_cart = session[:cart].nil? ? 0 : session[:cart].length %>
+
 			<%= image_tag("logo.png", :alt => "logo", :class => "img-logo") %>
 			<nav class="z-depth-3">
 				<div class="nav-wrapper">
@@ -13,9 +13,8 @@
 						<li><a href="/foods"><i class="material-icons left">settings_input_svideo</i>Our foods</a></li>
 						<li><a href="/contact"><i class="material-icons left">settings_phone</i>Find us</a></li>
 						<li><a href="/faq"><i class="material-icons left">chat</i>FAQ</a></li>
-
 						<li><i class="material-icons left">shopping_cart</i><%= link_to ":
-						 #{@items_in_cart}", carts_path, class: "cart left no_left_pad", id: "cart" %></li>
+						 #{items_in_cart}", carts_path, class: "cart left no_left_pad", id: "cart" %></li>
 						<!-- Dropdown Trigger -->
 						<li>
 							<div class="col s2">

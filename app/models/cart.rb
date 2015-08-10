@@ -1,6 +1,6 @@
 class Cart
 	attr_reader :cart_data
-	
+
 	def initialize(cart_data)
     @cart_data = cart_data || {}
 	end
