@@ -22,7 +22,7 @@ RSpec.feature "UserAddItemsToCarts", type: :feature do
       3.times do
         click_button "Add to cart"
       end
-      expect(page).to have_css("#cart", text: "1")
+      expect(page).to have_css("#cart", text: "3")
     end
   end
 end
