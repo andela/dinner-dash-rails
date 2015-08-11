@@ -168,3 +168,14 @@ ul.slides {
 	background-image: image-url("table-top.png");
 	border-radius: 10px;
 }
+.in-line {
+	display: inline-block !important;
+}
+.success {
+	background-color: green;
+}
+.error {
+	font-size: 15px;
+	color: red;
+	margin-top: -10px
+}

@@ -1,0 +1,44 @@
+<div class="row container full-height scroll-bar">
+<h4>SignUp</h4>
+  <!-- <% if !@user.errors.messages.empty? %> -->
+    <!-- <% @user.errors.messages.each do |error, message| %>
+      <script>Materialize.toast("<%= error %> <%= message.to_s %>", 5000, 'rounded', 'success')();</script>
+    <% end %>
+  <% end %> -->
+  <%= form_for @user, :html => { :class => "col s12" } do |f| %>
+    <div class="row">
+      <div class="input-field col s6">
+        <%=f.text_field :first_name, :class => "validate" %>
+        <%= f.label :first_name %>
+        <div class = "error"><%= @user.errors.messages[:first_name][0] %></div>
+      </div>
+      <div class="input-field col s6">
+        <%=f.text_field :last_name, :class => "validate" %>
+        <%= f.label :last_name %>
+        <div class = "error"><%= @user.errors.messages[:last_name][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.email_field :email, :class => "validate" %>
+        <%= f.label :email, :class => "active", "data-error" => "#{@user.errors.messages['email']}" %>
+        <div class = "error"><%= @user.errors.messages[:email][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.password_field :password, :class => "validate" %>
+        <%= f.label :password %>
+        <div class = "error"><%= @user.errors.messages[:password][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+        <%=f.password_field :password_confirmation, :class => "validate" %>
+        <%= f.label :password_confirmation %>
+        <div class = "error"><%= @user.errors.messages[:password_confirmation][0] %></div>
+    </div>
+  </div>
+  <%= f.submit "Sign up", :class => "btn waves-effect waves-light" %>
+  <% end %>
+</div>

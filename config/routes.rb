@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :cart_items
   resources :carts
   resources :about
+  resources :users
 
   delete 'carts/:item_id/', to: 'carts#destroy', as: "cart_item_delete"
   get 'login' => 'sessions#new'
