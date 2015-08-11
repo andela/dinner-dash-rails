@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :carts
   resources :about
   resources :users
-  get "login" => "session#new", as: :user_login
 
   delete 'carts/:item_id/', to: 'carts#destroy', as: "cart_item_delete"
   get 'login' => 'sessions#new'

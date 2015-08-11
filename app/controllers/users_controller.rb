@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      login @user
+      log_in @user
       flash[:success] = "Welcome #{user_params[:first_name]} to dinner dash!"
       redirect_to root_path
     else
