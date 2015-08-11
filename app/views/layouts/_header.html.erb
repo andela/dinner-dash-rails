@@ -17,18 +17,24 @@
 						 #{items_in_cart}", carts_path, class: "cart left no_left_pad", id: "cart" %></li>
 						<!-- Dropdown Trigger -->
 						<li>
-							<div class="col s2">
+							<div class="col s4">
 								<%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %>
 							</div>
-							<div class="col s10">
+							<div class="col s8">
 								<span class="black-text">
-									<a class="dropdown-button" href="#!" data-activates="dropdown1">Daisi logged on<i class="material-icons right">arrow_drop_down</i></a>
+									<a class="dropdown-button" href="#!" data-activates="dropdown1">
+									<% if logged_in? %>
+									<%= @current_user.first_name %> logged on
+									<i class="material-icons right">arrow_drop_down</i></a>
 										<ul id="dropdown1" class="dropdown-content">
 											<li><a href="user"><i class="material-icons left">perm_identity</i>My profile</a></li>
 											<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
 											<li class="divider"></li>
-											<li><a href="#!"><i class="material-icons left">play_arrow</i>Log out</a></li>
+											<li><a href="#!"><i class="material-icons left"></i><%= link_to "Log out", logout_path, method: :delete %></a></li>
 										</ul>
+									<% else %> 
+									<%= link_to "Log in", login_path %>
+									<% end %>
 								</span>
 							</div>
 

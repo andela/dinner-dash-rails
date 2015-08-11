@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :about
 
   delete 'carts/:item_id/', to: 'carts#destroy', as: "cart_item_delete"
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   # delete 'carts', to: 'carts#destroy', as: "checkout"
 
 
