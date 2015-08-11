@@ -171,3 +171,11 @@ ul.slides {
 .in-line {
 	display: inline-block !important;
 }
+.success {
+	background-color: green;
+}
+.error {
+	font-size: 15px;
+	color: red;
+	margin-top: -10px
+}

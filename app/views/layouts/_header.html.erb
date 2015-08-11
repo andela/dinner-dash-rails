@@ -17,7 +17,7 @@
 						 #{items_in_cart}", carts_path, class: "cart left no_left_pad", id: "cart" %></li>
 						<!-- Dropdown Trigger -->
 						<li>
-						<% if @user %>
+						<% if @current_user %>
 							<div class="col s2">
 								<%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %>
 							</div>
