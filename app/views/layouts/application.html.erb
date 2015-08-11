@@ -16,6 +16,11 @@
         <% end %>
       </div>
       <main>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <script>Materialize.toast("<%= message %>", 5000, 'rounded <%= message_type %>', 'success')();</script>
+          </div>
+        <% end %>
         <%= yield %>
       </main><!--End of main-->
       <%= render 'layouts/footer' %>
