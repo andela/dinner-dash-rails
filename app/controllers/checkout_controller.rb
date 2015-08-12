@@ -8,7 +8,6 @@ class CheckoutController < ApplicationController
   end
 
   def create
-    require 'pry-nav';binding.pry
     if @current_order.save_order(@current_user)
       flash[:success] = "Your order has been successfully placed."
       # Here, we'd redirect to stripe page

@@ -5,7 +5,6 @@ class Current_Order
   attr_accessor :sub_total
 
   def initialize
-    require 'pry-nav';binding.pry
     @ordered_items ||= {}
     @total ||= 0
     @delivery_cost ||= 500
@@ -18,7 +17,6 @@ class Current_Order
 
   def save_order(current_user)
     user = current_user
-    require 'pry-nav';binding.pry
     new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost)
     save_successful = new_order.save
     if save_successful
