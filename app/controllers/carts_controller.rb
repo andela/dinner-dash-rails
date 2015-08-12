@@ -8,6 +8,7 @@ class CartsController < ApplicationController
       @ordered_food << [food , qty]
       @total += (food.price * qty)
     end if !session[:cart].nil?
+    session[:order] = @ordered_food
   end
 
   def destroy

@@ -7,10 +7,19 @@ class ApplicationController < ActionController::Base
   def load_cart
     @cart ||= Cart.new(session[:cart])
   end
-  before_action :load_cart
+
+  def load_current_order
+    @current_order ||= Current_Order.new
+  end
 
   def cart
     @cart
   end
+
+  before_action :load_cart
+  before_action :current_user
+  before_action :load_current_order
+
   helper_method :cart
+  helper_method :current_order
 end

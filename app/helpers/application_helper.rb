@@ -22,7 +22,7 @@ module ApplicationHelper
     	cart_properties["items_count"] = 0;
     	cart_properties["status"] = "empty";
     else
-    	cart_properties["items_count"] = session[:cart].length;
+    	cart_properties["items_count"] = items_in_cart;
     	cart_properties["status"] = "not-empty";
     end
     cart_properties

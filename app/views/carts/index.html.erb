@@ -36,9 +36,9 @@
       <td></td>
       <td></td>
       <td>Subtotal</td>
-      <td>N<%= @total%></td>
+      <td id="total">N<%= @total%></td>
     </tr>
   </tfoot>
 </table>
-<%= button_to 'Checkout'%>
+<%= button_to 'Checkout', checkout_path %>
 <% end %>
