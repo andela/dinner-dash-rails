@@ -15,4 +15,16 @@ module ApplicationHelper
 			food_count = session[:cart][food.id.to_s].nil? ? 0 : session[:cart][food.id.to_s]
 		end
 	end
+
+  def cart_properties
+    cart_properties = {}
+    if session[:cart].nil?
+    	cart_properties["items_count"] = 0;
+    	cart_properties["status"] = "empty";
+    else
+    	cart_properties["items_count"] = session[:cart].length;
+    	cart_properties["status"] = "not-empty";
+    end
+    cart_properties
+  end
 end
