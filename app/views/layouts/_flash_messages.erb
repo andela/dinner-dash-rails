@@ -1,0 +1,5 @@
+<% flash.each do |message_type, message| %>
+	<div class="alert alert-<%= message_type %>">
+		<div class="show-material-message" data-message="<%= message %>"></div>
+	</div>
+<% end %>
