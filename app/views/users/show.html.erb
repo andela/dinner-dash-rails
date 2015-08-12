@@ -1,0 +1,33 @@
+<div class="row full-height">
+  <div class="col s4 full-height scroll-bar profile_left_tab">
+    
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag("yuna.jpg")%>
+      </div>
+      <div class="card-content">
+        <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
+        <p>Email: <%= @user.email %></p>
+      </div>
+      <div class="card-action">
+        <%= link_to "Edit Profile", edit_user_path  %>
+      </div>
+      <div class="card-action">
+      <%= link_to "View Orders", user_orders_path(@user.id) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s8">
+    <h4 class="order_header">Recent Orders</h4>
+    <ul class="collapsible popout" data-collapsible="accordion">
+      <% @orders.each do |order| %>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Order: <%= order.id %></div>
+          <div class="collapsible-body"><p><%= order.Status %></p></div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

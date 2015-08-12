@@ -29,5 +29,27 @@ C2 = Category.create(
     title: "Desserts",
     description: "Finger-licking desserts made from our great family recipe")
 
+U1 = User.create(
+    first_name: "Damilola",
+    last_name: "Roberts",
+    email: "dr@yahoo.com",
+    password: "whatever",
+    password_confirmation: "whatever"
+  )
+
+O1 = Order.create(Status: "Completed")
+O2 = Order.create(Status: "Cancelled")
+O3 = Order.create(Status: "Processing")
+
+Order_Item1 = OrderItem.create(quantity: 3, food_id: F1.id)
+Order_Item1 = OrderItem.create(quantity: 2, food_id: F2.id)
+Order_Item3 = OrderItem.create(quantity: 5, food_id: F3.id)
+
+O1.order_items << Order_Item1
+
+U1.orders << O1
+U1.orders << O2
+U1.orders << O3
+
 C1.foods << F1
 C2.foods << F3
