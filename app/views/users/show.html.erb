@@ -20,14 +20,9 @@
 
   <div class="col s8">
     <h4 class="order_header">Recent Orders</h4>
-    <ul class="collapsible popout" data-collapsible="accordion">
-      <% @orders.each do |order| %>
-        <li>
-          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Order: <%= order.id %></div>
-          <div class="collapsible-body"><p><%= order.Status %></p></div>
-        </li>
-      <% end %>
-    </ul>
+    
+      <%= render "layouts/orders_page" %>
+    
   </div>
 
 </div>

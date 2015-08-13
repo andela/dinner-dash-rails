@@ -37,19 +37,25 @@ U1 = User.create(
     password_confirmation: "whatever"
   )
 
-O1 = Order.create(Status: "Completed")
-O2 = Order.create(Status: "Cancelled")
+U2 = User.create(
+    first_name: "Jeff",
+    last_name: "Roberts",
+    email: "jr@yahoo.com",
+    password: "whatever",
+    password_confirmation: "whatever"
+  )
+
+O1 = Order.create(Status: "Completed", user_id: U1.id)
+O2 = Order.create(Status: "Cancelled", user_id: U1.id)
 O3 = Order.create(Status: "Processing")
 
-Order_Item1 = OrderItem.create(quantity: 3, food_id: F1.id)
-Order_Item1 = OrderItem.create(quantity: 2, food_id: F2.id)
-Order_Item3 = OrderItem.create(quantity: 5, food_id: F3.id)
+Order_Item1 = OrderItem.create(quantity: 3, food_id: F1.id, order_id: 1)
+Order_Item2 = OrderItem.create(quantity: 2, food_id: F2.id, order_id: 1)
+Order_Item3 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 1)
 
-O1.order_items << Order_Item1
+Order_Item4 = OrderItem.create(quantity: 4, food_id: F3.id, order_id: 2)
 
-U1.orders << O1
-U1.orders << O2
-U1.orders << O3
+
 
 C1.foods << F1
 C2.foods << F3
