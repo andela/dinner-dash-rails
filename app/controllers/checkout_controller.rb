@@ -8,6 +8,7 @@ class CheckoutController < ApplicationController
   end
 
   def create
+    @current_order.update_order(order_params)
     if @current_order.save_order(@current_user)
       flash[:success] = "Your order has been successfully placed."
       # Here, we'd redirect to stripe page
@@ -19,5 +20,8 @@ class CheckoutController < ApplicationController
 
   private
 
+  def order_params
+    params.require('order').permit(:total, :delivery_cost, :ordered_items)
+  end
 
 end

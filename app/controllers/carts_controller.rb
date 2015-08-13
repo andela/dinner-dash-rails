@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   def index
+    require 'pry-nav'; binding.pry
    @cart_items = session[:cart]
     @ordered_food = []
     @total = 0
@@ -8,6 +9,7 @@ class CartsController < ApplicationController
       @ordered_food << [food , qty]
       @total += (food.price * qty)
     end if !session[:cart].nil?
+    @current_order.ordered_items = @ordered_food
     session[:order] = @ordered_food
   end
 

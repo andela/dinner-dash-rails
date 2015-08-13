@@ -19,11 +19,11 @@
       <td><%= food.description %></td>
       <td><%= food.price %></td>
       <td><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: food.id, id: quantity}, method: :patch  do |f| %>
-        <%= f.number_field :qty, :value => quantity %>
+        <%= f.number_field :qty, :value => quantity, :class => "qty-editable-width", "data-message" => food.id %>
         <%= submit_tag "Update", method: :patch %>
         <% end %>
       </td>
-      <td>N<%= food.price * quantity %></td>
+      <td id="food_<%= food.id %>" data-message="<%= food.price %>" >N<%= food.price * quantity %></td>
       <td><%= button_to 'Remove', cart_item_delete_path(food.id), method: :delete %></td>
     </tr>
   </tbody>

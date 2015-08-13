@@ -16,9 +16,9 @@ class CartItemsController < ApplicationController
 
   def update 
     food_id = params[:food_id]
-    quantity = params[:quantity][:qty]
+    quantity = params[:quantity]
     session[:cart][food_id] = quantity.to_i
-    redirect_to carts_path
+    render json: {data: food_id}
   end
 
 	private
