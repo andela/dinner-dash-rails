@@ -39,6 +39,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+group :development do
+  gem 'bullet'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,6 +55,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'launchy'
 end
 
 group :production do
