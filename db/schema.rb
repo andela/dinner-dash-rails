@@ -31,17 +31,20 @@ ActiveRecord::Schema.define(version: 20150810153548) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "quantity"
+    t.integer  "order_id"
+    t.integer  "food_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "food_id"
   end
 
-  add_index "order_items", ["food_id"], name: "index_order_items_on_food_id"
-
   create_table "orders", force: :cascade do |t|
-    t.string   "Status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "Status",        default: "pending"
+    t.integer  "total"
+    t.integer  "vat"
+    t.integer  "delivery_cost"
+    t.integer  "user_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "roles", force: :cascade do |t|
