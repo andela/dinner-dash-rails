@@ -12,9 +12,9 @@
 						<li><a href="/contact"><i class="material-icons left">settings_phone</i>Find us</a></li>
 						<li><a href="/faq"><i class="material-icons left">chat</i>FAQ</a></li>
 						<li class="cart-holder <%= cart_properties['status'] %>">
-						<%= link_to carts_path, class: "cart left no_left_pad", id: "cart"  do %>
-						 		<i class="material-icons left">shopping_cart</i><%= cart_properties['items_count'] %>
-						 <% end %>
+							<%= link_to carts_path, class: "cart left no_left_pad", id: "cart"  do %>
+							 		<i class="material-icons left">shopping_cart</i><%= cart_properties['items_count'] %>
+							 <% end %>
 						</li>
 						<li>
 						<% if current_user %>
