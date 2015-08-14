@@ -1,4 +1,4 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :food
-  belongs_to :orders
+  belongs_to :order
 end

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  post 'checkout' => 'checkout#show', as: :checkout
+  post 'carts/checkout' => 'carts#checkout', as: :cart_checkout
+  post 'payment' => 'checkout#create', as: :payment
   # delete 'carts', to: 'carts#destroy', as: "checkout"
 
 end

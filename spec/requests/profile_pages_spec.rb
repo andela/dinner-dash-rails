@@ -9,10 +9,11 @@ RSpec.feature "ProfilePages", type: :feature do
                           password: "jeffrules", 
                           password_confirmation: "jeffrules")
 
-      visit login_path
+      visit foods_path
+      click_link "Log in"
       within (".login_form") do
         fill_in "session_email", :with => @user.email
-        fill_in "session_password", :with => @user.password
+        fill_in "session_password", :with => "jeffrules"
         click_button "Log in"
       end
       expect(current_path).to eq(foods_path)

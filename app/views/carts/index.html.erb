@@ -1,44 +1,51 @@
-<% if @ordered_food.length == 0 %>
-    <p>Your cart is empty</p>
-<% else %>
-<table class="hoverable">
-  <thead>
-    <tr style="background-color:#BCAAA4;">
-      <th data-field="id">Name</th>
-      <th data-field="name">Description</th>
-      <th data-field="price">Price</th>
-      <th data-field="quantity">Quantity</th>
-      <th data-field="line total">Line Total</th>
-    </tr>
-  </thead>
-  <tbody>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 
-  <% @ordered_food.each do |food, quantity| %>
-    <tr>
-      <td><%= food.name %></td>
-      <td><%= food.description %></td>
-      <td><%= food.price %></td>
-      <td><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: food.id, id: quantity}, method: :patch  do |f| %>
-        <%= f.number_field :qty, :value => quantity %>
-        <%= submit_tag "Update", method: :patch %>
-        <% end %>
-      </td>
-      <td>N<%= food.price * quantity %></td>
-      <td><%= button_to 'Remove', cart_item_delete_path(food.id), method: :delete %></td>
-    </tr>
-  </tbody>
+<div class="full-height scroll-bar">
+  <% if @ordered_foods.length == 0 %>
+      <p>Your cart is empty</p>
+  <% else %>
+  <table class="hoverable">
+    <thead>
+      <tr style="background-color:#BCAAA4;">
+        <th data-field="id">Name</th>
+        <th data-field="name">Description</th>
+        <th data-field="price">Price</th>
+        <th data-field="quantity">Quantity</th>
+        <th data-field="line total">Line Total</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @ordered_foods.each do |food_id, ordered_food| %>
+      <tr>
+        <td><%= ordered_food[0]['name'] %></td>
+        <td><%= ordered_food[0]['description'] %></td>
+        <td><%= ordered_food[0]['price'] %></td>
+        <td><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: food_id, id: ordered_food[1]}, method: :patch  do |f| %>
+          <%= f.number_field :qty, :min => 1, :value => ordered_food[1], :class => "qty qty-editable-width", "data-message" => food_id %>
+          <% end %>
+        </td>
+        <td>N<span class="line-total" id="food_<%= food_id %>" data-message="<%= ordered_food[0]['price'] %>" ><%= ordered_food[0]['price'] * ordered_food[1] %></span></td>
+        <td>
+          <%= button_to cart_item_delete_path(food_id), :class => "clear-button", method: :delete  do %>
+            <i class="material-icons">clear</i>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+
+    <tfoot>
+      <!--Find a better way of doing this -->
+      <tr style="border-top:2px solid #3e2511">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Subtotal</td>
+        <td id="total">N<%= @total%></td>
+      </tr>
+    </tfoot>
+  </table>
+  <%= button_to 'Checkout', checkout_path %>
   <% end %>
-
-  <tfoot>
-    <!--Find a better way of doing this -->
-    <tr style="border-top:2px solid #3e2511">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Subtotal</td>
-      <td>N<%= @total%></td>
-    </tr>
-  </tfoot>
-</table>
-<%= button_to 'Checkout'%>
-<% end %>
+</div>

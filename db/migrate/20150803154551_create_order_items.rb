@@ -3,6 +3,7 @@ class CreateOrderItems < ActiveRecord::Migration
     create_table :order_items do |t|
       t.integer :quantity
       t.belongs_to :order
+      t.belongs_to :food
       t.timestamps null: false
     end
   end
