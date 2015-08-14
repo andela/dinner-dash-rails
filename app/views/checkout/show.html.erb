@@ -1,5 +1,5 @@
 <div class="full-height scroll-bar">
-  <div class="container">
+  <div>
     <h3>Confirm your order</h3>
     <% if @current_order.ordered_items.length == 0 %>
         <p>Your cart is still empty. What is your problem?</p>
@@ -16,15 +16,15 @@
       </thead>
       <tbody>
 
-      <% @current_order.ordered_items.each do |food, quantity| %>
+      <% @current_order.ordered_items.each do |food_id, ordered_item| %>
         <tr>
-          <td><%= food['name'] %></td>
-          <td><%= food['description'] %></td>
-          <td><%= food['price'] %></td>
-          <td><%= quantity %></td>
-          <td>N<%= food['price'] * quantity %></td>
+          <td><%= ordered_item[0]['name'] %></td>
+          <td><%= ordered_item[0]['description'] %></td>
+          <td><%= ordered_item[0]['price'] %></td>
+          <td><%= ordered_item[1] %></td>
+          <td>N<%= ordered_item[0]['price'] * ordered_item[1]%></td>
         </tr>
-        <% @current_order.sub_total += food['price'] * quantity %>
+        <% @current_order.sub_total += ordered_item[0]['price'] * ordered_item[1] %>
       </tbody>
       <% end %>
 

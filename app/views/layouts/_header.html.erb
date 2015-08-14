@@ -11,29 +11,32 @@
 						<li><a href="/foods"><i class="material-icons left">settings_input_svideo</i>Our foods</a></li>
 						<li><a href="/contact"><i class="material-icons left">settings_phone</i>Find us</a></li>
 						<li><a href="/faq"><i class="material-icons left">chat</i>FAQ</a></li>
-						<li class="cart-holder <%= cart_properties['status'] %>"><i class="material-icons left">shopping_cart</i><%= link_to ":
-						 #{cart_properties['items_count']}", carts_path, class: "cart left no_left_pad", id: "cart" %></li>
+						<li class="cart-holder <%= cart_properties['status'] %>">
+						<%= link_to carts_path, class: "cart left no_left_pad", id: "cart"  do %>
+						 		<i class="material-icons left">shopping_cart</i><%= cart_properties['items_count'] %>
+						 <% end %>
+						</li>
 						<li>
 						<% if current_user %>
 							<div class="col s2">
 								<%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %>
 							</div>
-								<div class="col s10">
-									<span class="black-text">
-										<a class="dropdown-button" href="#!" data-activates="dropdown1">
-										<%= current_user.first_name %> logged on
-										<i class="material-icons right">arrow_drop_down</i></a>
-										<ul id="dropdown1" class="dropdown-content">
-											<li><a href="user"><i class="material-icons left">perm_identity</i>My profile</a></li>
-											<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
-											<li class="divider"></li>
-											<li><a href="#!"><i class="material-icons left"></i><%= link_to "Log out", logout_path, method: :delete %></a></li>
-										</ul>
-									</span>
-								</div>
-							<% else %>
-								<div><%= link_to "Log in", login_path, :class =>"in-line" %> | <%= link_to "Sign up", new_user_path, :class =>"in-line" %></div>
-							<% end %>
+							<div class="col s10">
+								<span class="black-text">
+									<a class="dropdown-button" href="#!" data-activates="dropdown1">
+									<%= current_user.first_name %> logged on
+									<i class="material-icons right">arrow_drop_down</i></a>
+									<ul id="dropdown1" class="dropdown-content">
+										<li><a href="user"><i class="material-icons left">perm_identity</i>My profile</a></li>
+										<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+										<li class="divider"></li>
+										<li><a href="#!"><i class="material-icons left"></i><%= link_to "Log out", logout_path, method: :delete %></a></li>
+									</ul>
+								</span>
+							</div>
+						<% else %>
+							<div><%= link_to "Log in", login_path, :class =>"in-line" %> | <%= link_to "Sign up", new_user_path, :class =>"in-line" %></div>
+						<% end %>
 
 						</li>
 					</ul>

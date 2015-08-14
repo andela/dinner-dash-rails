@@ -15,8 +15,8 @@ class Current_Order
     0.1 * @sub_total
   end
 
-  def update_order(args)
-    @ordered_items = args["ordered_items"] || {}
+  def update_order(ordered_items, args)
+    @ordered_items = ordered_items || {}
     @total = args["total"] || 0
     @delivery_cost = args["delivery_cost"] || 0
   end
@@ -26,8 +26,8 @@ class Current_Order
     new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost)
     save_successful = new_order.save
     if save_successful
-      @ordered_items.each do |food, qty|
-        new_order.order_items << OrderItem.create(:food_id => food["id"], :quantity => qty)
+      @ordered_items.each do |food_id, ordered_item|
+        new_order.order_items << OrderItem.create(:food_id => ordered_item[0]["id"], :quantity => ordered_item[1])
       end
     end
     save_successful
