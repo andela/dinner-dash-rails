@@ -1,7 +1,7 @@
 <div class="row full-height">
   <div class="col s4 full-height scroll-bar profile_left_tab">
     
-    <div class="card">
+    <div class="card medium">
       <div class="card-image">
         <%= image_tag("yuna.jpg")%>
       </div>
@@ -11,15 +11,15 @@
       </div>
       <div class="card-action">
         <%= link_to "Edit Profile", edit_user_path  %>
-      </div>
-      <div class="card-action">
-      <%= link_to "View Orders", user_orders_path(@user.id) %>
+      <!-- </div> -->
+      <!-- <div class="card-action"> -->
+      <%= link_to "View Orders", :args => { :show_all => true , :title => "All Orders"} %>
       </div>
     </div>
   </div>
 
   <div class="col s8">
-    <h4 class="order_header">Recent Orders</h4>
+    <h4 class="order_header"><%= @title %></h4>
     
       <%= render "layouts/orders_page" %>
     

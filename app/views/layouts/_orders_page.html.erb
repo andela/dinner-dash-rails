@@ -1,5 +1,4 @@
 <ul class="collapsible popout" data-collapsible="accordion">
-  <% current_page?(action: "index") ? @orders= @orders : @orders = @orders.limit(1) %>
   <% @orders.each do |order| %>
   <li>
     <div class="collapsible-header">Order: <%= order.id %> <%= order.Status %></div>
