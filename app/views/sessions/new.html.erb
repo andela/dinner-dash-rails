@@ -1,6 +1,6 @@
 <div class="container">
   <h3>Log in</h3>
-  <%= form_for(:session, url: login_path) do |f|%>
+  <%= form_for(:session, url: login_path, html: { class: "login_form" }) do |f|%>
     <%= f.label :email %>
     <%= f.text_field :email%>
     <%= f.label :password %>

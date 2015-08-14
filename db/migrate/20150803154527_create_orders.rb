@@ -5,7 +5,6 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :total
       t.integer :vat
       t.integer :delivery_cost
-
       t.belongs_to :user
       t.timestamps null: false
     end

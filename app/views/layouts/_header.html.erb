@@ -27,7 +27,7 @@
 									<%= current_user.first_name %> logged on
 									<i class="material-icons right">arrow_drop_down</i></a>
 									<ul id="dropdown1" class="dropdown-content">
-										<li><a href="user"><i class="material-icons left">perm_identity</i>My profile</a></li>
+										<li><i class="material-icons left">perm_identity</i><%= link_to "My Profile", user_path(current_user.id) %></li>
 										<li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
 										<li class="divider"></li>
 										<li><a href="#!"><i class="material-icons left"></i><%= link_to "Log out", logout_path, method: :delete %></a></li>
@@ -37,7 +37,6 @@
 						<% else %>
 							<div><%= link_to "Log in", login_path, :class =>"in-line" %> | <%= link_to "Sign up", new_user_path, :class =>"in-line" %></div>
 						<% end %>
-
 						</li>
 					</ul>
 
