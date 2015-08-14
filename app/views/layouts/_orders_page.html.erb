@@ -1,0 +1,30 @@
+<ul class="collapsible popout" data-collapsible="accordion">
+  <% @orders.each do |order| %>
+  <li>
+    <div class="collapsible-header">Order: <%= order.id %> <%= order.Status %></div>
+    <div class="collapsible-body">
+      <table>
+        <thead>
+          <tr>
+            <th data-field="name">Name</th>
+            <th data-field="price">Price</th>
+            <th data-field="quantity">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.order_items.each do |order_item| %>
+            <tr>
+              <td><%= Food.find(order_item.food_id).name %></td>
+              <td><%= Food.find(order_item.food_id).price %></td>
+              <td><%= order_item.quantity %></td>  
+            </tr>
+        </tbody>
+        <tfoot>
+          
+        </tfoot>
+      <% end %>
+      </table>
+    </div>
+  </li>
+  <% end %>
+</ul>
