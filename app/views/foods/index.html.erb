@@ -1,9 +1,12 @@
+<script>var check = Materialize.showStaggeredList('.staggered_test');</script>
 <div class="row full-height">
  <%=render 'layouts/category' %>
  <div class="col s9 full-height scroll-bar">
    <div class="panel header-panel flow-text z-depth-3"><%= (!@category.nil?) ? @category.title : "All cuisines"  %></div>
   <div class="row"> <% @foods = (!@category.nil?) ? @category.foods : @foods  %>
+  <ul class="staggered_test">
   <% @foods.each do |food| %>
+  <li>
       <div class="col s12 m6 l4">
         <div class="card">
           <div class="card-image">
@@ -26,10 +29,9 @@
           </div>
         </div>
       </div>
-
+  </li>
   <% end %>
+</ul>
   </div>
  </div>
 </div>
-
-

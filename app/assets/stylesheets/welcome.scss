@@ -10,7 +10,7 @@ $cart-inactive: #666666;
 
 .main {
 	position:relative;
-	top: 20px;
+	top: 0;
 	bottom: 20px;
 }
 
@@ -19,7 +19,7 @@ body {
 	min-height: 100vh;
 	flex-direction: column;
 	background-size: cover;
-	background-image: image-url('restaurant3.jpg');
+	// background-image: image-url('restaurant3.jpg');
 	color: #3e2723;
 
 }
@@ -41,12 +41,13 @@ header  {
 }
 main {
 	flex: 1 0 auto;
-	position: fixed;
-	top: 100px;
-	bottom: 40px;
-	left: 10%;
-	right: 10%;
-	padding: 20px;
+	position: relative;
+	top: 0;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	padding: 0;
+	margin-top: -10px;
 }
 
 footer {
@@ -54,9 +55,9 @@ footer {
 	position: fixed;
 	background-color: #BCAAA4 !important;
 	z-index: 10;
-	left: 10%;
-	right: 10%;
-	margin: 0 20px 0 20px;
+	left: 0;
+	right: 0;
+	margin: 0 20px 0;
 	min-height: 10px;
 }
 
@@ -70,40 +71,31 @@ nav {
 }
 .background {
 	top: 10px;
-	bottom: 10px;
-  position: fixed;
-	background-color: rgba(255,255,255,0.9);
-	padding: 0 20px 0 20px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+  position: relative;
+	// background-color: rgba(255,255,255,0.9);
+	padding: 0 20px;
+	max-width: 100%;
 }
-@media only screen and (max-width: 1200px) {
-  .background {
-    max-width: 100%;
-		right: 0;
-	  left: 0;
-  }
-}
-@media only screen and (min-width: 1201px) {
-  .background {
-    max-width: 85%;
-		right: 10%;
-	  left: 10%;
-  }
-}
+
 .small {
 	max-width: 50px;
 	padding-top: 6px;
 }
+
 footer.page-footer {
 	color: #3e2511;
-	margin: 3px 0 10px 0 !important;
-  padding-bottom: 2px;
+	margin: 3px 20px 0 20px !important;
+  padding-bottom: 0;
 	padding-top: 3px !important;
 	text-align: center;
 
 }
 .img-logo {
-	top: -15px !important;
-  max-height: 70px !important;
+	top: -20px !important;
+  max-height: 100px !important;
   float: left;
   position: relative;
 	margin: 0 10px;
@@ -124,8 +116,15 @@ ul.slides {
 	}
 }
 .slider {
-	max-height: 450px;
-	overflow-y: hidden;
+	// max-height: 450px;
+	// overflow-y: hidden;
+	ul{
+		li{
+			img{
+				display: flex;
+			}
+		}
+	}
 }
 .image-thumb {
 	position: relative;
@@ -140,10 +139,13 @@ ul.slides {
 .col.s3.z-depth-3 {
 	background-color: #00695C
 }
-.side-nav .first {
-	background-color: #66bb6a;
-	cursor: pointer;
-	color: #EEEEEE;
+.side-nav {
+	Width:100% !important;
+	.first {
+		background-color: #66bb6a;
+		cursor: pointer;
+		color: #EEEEEE;
+	}
 }
 .full-height {
 	height: 100% !important;
@@ -201,4 +203,19 @@ ul.slides {
 .clear-button {
   background-color: transparent;
   border: none;
+}
+.staggered_list li {
+	opacity: 0;
+}
+.promo i {
+	margin: 40px 0;
+	color: #ee6e73;
+	font-size: 7rem;
+	display: block;
+}
+.v-align {
+	margin-top: 15% !important;
+}
+.side-margin {
+	margin: 0 20px !important;
 }
