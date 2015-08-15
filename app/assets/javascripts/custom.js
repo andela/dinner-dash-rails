@@ -9,7 +9,6 @@ $(document).ready(function(){
   $(".show-material-message").each(function(){
     Materialize.toast($(this).data('message'), 5000, 'rounded');
   });
-	Materialize.showStaggeredList('.staggered_list')();
 
   var calcTotal = function() {
     var _total = 0;
