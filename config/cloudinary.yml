@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: seyitals
+  api_key: '472323985546378'
+  api_secret: Qat-UwN78Y7Mpj29rsb2bdv4jI4
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: seyitals
+  api_key: '472323985546378'
+  api_secret: Qat-UwN78Y7Mpj29rsb2bdv4jI4
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: seyitals
+  api_key: '472323985546378'
+  api_secret: Qat-UwN78Y7Mpj29rsb2bdv4jI4
+  enhance_image_tag: true
+  static_image_support: false
