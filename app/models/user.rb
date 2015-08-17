@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                      uniqueness: { case_sensitive: false }
   has_secure_password
-   validates :password, presence: true, length: { minimum: 6 }
+   validates :password, presence: true, length: { minimum: 6 }, allow_blank: true
    has_many :orders
+   has_attached_file :avatar, styles: { :original => "150x150", :small => "64x64", :med => "200x200", :large => "300x300" }, :default_url => "yuna.jpg"
+   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 end

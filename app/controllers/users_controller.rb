@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     args = args_params
-    if !args.nil?  
-      @orders = @user.orders 
+    if !args.nil?
+      @orders = @user.orders
       @title = args[:title]
     else
       @orders = @user.orders.limit(3)
@@ -27,10 +27,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile Successfully Updated"
+      redirect_to @user
+    else
+      render "edit"
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :avatar)
   end
 
   def args_params
