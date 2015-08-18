@@ -1,0 +1,34 @@
+<div class="full-height scroll-bar">
+  <div class="row">
+    <div class="col s12 m6 l6 flow-text">
+      <h3><%= @food.name%></h3>
+      <p><%= @food.description %></p>
+      <p><%= @food.price %></p>
+    </div>
+
+    <div class="container col s12 m6 l6">
+      <%= image_tag "nigerian-jollof-rice.jpg"%>
+    </div>
+  </div>
+  
+  <h5>Comments</h5>
+  <div class="comments">
+    <% @food.comments.each do |comment| %>
+      <div class="divider"></div>
+      <div class="section">
+        <h6><%= "#{comment.user.first_name} #{comment.user.last_name} says" %></h6>
+        <p><%= comment.comment %></p>
+      </div>
+    <% end %>
+    <% if logged_in? %>
+      <h5>Add a comments</h5>
+      <%= form_for "comment", :url => {:controller => 'comments', :action => 'create', :food_id => @food.id, :user_id => @current_user.id, method: :post} do |f| %>
+        <div class="divider"></div>
+        <div class="section">
+          <h6><%= f.text_field :comment, :id => "comment" %></h6>
+      <% end %>
+          <p><%= button_to "Add comment", create_food_comment_path(@food), "data-foodid" => "#{@food.id}", "data-userid" => "#{@current_user.id}", :id => "add_comment" %></p>
+        </div>
+    <% end %>
+  </div>
+</div>

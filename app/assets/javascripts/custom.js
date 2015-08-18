@@ -27,31 +27,58 @@ $(document).ready(function(){
   
   $(".qty-editable-width").change(function(){
     var food_id = $(this).data('message');
-    var qty = $(this).val();
-    ajax_call($(this), food_id, qty);
-  });
+    var qty = parseFloat($(this).val());
 
-  var ajax_call = function(elem, food_id, qty){
     var price = parseFloat($('#food_' + food_id).data('message'));
-    var _qty = parseFloat(qty);
-    $.ajax({
-      method: "PATCH",
-      url: "/cart_items/1",
-      data: {
-        food_id: food_id,
-        quantity: qty
-      },
-      beforeSend: function(){
-        $(this).prop('disabled', true);
-      },
-      success: function(data){
-        var line_total = parseFloat(_qty * price).toFixed(2)
+
+    var params = {
+        cart_items: {
+          food_id: food_id,
+          quantity: qty
+        }
+      };
+    var url = "/cart_items/1";  
+    ajax_call($(this), params, url, "PATCH", function(data){
+        var line_total = parseFloat(qty * price).toFixed(2)
         $('#food_' + food_id).text(line_total);
         calcTotal();
         calcTotalItemsInCart();
-        $(this).prop('disabled', false);      },
+        $(this).prop('disabled', false)
+      });
+  });
+
+  $("#add_comment").click(function(){
+    var food_id = parseInt($(this).data("foodid"));
+    var url = "/foods/" + food_id + "/comments";
+    params = {
+      comment: {
+        comment: $("#comment").val(),
+        user_id: parseInt($(this).data("userid")),
+        food_id: food_id
+      }
+    }
+    var res = ajax_call($(this), params, url, "POST", function(comment) {
+      $("div.comments").prepend(
+        "<div class='divider'></div>" +
+        "  <div class='section'>" +
+        "    <h6>" + comment.first_name + " " + comment.last_name + " says </h6>" +
+        "    <p>" + comment.comment + "</p>" +
+        "  </div>"
+      );
+    })
+  });
+
+  var ajax_call = function(elem, params, url, method, callback){   
+    $.ajax({
+      method: method,
+      url: url,
+      data: params,
+      beforeSend: function(){
+        elem.prop('disabled', true);
+      },
+      success: callback, 
       error: function(){
-        Materialize.toast($(this).data('An error occured. Please try again'), 5000, 'rounded');
+        Materialize.toast(elem.data('An error occured. Please try again'), 5000, 'rounded');
       },
       complete: function(){
       }
