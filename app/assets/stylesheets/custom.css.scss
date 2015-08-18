@@ -11,7 +11,11 @@
     text-align: center;
   }
 }
-
 .order_header {
   text-align: center;
+}
+
+.order-display.title li{
+  display: inline-block;
+  font-weight: bold;
 }

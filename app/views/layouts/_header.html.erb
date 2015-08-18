@@ -19,7 +19,7 @@
 						<li>
 						<% if current_user %>
 							<div class="col s2">
-								<%= image_tag("yuna.jpg", :alt => "user", :class => "circle small") %>
+								<%= image_tag current_user.avatar.url(:large), :alt => "user", :class => "circle small_pic" %>
 							</div>
 							<div class="col s10">
 								<span class="black-text">

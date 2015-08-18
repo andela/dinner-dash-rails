@@ -25,7 +25,7 @@ class FoodsController < ApplicationController
   end
 
   def show
-    @food = Food.find(food_params[:id])
+    @food = Food.find(params[:id])
   end
 
   def update
