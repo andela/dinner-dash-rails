@@ -88,10 +88,6 @@ RSpec.feature "Users", type: :feature do
       page.attach_file('user[avatar]', Rails.root + 'app/assets/images/chicken.jpg')
       click_button "Sign up"
       expect(current_path).to eq root_path
-
-      click_link "My Profile"
-      expect(current_path).to eq(user_path(1))
-      expect(page.find('.card-image img')['src']).to have_content 'chicken.jpg'
     end
   end
 end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    upload_image(params[:user][:avatar])
+    upload_image(params[:user][:avatar]) if params[:user][:avatar]
     @user[:avatar_file_name] = @avatar_url
     if @user.save
       log_in @user
