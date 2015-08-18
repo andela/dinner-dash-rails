@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @orders = @user.orders 
       @title = args[:title]
     else
-      @orders = @user.orders.limit(3)
+      @orders = @user.orders.order(created_at: :desc).limit(3)
       @title = "Recent Orders"
     end
   end

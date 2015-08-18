@@ -1,7 +1,27 @@
+
 <ul class="collapsible popout" data-collapsible="accordion">
+ <li>
+  <div class="collapsible-header">
+    <ul class="row order-display title">
+      <li class="col m2">Order</li> 
+      <li class="col m2">Total</li>
+      <li class="col m2">Cost</li>
+      <li class="col m4">Time</li>
+      <li  class="col m2">Status</li>
+    </ul>
+  </div>
+  <li>
   <% @orders.each do |order| %>
   <li>
-    <div class="collapsible-header">Order: <%= order.id %> <%= order.Status %></div>
+    <div class="collapsible-header">
+      <ul class="row order-display">
+        <li class="col m2">Order: <%= order.id %></li> 
+        <li class="col m2">N<%= order.total || 0.0 %></li>
+        <li class="col m2">N<%= order.delivery_cost || 0.0 %></li>
+        <li class="col m4"><%= time_ago_in_words(order.created_at, include_seconds: true) + " ago" %></li>
+        <li class="col m2"><%= order.Status %></li>
+      </ul>
+    </div>
     <div class="collapsible-body">
       <table>
         <thead>
@@ -14,7 +34,7 @@
         <tbody>
           <% order.order_items.each do |order_item| %>
             <tr>
-              <td><%= Food.find(order_item.food_id).name %></td>
+              <td><%=link_to "#{Food.find(order_item.food_id).name}", food_path %></td>
               <td><%= Food.find(order_item.food_id).price %></td>
               <td><%= order_item.quantity %></td>  
             </tr>

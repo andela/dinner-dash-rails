@@ -57,3 +57,7 @@ Order_Item11 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 4)
 
 C1.foods << F1
 C2.foods << F3
+
+Comment1 = Comment.create(comment: "Best food ever", food_id: F1.id, user_id: U1.id)
+Comment2 = Comment.create(comment: "I love it!!", food_id: F1.id, user_id: U2.id)
+
