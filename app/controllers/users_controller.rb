@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @image = params[:user][:avatar]
+    @image = user_params[:avatar]
      if @image && @image.size < 1.megabytes
        upload_image(@image)
      else
