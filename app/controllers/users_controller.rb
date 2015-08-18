@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    upload_image(params[:user][:avatar])
+    @user[:avatar_file_name] = @avatar_url
     if @user.save
       log_in @user
       flash[:success] = "Welcome #{user_params[:first_name]} to dinner dash!"
@@ -39,6 +41,12 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def upload_image(text)
+    @upload = {}
+    @upload[:avatar] = Cloudinary::Uploader.upload(text)
+    @avatar_url = @upload[:avatar]["url"]
   end
 
   private
