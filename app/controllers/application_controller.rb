@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def set_theme
-    @current_theme ||= "box"
+    @current_theme ||= "full"
   end
 
   def load_cart
