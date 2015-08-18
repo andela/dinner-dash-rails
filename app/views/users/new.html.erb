@@ -5,7 +5,7 @@
       <script>Materialize.toast("<%= error %> <%= message.to_s %>", 5000, 'rounded', 'success')();</script>
     <% end %>
   <% end %> -->
-  <%= form_for @user, :html => { :class => "col s12" } do |f| %>
+  <%= form_for @user, :html => { :multipart => true, :class => "col s12" } do |f| %>
     <div class="row">
       <div class="input-field col s6">
         <%=f.text_field :first_name, :class => "validate" %>
@@ -38,7 +38,12 @@
         <%= f.label :password_confirmation %>
         <div class = "error"><%= @user.errors.messages[:password_confirmation][0] %></div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col s12">
+        <!--<%= link_to image_tag(@user.avatar.url(:med)), @user.avatar.url%>-->
+        <%= f.file_field :avatar %>
+      </div>
+    </div>
   <%= f.submit "Sign up", :class => "btn waves-effect waves-light" %>
   <% end %>
 </div>
