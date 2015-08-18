@@ -15,4 +15,4 @@
 /log/*
 !/log/.keep
 /tmp
-/public/system/users/avatars
+/public/system/users/avatars/*
