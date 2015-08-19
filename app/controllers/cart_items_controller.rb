@@ -15,8 +15,9 @@ class CartItemsController < ApplicationController
   end
 
   def update 
-    food_id = params[:food_id]
-    quantity = params[:quantity]
+    args = cart_params
+    food_id = args[:food_id]
+    quantity = args[:quantity]
     session[:cart][food_id] = quantity.to_i
     session[:order][food_id][1] = quantity.to_i
     render json: {data: food_id}
@@ -25,7 +26,7 @@ class CartItemsController < ApplicationController
 	private
 
 	def cart_params
-		params.require(:cart_items).permit(:food_id)
+		params.require(:cart_items).permit(:food_id, :quantity)
 	end
 
 end
