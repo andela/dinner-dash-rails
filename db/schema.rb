@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20150817140646) do
+ActiveRecord::Schema.define(version: 20150820162156) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -47,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150817140646) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "Status",        default: "pending"
+    t.string   "Status",        default: "Pending"
     t.integer  "total"
     t.integer  "vat"
     t.integer  "delivery_cost"
@@ -56,23 +55,18 @@ ActiveRecord::Schema.define(version: 20150817140646) do
     t.datetime "updated_at",                        null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "password_digest"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "role",                default: "user"
   end
 
 end

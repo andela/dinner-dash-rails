@@ -1,0 +1,27 @@
+<div class="row">
+<%= button_to "Add food", new_food_path %>  
+</div>
+<div class="row">
+  <% @foods.each do |food| %>
+      <div class="col s12 m6 l4">
+        <div class="card">
+          <div class="card-image">
+            <span class="price-tag"> N<%= food.price%></span>
+            <span class="activator"><i class="material-icons right">more_vert</i></span>
+            <%= link_to(food) do %>
+              <%= image_tag("nigerian-jollof-rice.jpg", :width => "100%", :height => "auto", :style => "max-width:100%", :class => "image-thumb", :alt => "food") %>
+              <span class="card-title"><%= food.name %></span>
+            <% end %>
+          </div>
+          <div>
+             <%= button_to "Edit food", edit_food_path(food.id) %>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
+            <p><%= food.price%></p>
+            <p><%= food.description%></p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

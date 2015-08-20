@@ -27,4 +27,9 @@ module ApplicationHelper
     end
     cart_properties
   end
+
+  def options_for_status
+    ['Completed', 'Cancelled', 'Pending']
+  end
+
 end
