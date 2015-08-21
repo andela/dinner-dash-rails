@@ -1,0 +1,221 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$top-pad: 20px;
+$bottom-pad: 20px;
+$cart-active: #43a047;
+$cart-inactive: #666666;
+
+.main {
+	position:relative;
+	top: 0;
+	bottom: 20px;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background-size: cover;
+	// background-image: image-url('restaurant3.jpg');
+	color: #3e2723;
+
+}
+.bg-cover {
+	top: 0;
+	bottom:0;
+	left:0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+}
+header  {
+	padding-top: $top-pad;
+	.row {
+		.col {
+			padding:0 !important;
+		}
+	}
+}
+main {
+	flex: 1 0 auto;
+	position: relative;
+	top: 0;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	padding: 0;
+	margin-top: -10px;
+}
+
+footer {
+	bottom: 0;
+	position: fixed;
+	background-color: #BCAAA4 !important;
+	z-index: 10;
+	left: 0;
+	right: 0;
+	margin: 0 20px 0;
+	min-height: 10px;
+}
+
+nav {
+	background-color: #3e2511 !important;
+	.ul{
+		.li{
+			padding-top: 6px;
+		}
+	}
+}
+.background {
+	top: 10px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+  position: relative;
+	// background-color: rgba(255,255,255,0.9);
+	padding: 0 20px;
+	max-width: 100%;
+}
+
+.small {
+	max-width: 50px;
+	padding-top: 6px;
+}
+
+.small_pic {
+	padding-top: 3px;
+	width: 50px;
+	height: 50px;
+}
+footer.page-footer {
+	color: #3e2511;
+	margin: 3px 20px 0 20px !important;
+  padding-bottom: 0;
+	padding-top: 3px !important;
+	text-align: center;
+
+}
+.img-logo {
+	top: -20px !important;
+  max-height: 100px !important;
+  float: left;
+  position: relative;
+	margin: 0 10px;
+}
+.rel {
+	position: relative !important;
+}
+.mini-pad {
+	padding-top: 5px !important;
+}
+.no_left_pad {
+	padding-left: 0 !important;
+}
+ul.slides {
+	border-radius: 10px;
+	li {
+		border-radius: 10px;
+	}
+}
+.slider {
+	// max-height: 450px;
+	// overflow-y: hidden;
+	ul{
+		li{
+			img{
+				display: flex;
+			}
+		}
+	}
+}
+.image-thumb {
+	position: relative;
+}
+.price-tag {
+	position: relative;
+	background: #388e3c;
+	color: #EEEEEE;
+	top: 0;
+	left: 0;
+}
+.col.s3.z-depth-3 {
+	background-color: #00695C
+}
+.side-nav {
+	&.fixed {
+		width:100% !important;
+	}
+	.first {
+		background-color: #66bb6a;
+		cursor: pointer;
+		color: #EEEEEE;
+	}
+}
+.full-height {
+	height: 100% !important;
+	max-height: 100% !important;
+}
+.scroll-bar {
+	overflow: scroll !important;
+}
+.header-panel {
+	margin: 0px 10px;
+	padding: 5px 10px;
+	background-color: #F1FFFF;
+	color: #4E342E;
+}
+.card-action {
+	padding: 10px !important;
+}
+.no-right-margin {
+	margin-right: 0 !important;
+}
+.table-cloth {
+	background-image: image-url("table-cloth.png");
+}
+.table-top {
+	background-image: image-url("table-top.png");
+	border-radius: 10px;
+}
+.in-line {
+	display: inline-block !important;
+}
+.success {
+	background-color: green;
+}
+.error {
+	font-size: 15px;
+	color: red;
+	margin-top: -10px
+}
+.cart-holder {
+	margin: 0 10px 0 10px;
+	padding-left: 10px;
+	i {
+		margin-right: 5px !important;
+	}
+}
+.empty {
+	background-color: $cart-inactive;
+}
+.not-empty {
+	background-color: $cart-active;
+}
+.qty-editable-width {
+    max-width: 50px;
+}
+.clear-button {
+  background-color: transparent;
+  border: none;
+}
+.promo i {
+	margin: 40px 0;
+	color: #43A047;
+	font-size: 7rem;
+	display: block;
+}
+.v-align {
+	margin-top: 15% !important;
+}

@@ -1,2 +1,41 @@
-<h1>Foods#new</h1>
-<p>Find me in app/views/foods/new.html.erb</p>
+<div class="row container full-height scroll-bar">
+<h4>Create new food</h4>
+  <%= form_for @food, :html => { :multipart => true, :class => "col s12" } do |f| %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.text_field :name, :class => "validate" %>
+        <%= f.label :name %>
+        <div class = "error"><%= @food.errors.messages[:name][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.text_field :description, :class => "validate" %>
+        <%= f.label :description, :class => "active", "data-error" => "#{@food.errors.messages['description']}" %>
+        <div class = "error"><%= @food.errors.messages[:description][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.text_field :price, :class => "validate" %>
+        <%= f.label :price %>
+        <div class = "error"><%= @food.errors.messages[:price][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+          <%= f.collection_select(:category_id, Category.all, :id, :title, {}, { :class => "select_box", :style => "display:block;" }) %>
+          <div class = "error"><%= @food.errors.messages[:category_id][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <%= f.file_field :food_image %>
+      </div>
+      <div class="food_upload_progress_bar">
+        <div class="determinate" style="width: 70%"></div>
+      </div>
+    </div>
+  <%= f.submit "Sign up", :class => "btn waves-effect waves-light" %>
+  <% end %>
+</div>

@@ -1,27 +1,84 @@
-<div class="row">
-<%= button_to "Add food", new_food_path %>  
-</div>
-<div class="row">
-  <% @foods.each do |food| %>
-      <div class="col s12 m6 l4">
-        <div class="card">
-          <div class="card-image">
-            <span class="price-tag"> N<%= food.price%></span>
-            <span class="activator"><i class="material-icons right">more_vert</i></span>
-            <%= link_to(food) do %>
-              <%= image_tag("nigerian-jollof-rice.jpg", :width => "100%", :height => "auto", :style => "max-width:100%", :class => "image-thumb", :alt => "food") %>
-              <span class="card-title"><%= food.name %></span>
-            <% end %>
-          </div>
-          <div>
-             <%= button_to "Edit food", edit_food_path(food.id) %>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
-            <p><%= food.price%></p>
-            <p><%= food.description%></p>
-          </div>
-        </div>
-      </div>
-  <% end %>
+<div class="full-height scroll-bar">
+	<div class="header">
+			<div class="row">
+				<div class="input-field col s6">
+			    <select class="select_box select_field" style="display:block">
+			      <option value="0" selected>Sort by status</option>
+			      <option value="/foods" >Available</option>
+			      <option value="/">Not available</option>
+			    </select>
+			  </div>
+
+				<div class="input-field col s6">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Type in food name</label>
+				</div>
+			</div>
+
+	</div><!--end of header-->
+	<div class="body">
+		<table class="striped">
+		<thead>
+			<tr>
+					<th data-field="id">Name</th>
+					<th data-field="name">Description</th>
+					<th data-field="price">Item Price</th>
+					<th data-field="price">Category</th>
+					<th data-field="price">Available ?</th>
+					<th data-field="price">Updated</th>
+					<th data-field="price"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @foods.each do |food| %>
+				<a href = "/>">
+				<tr>
+					<td><%=link_to "#{food.name}", edit_food_path(food.id) %></td>
+					<td><%= food.description %></td>
+					<td><%= food.price %></td>
+					<td><%= !food.category.nil? ? food.category.title : "none yet" %></td>
+					<td>
+						<div class="switch">
+							<label>
+								No
+								<input class="food_status" type="checkbox" data-status="<%= food.status %>" data-foodid="<%= food.id %>">
+								<span class="lever"></span>
+								Yes
+							</label>
+						</div>
+					</td>
+					<td><%= food.updated_at.strftime("%Y %e %d") %></td>
+					<td>
+						<%= button_to food_path(food.id), :class => "clear-button", method: :delete  do %>
+							<i class="material-icons">clear</i>
+						<% end %>
+					</td>
+				</tr>
+
+			<% end %>
+		</tbody>
+	</table>
+	</div><!--end of header-->
+	<div class="footer">
+		<div class="row">
+			<div class="col s12">
+				<button class="btn waves-effect waves-light" type="submit" name="action">Add food
+			     <i class="material-icons">send</i>
+			  </button>
+			</div>
+
+		  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+		    <a class="btn-floating btn-large red">
+		      <i class="large material-icons">add</i>
+		    </a>
+		    <ul>
+		      <li><a href="/categories/new" class="btn-floating red"><i class="material-icons">web</i></a></li>
+		      <li><a href="/foods/new" class="btn-floating yellow darken-1"><i class="material-icons">settings_input_svideo</i></a></li>
+		    </ul>
+		  </div>
+		</div>
+	</div><!--end of header-->
+
 </div>

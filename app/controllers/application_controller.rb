@@ -4,8 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  def set_theme
+    @current_theme ||= "full"
+  end
+
   def load_cart
-    @cart ||= Cart.new(session[:cart])
+      @cart ||= Cart.new(session[:cart])
   end
 
   def load_current_order
@@ -16,6 +20,7 @@ class ApplicationController < ActionController::Base
     @cart
   end
 
+  before_action :set_theme
   before_action :load_cart
   before_action :current_user
   before_action :load_current_order

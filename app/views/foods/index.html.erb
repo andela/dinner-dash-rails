@@ -10,7 +10,7 @@
             <span class="price-tag"> N<%= food.price%></span>
             <span class="activator"><i class="material-icons right">more_vert</i></span>
             <%= link_to(food) do %>
-              <%= image_tag("nigerian-jollof-rice.jpg", :width => "100%", :height => "auto", :style => "max-width:100%", :class => "image-thumb", :alt => "food") %>
+              <%= image_tag((food.food_image.url || "nigerian-jollof-rice.jpg"), :width => "100%", :height => "auto", :style => "max-width:100%", :class => "image-thumb", :alt => "food") %>
               <span class="card-title"><%= food.name %></span>
             <% end %>
           </div>
@@ -31,5 +31,3 @@
   </div>
  </div>
 </div>
-
-
