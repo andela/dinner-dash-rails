@@ -6,7 +6,7 @@ class AdministratorController < ApplicationController
   end
 
   def food_index
-    @title = "foods"
+    @title = "admin_foods"
     @foods = Food.all
     render template: 'administrator/show.html.erb'
   end
