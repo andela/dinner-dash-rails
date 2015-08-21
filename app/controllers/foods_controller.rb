@@ -1,26 +1,25 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
-    # args = food_params
-    # @foods = args.nil? ? Food.all : Task.where(args).order(name: :desc)
-    # if @foods
-    #   @foods
-    # else
-    #   render html: "No food has been created yet"
-    # end
+    @foods = Food.all.order(created_at: :asc)
   end
 
   def new
     @food = Food.new
   end
 
+  def edit
+    @food = Food.find(params[:id])
+    render template: "foods/new"
+  end
+
   def create
-    args = food_params
-    if @admin
-      food = Task.create(args)
-      render !food.respond_to?('errors') || food.errors.empty? ? food : "Error! #{food.errors.messages}"
+    @food = {}
+     if @current_user.role === "admin" && upload_image
+      @food = Food.create(food_params)
+      flash[:success] = "#{@food.name} has been added successfully."
+      redirect_to admin_foods_path
     else
-      render html: "Only an administrator can create a food item"
+      flash[:error] = "An error occured. Try adding #{@food.name} again."
     end
   end
 
@@ -29,35 +28,58 @@ class FoodsController < ApplicationController
   end
 
   def update
-    args = food_params
-    if @admin
-      food = Food.find(food_params[:id])
-      if !food.nil?
-        render html: food.update(args) ? "Food updated successfully" : "Error! #{food.errors.messages}"
-      else
-        render html: "Food with id: #{food_params[:id]} doesn't exist!"
-      end
+    @food = Food.find(params[:id])
+    upload_image if food_params[:food_image]
+    if @current_user.role === "admin" && @food
+      @food[:food_image_file_name] = @food_image_url
+      @food.update(food_params)
+      flash[:success] = "#{@food.name} has been updated successfully."
+      redirect_to admin_foods_path
     else
-      render html: "You have to be an admin to edit food!"
+      flash[:error] = "An error occured. Try adding #{@food.name} again."
     end
   end
 
   def destroy
-    if @admin
-      food = Food.find(food_params[:id])
-      if !food.nil?
-        render html: food.destroy! ? flash[:notice]="Food deleted successfully" : "Error! #{food.errors.messages}"
-      else
-        render html: "Food with id: #{food_params[:id]} doesn't exist!"
-      end
+    food = Food.find(params[:id])
+    if @current_user.role === "admin" && food
+      food.destroy
+      flash[:success] = "#{food.name} has been deleted."
+      redirect_to admin_foods_path
     else
-      render html: "You have to be an admin to delete food!"
+      flash[:error] = "An error occured. Try deleting #{@food.name} again."
     end
+  end
+
+  def edit_status
+   if @current_user.role === "admin"
+     food = Food.find(food_params[:id].to_i)
+     if (!food.nil?)
+       status = food_params[:status] == "true" ? "available" : "not available"
+       food.status = status
+       food.save
+       render json: food
+     end
+   end
   end
 
   private
 
   def food_params
-    require params.require(:food).permit(:id, :name, :description, :price, :category_id)
+    params.require(:food).permit(:id, :name, :description, :price, :category_id, :food_image, :status)
+  end
+
+  def upload_image
+    image = food_params[:food_image]
+    @food_image_url = false
+     if image && image.size < 1.megabytes
+        @upload = {}
+        @upload[:food_image] = Cloudinary::Uploader.upload(image)
+        @food_image_url = @upload[:food_image]["url"]
+        @food[:food_image_file_name] = @food_image_url
+     else
+       flash[:warning] = "file size must be between 0 and 1 megabytes"
+     end
+     @food_image_url
   end
 end

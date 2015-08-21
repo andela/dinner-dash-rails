@@ -1,0 +1,20 @@
+<div class="row container full-height scroll-bar">
+<h4>Create new food category</h4>
+  <%= form_for @category, :html => { :multipart => true, :class => "col s12" } do |f| %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.text_field :title, :class => "validate" %>
+        <%= f.label :title %>
+        <div class = "error"><%= @category.errors.messages[:title][0] %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%=f.text_field :description, :class => "validate" %>
+        <%= f.label :description, :class => "active", "data-error" => "#{@category.errors.messages['description']}" %>
+        <div class = "error"><%= @category.errors.messages[:description][0] %></div>
+      </div>
+    </div>
+  <%= f.submit "Save", :class => "btn waves-effect waves-light" %>
+  <% end %>
+</div>
