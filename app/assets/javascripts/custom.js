@@ -4,6 +4,20 @@ $(document).ready(function(){
     height: 500,
     //indicators: false
   });
+  $('.food_status').each(function() {
+    if ($(this).data("status") === "available") {
+      $(this).prop('checked', true);
+    } else {
+      $(this).prop('checked', false);
+    }
+  });
+
+  $('.parallax').parallax();
+
+  $(".select_field").change(function() {
+      var url = $(".select_field").val();
+      document.location.href = url;
+  });
 
   $(".show-material-message").each(function(){
     Materialize.toast($(this).data('message'), 5000, 'rounded');
@@ -24,7 +38,7 @@ $(document).ready(function(){
     });
     $("#cart").text(_totalItemsInCart);
   }
-  
+
   $(".qty-editable-width").change(function(){
     var food_id = $(this).data('message');
     var qty = parseFloat($(this).val());
@@ -37,7 +51,7 @@ $(document).ready(function(){
           quantity: qty
         }
       };
-    var url = "/cart_items/1";  
+    var url = "/cart_items/1";
     ajax_call($(this), params, url, "PATCH", function(data){
         var line_total = parseFloat(qty * price).toFixed(2)
         $('#food_' + food_id).text(line_total);
@@ -57,7 +71,7 @@ $(document).ready(function(){
         food_id: food_id
       }
     }
-    var res = ajax_call($(this), params, url, "POST", function(comment) {
+    ajax_call($(this), params, url, "POST", function(comment) {
       $("div.comments").prepend(
         "<div class='divider'></div>" +
         "  <div class='section'>" +
@@ -68,7 +82,26 @@ $(document).ready(function(){
     })
   });
 
-  var ajax_call = function(elem, params, url, method, callback){   
+  $(".food_status").click(function() {
+    var food_id = $(this).data("foodid");
+    var food_status = $(this).prop("checked");
+    var url = "/foods/" + food_id + "/edit_status";
+    params = {
+      food: {
+        id: food_id,
+        status: food_status
+      }
+    }
+    ajax_call($(this), params, url, "PATCH", function(food) {
+      if (food.status === "available") {
+        $(this).prop("checked", true);
+      } else {
+        $(this).prop("checked", false);
+      }
+    });
+  })
+
+  var ajax_call = function(elem, params, url, method, callback){
     $.ajax({
       method: method,
       url: url,
@@ -76,7 +109,10 @@ $(document).ready(function(){
       beforeSend: function(){
         elem.prop('disabled', true);
       },
-      success: callback, 
+      success: function(data){
+        elem.prop('disabled', false);
+        callback(data);
+      },
       error: function(){
         Materialize.toast(elem.data('An error occured. Please try again'), 5000, 'rounded');
       },
@@ -84,4 +120,8 @@ $(document).ready(function(){
       }
     });
   };
+
+  $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
+  $('.food_upload_progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+});
 });//end document ready

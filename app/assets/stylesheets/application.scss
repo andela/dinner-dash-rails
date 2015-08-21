@@ -10,7 +10,51 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
  @import "materialize";
+
+ // Material Icon css
+
+ @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v7/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+ }
+
+ .material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  word-wrap: normal;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+ }
+
+// custom css
+
+.item {
+  margin: 20px !important;
+  border-radius: 5px;
+}
+
+.profile_left_tab {
+  border-right: 2px solid black;
+  .card {
+    text-align: center;
+  }
+}
+
+.order_header {
+  text-align: center;
+}
+
+.side-margin {
+	margin: 0 20px !important;
+}

@@ -7,10 +7,10 @@
     </div>
 
     <div class="container col s12 m6 l6">
-      <%= image_tag "nigerian-jollof-rice.jpg"%>
+      <%= image_tag @food.food_image.url %>
     </div>
   </div>
-  
+
   <h5>Comments</h5>
   <div class="comments">
     <% @food.comments.each do |comment| %>
