@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   get 'login' => 'sessions#new'
-  get 'admin/foods' => 'admin#foods', as: :admin_foods
   post 'login' => 'sessions#create'
   post 'checkout' => 'checkout#show', as: :checkout
   post 'carts/checkout' => 'carts#checkout', as: :cart_checkout

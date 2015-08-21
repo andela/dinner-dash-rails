@@ -7,7 +7,7 @@ class AdministratorController < ApplicationController
 
   def food_index
     @title = "admin_foods"
-    @foods = Food.all
+    @foods = Food.all.order(created_at: :desc)
     render template: 'administrator/show.html.erb'
   end
 
