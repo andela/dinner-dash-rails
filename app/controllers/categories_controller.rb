@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
   def create
-    if @current_user.role == "admin"
+    if admin?
       @category = Category.create(category_params)
       if @category
         flash[:success] = "New category Created"
