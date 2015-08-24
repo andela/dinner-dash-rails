@@ -14,7 +14,12 @@
 .order_header {
   text-align: center;
 }
+
 .order-display.title li{
   display: inline-block;
   font-weight: bold;
+}
+
+.select_box {
+  display: block !important;
 }
