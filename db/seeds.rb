@@ -25,6 +25,13 @@ U1 = User.create(
     last_name: "Roberts",
     email: "dr@yahoo.com",
     password: "whatever",
+    password_confirmation: "whatever"
+  )
+U3 = User.create(
+    first_name: "Adenike",
+    last_name: "Roberts",
+    email: "adenike@yahoo.com",
+    password: "whatever",
     password_confirmation: "whatever",
     role: "admin"
   )
