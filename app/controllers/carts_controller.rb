@@ -6,7 +6,11 @@ class CartsController < ApplicationController
     @cart_items.each do |food_id, qty|
       food = Food.find(food_id)
       @ordered_foods[food_id] = [food , qty]
-      @total += (food.price * qty)
+      unless food.status == "available"
+        @ordered_foods.delete(food_id)
+      else
+        @total += (food.price * qty)
+      end
     end if !session[:cart].nil?
     @current_order.ordered_items = @ordered_foods
     session[:order] = @ordered_foods
