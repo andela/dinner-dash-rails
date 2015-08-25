@@ -19,7 +19,7 @@ class AdministratorController < ApplicationController
 
   def user_index
     @title = "users"
-    @users = User.all
+    @users = User.all.paginate(page: params[:page], :per_page => 10).order(created_at: :desc)
     check_if_admin
   end
 
