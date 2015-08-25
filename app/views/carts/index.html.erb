@@ -17,7 +17,9 @@
     <tbody>
 
     <% @ordered_foods.each do |food_id, ordered_food| %>
-
+      <!-- <% unless ordered_food[0]['status'] == "available" %>
+        <p>Sorry <%= ordered_food[0]['name'] %> is currently out of stock</p>
+      <% else %> -->
         <tr>
           <td><%= ordered_food[0]['name'] %></td>
           <td><%= ordered_food[0]['description'] %></td>
@@ -33,7 +35,7 @@
             <% end %>
           </td>
         </tr>
-      
+      <!-- <% end %> -->
     </tbody>
     <% end %>
 
