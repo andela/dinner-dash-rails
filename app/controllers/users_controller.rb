@@ -24,13 +24,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    args = args_params
-    if !args.nil?
-      @orders = @user.orders
-      @title = args[:title]
+    args = args_params || {}
+    if @user
+      if !args.nil?
+        @orders = @user.orders
+        @title = args[:title] || "Profile"
+      else
+        @orders = @user.orders.order(created_at: :desc).limit(3)
+        @title = "Recent Orders"
+      end
     else
-      @orders = @user.orders.order(created_at: :desc).limit(3)
-      @title = "Recent Orders"
+      flash[:message] = "We're sorry we couldn't find any information for this user."
+      redirect_to root_path
     end
   end
 

@@ -5,7 +5,9 @@ module SessionsHelper
   end
 
   def admin?
-    current_user.role == "admin"
+    if logged_in?
+     current_user.role == "admin"
+    end
   end
 
   def current_user
@@ -19,5 +21,14 @@ module SessionsHelper
   def log_out
     session.delete(:user_id)
     @current_user = nil
+  end
+
+  def check_if_admin
+    if admin?
+      render template: 'administrator/show.html.erb'
+    else 
+      redirect_to root_path
+      flash[:danger] = "You do not have access to the Admin page"
+    end
   end
 end
