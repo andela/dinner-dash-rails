@@ -1,1 +1,31 @@
-<h1>All Users</h1>
+<div class="full-height scroll-bar">
+  <table class="striped">
+    <thead>
+      <tr>
+          <th></th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Date joined</th>
+          <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.avatar.url(:large), :alt => "user", :class => "circle small_pic" %></td>
+          <td><%= link_to "#{user.first_name}" , user_path(user.id)%></td>
+          <td><%= link_to "#{user.last_name}" , user_path(user.id)%></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.strftime("%Y - %e - %d") %></td>
+          <td>
+            <%= button_to user_path(user.id), :class => "clear-button", method: :delete  do %>
+              <i class="material-icons">clear</i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

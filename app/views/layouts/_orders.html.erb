@@ -1,56 +1,61 @@
-<%= will_paginate @orders%>
-<ul class="collapsible popout" data-collapsible="accordion">
- <li>
-  <div class="collapsible-header">
-    <ul class="row order-display title">
-      <li class="col m1">Order</li>
-      <li class="col m2">Owner</li>
-      <li class="col m1">Total</li>
-      <li class="col m1">Cost</li>
-      <li class="col m3">Time</li>
-      <li  class="col m2">Status</li>
-      <li class="col m2"></li>
-    </ul>
-  </div>
+<% if @orders %>
+ <%= will_paginate @orders%>
+ <ul class="collapsible popout" data-collapsible="accordion">
   <li>
-  <% @orders.each do |order| %>
-  <li>
-    <div class="collapsible-header">
-      <ul class="row order-display">
-        <li class="col m1"> <%= order.id %></li>
-        <li class="col m2"><%= order.user.first_name %></li>
-        <li class="col m1">N<%= order.total || 0.0 %></li>
-        <li class="col m1">N<%= order.delivery_cost || 0.0 %></li>
-        <li class="col m3"><%= time_ago_in_words(order.created_at, include_seconds: true) + " ago"%></li>
-        <%= form_for order, :url => {:controller => 'administrator', :action => 'update', order_id: order.id, status: order.Status }, method: :patch  do |f| %>
-        <li class="col m2"><%= f.select :Status, options_for_status, selected: order.Status %></li>
-         <li class="col m2"><%= f.submit "Confirm" %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="collapsible-body">
-      <table>
-        <thead>
-          <tr>
-            <th data-field="name">Name</th>
-            <th data-field="price">Price</th>
-            <th data-field="quantity">Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% order.order_items.each do |order_item| %>
-            <tr>
-              <td><%=link_to "#{Food.find(order_item.food_id).name}", food_path(order_item.food_id) %></td>
-              <td><%= Food.find(order_item.food_id).price %></td>
-              <td><%= order_item.quantity %></td>
-            </tr>
-        </tbody>
-        <tfoot>
+   <div class="collapsible-header">
+     <ul class="row order-display title">
+       <li class="col m1">Order</li>
+       <li class="col m2">Owner</li>
+       <li class="col m1">Total</li>
+       <li class="col m1">Cost</li>
+       <li class="col m3">Time</li>
+       <li  class="col m2">Status</li>
+       <li class="col m2"></li>
+     </ul>
+   </div>
+   <li>
+   <% @orders.each do |order| %>
+   <li>
+     <div class="collapsible-header">
+       <ul class="row order-display">
+         <li class="col m1"> <%= order.id %></li>
+         <li class="col m2"><%= order.user.first_name %></li>
+         <li class="col m1">N<%= order.total || 0.0 %></li>
+         <li class="col m1">N<%= order.delivery_cost || 0.0 %></li>
+         <li class="col m3"><%= time_ago_in_words(order.created_at, include_seconds: true) + " ago"%></li>
+         <%= form_for order, :url => {:controller => 'administrator', :action => 'update', order_id: order.id, status: order.Status }, method: :patch  do |f| %>
+         <li class="col m2"><%= f.select :Status, options_for_status, selected: order.Status %></li>
+          <li class="col m2"><%= f.submit "Confirm" %></li>
+         <% end %>
 
-        </tfoot>
-      <% end %>
-      </table>
-    </div>
-  </li>
-  <% end %>
-</ul>
+       </ul>
+     </div>
+     <div class="collapsible-body">
+       <table>
+         <thead>
+           <tr>
+             <th data-field="name">Name</th>
+             <th data-field="price">Price</th>
+             <th data-field="quantity">Quantity</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% order.order_items.each do |order_item| %>
+             <tr>
+               <td><%=link_to "#{Food.find(order_item.food_id).name}", food_path(order_item.food_id) %></td>
+               <td><%= Food.find(order_item.food_id).price %></td>
+               <td><%= order_item.quantity %></td>
+             </tr>
+         </tbody>
+         <tfoot>
+
+         </tfoot>
+       <% end %>
+       </table>
+     </div>
+   </li>
+   <% end %>
+ </ul>
+<% else %>
+ <div class="container">There are no orders to display</div>
+<% end %>
