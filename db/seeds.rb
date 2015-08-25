@@ -6,11 +6,14 @@ F1 = Food.create(
 F2 = Food.create(
       name: "Steaks",
       description: "Nice mix of african specials and barbecue sauce",
-      price: 750 )
+      price: 750,
+      status: "available"
+    )
 
 F3 = Food.create(name: "Lobsters",
       description: "Crispy sea food delicacy to make your holiday",
-      price: 1200 )
+      price: 1200
+    )
 
 C1 = Category.create(
     title: "Entree",
@@ -44,6 +47,15 @@ U2 = User.create(
     password_confirmation: "whatever"
   )
 
+A1 = User.create(
+    first_name: "Nadayar",
+    last_name: "Andela",
+    email: "nadayar@andela.com",
+    password: "nadayar",
+    password_confirmation: "nadayar",
+    role: "admin"
+  )
+
 O1 = Order.create(Status: "Completed", user_id: U1.id)
 O2 = Order.create(Status: "Cancelled", user_id: U1.id)
 O3 = Order.create(Status: "Processing", user_id: U1.id)
@@ -68,4 +80,3 @@ C2.foods << F3
 
 Comment1 = Comment.create(comment: "Best food ever", food_id: F1.id, user_id: U1.id)
 Comment2 = Comment.create(comment: "I love it!!", food_id: F1.id, user_id: U2.id)
-

@@ -17,7 +17,11 @@
           <div class="card-action">
             <div class="right"><i class="material-icons left no-right-margin">shopping_cart</i><%= link_to "
 						 #{this_food_in_cart(food)}", carts_path, class: "cart left no_left_pad no-right-margin", id: "cart" %></div>
-            <%= button_to "Add to cart", cart_items_path(food_id: food.id) %>
+            <% if food.status == "available" %>
+              <%= button_to "Add to cart", cart_items_path(food_id: food.id) %>
+            <% else %>
+              <p>Out of stock</p>
+            <% end %>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
