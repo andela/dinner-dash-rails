@@ -21,6 +21,24 @@ class Current_Order
     @delivery_cost = args["delivery_cost"] || 0
   end
 
+  def paypal_url(return_url)
+		values = {
+			:business => 'tru2cent-facilitator@gmail.com',
+			:cmd => '_cart',
+			:upload => 1,
+			:return => return_url,
+			:invoice => id
+		}
+		@ordered_items.each do |index, ordered_item|
+			values.merge!({
+				"amount_#{index+1}" => ordered_item[index][:amount],
+				"item_name_#{index+1}" => ordered_item[index][:food],
+				"item_number_#{index+1}" => ordered_item[index][:food_id],
+				"quantity_#{index+1}" => ordered_item[index][:quantity]
+			})
+		end
+	end
+
   def save_order(current_user)
     user = current_user
     new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost)
@@ -35,7 +53,7 @@ class Current_Order
 
   def delete
 
-  end 
+  end
 
   private
 
