@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    args = args_params
+    args = args_params || {}
     if @user
       if !args.nil?
         @orders = @user.orders
