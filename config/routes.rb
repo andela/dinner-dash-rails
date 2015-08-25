@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post 'carts/checkout' => 'carts#checkout', as: :cart_checkout
   post 'payment' => 'checkout#create', as: :payment
   post '/foods/:food_id/comments(.:format)' => 'comments#create', as: :create_food_comment
+  post '/payment/processing' => 'current_order#make_payment', as: :make_payment
+  post '/payment/processed' => 'current_order#paypal_payment_completed', as: :payment_completed
   get 'admin' => 'administrator#show', as: :dashboard
   get 'admin/foods' => 'administrator#food_index', as: :admin_foods
   get 'admin/orders' => 'administrator#order_index', as: :admin_orders

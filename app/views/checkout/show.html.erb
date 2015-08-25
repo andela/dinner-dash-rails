@@ -65,7 +65,7 @@
     </table>
     <div>
       <%= link_to 'Back to my cart', carts_path, :class => "btn btn-success in-line left" %>
-      <%= button_to 'Make payment', payment_path(:order => { :delivery_cost => @current_order.delivery_cost, :vat => @current_order.vat, :total => @current_order.total }), :class => "btn btn-success in-line left" %>
+      <%= button_to 'Make payment', @current_order.make_payment(notify_url), :class => "btn btn-success in-line left" %>
     </div>
     <% end %>
   </div>
