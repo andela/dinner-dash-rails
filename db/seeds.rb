@@ -6,11 +6,14 @@ F1 = Food.create(
 F2 = Food.create(
       name: "Steaks",
       description: "Nice mix of african specials and barbecue sauce",
-      price: 750 )
+      price: 750,
+      status: "available"
+    )
 
 F3 = Food.create(name: "Lobsters",
       description: "Crispy sea food delicacy to make your holiday",
-      price: 1200 )
+      price: 1200
+    )
 
 C1 = Category.create(
     title: "Entree",
