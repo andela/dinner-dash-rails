@@ -35,7 +35,7 @@ class Current_Order
 			:cmd => '_cart',
 			:upload => 1,
 			:return => return_url,
-			:invoice => 15,
+			# :invoice => 15,
       :notify_url => @user.email,
       "amount_#{@ordered_items.length+1}" => vat,
       "item_name_#{@ordered_items.length+1}" => "VAT",
@@ -59,7 +59,7 @@ class Current_Order
 
   def save_order
     user = current_user
-    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice: @invoice, :transaction_id: @transaction_id)
+    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :transaction_id => @transaction_id)
     save_successful = new_order.save
     if save_successful
       @ordered_items.each do |food_id, ordered_item|
