@@ -5,60 +5,61 @@ class Current_Order
   attr_accessor :sub_total
 
   def initialize(current_order)
-    @ordered_items = current_order || {}
-    @total = 0
+    @ordered_items = current_order["items"] || {}
+    current_order["details"] ||= {}
+    @total = current_order["details"]["total"].to_i || 0
     @delivery_cost = 500
-    @sub_total = 0
+    @sub_total = current_order["details"]["sub_total"].to_i || 0
+    @user = {}
+    @invoice = ""
+    @transaction_id = ""
+    @status = "pending"
   end
 
   def vat
     0.1 * @sub_total
   end
 
-  def update_order(ordered_items, args)
-    @ordered_items = ordered_items || {}
-    @total = args["total"] || 0
-    @delivery_cost = args["delivery_cost"] || 0
+  def update_order(order, args)
+    @ordered_items = order["items"] || {}
+    @total = order["details"]["total"] || 0
+    @invoice = args["invoice"] || ""
+    @transaction_id = args["transaction_id"] || ""
+    @status = args["status"] || "pending"
   end
 
-  def make_payment(notify_url)
+  def make_payment(current_user, return_url)
+    @user = current_user
 		values = {
 			:business => 'tru2cent-facilitator@gmail.com',
 			:cmd => '_cart',
 			:upload => 1,
-			:return => payment_completed_path,
-			:invoice => id,
-      :notify_url => notify_url
-      "amount_#{@ordered_item.length+1}" => vat,
-      "item_name_#{@ordered_item.length+1}" => "VAT",
-      "amount_#{@ordered_item.length+2}" => @delivery_cost,
-      "item_name_#{@ordered_item.length+2}" => "Delivery cost"
+			:return => return_url,
+			:invoice => 15,
+      :notify_url => @user.email,
+      "amount_#{@ordered_items.length+1}" => vat,
+      "item_name_#{@ordered_items.length+1}" => "VAT",
+      "amount_#{@ordered_items.length+2}" => @delivery_cost,
+      "item_name_#{@ordered_items.length+2}" => "Delivery cost"
 		}
-		@ordered_items.each do |index, ordered_item|
+    counter = 1
+		@ordered_items.each do |index, details|
 			values.merge!({
-				"amount_#{index+1}" => ordered_item[0][:price],
-				"item_name_#{index+1}" => ordered_item[0][:name],
-				"item_number_#{index+1}" => ordered_item[0][:id],
-				"quantity_#{index+1}" => ordered_item[1]
+				"amount_#{counter}" => details["food"]["price"],
+				"item_name_#{counter}" => details["food"]["name"],
+				"item_number_#{counter}" => counter,
+				"quantity_#{counter}" => details["qty"]
 			})
+      counter += 1
 		end
-    require 'pry-nav'; binding.pry
-    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map{ |k, v| "#{k}=#{v}" }.join("&")
+    # "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+    # "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map{ |k, v| "#{k}=#{v}" }.join("&")
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
 	end
-
-  def paypal_payment_completed
-    #  payment_path(:order => { :delivery_cost => @current_order.delivery_cost, :vat => @current_order.vat, :total => @current_order.total })
-    #
-    args = { :invoice => params[:invoice], :status => params[:payment_status], :transaction_id => params[:txn_id]}
-    order_saved = args[:status].downcase === "completed" ? save_order(current_user) : false
-
-    flash[:notice] = "Your payment is #{args[:status]}"
-    redirect_to root_path
-  end
 
   def save_order
     user = current_user
-    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost)
+    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice: @invoice, :transaction_id: @transaction_id)
     save_successful = new_order.save
     if save_successful
       @ordered_items.each do |food_id, ordered_item|
