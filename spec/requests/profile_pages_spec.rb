@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.feature "ProfilePages", type: :feature do
   describe "User clicks My Profile" do
     it "should take user to profile page" do
-      @user = User.create(first_name: "Toyosi", 
-                          last_name: "Famakinde", 
-                          email: "toyosif@yahoo.com", 
-                          password: "jeffrules", 
+      @user = User.create(first_name: "Toyosi",
+                          last_name: "Famakinde",
+                          email: "toyosif@yahoo.com",
+                          password: "jeffrules",
                           password_confirmation: "jeffrules")
 
       visit foods_path
@@ -29,22 +29,22 @@ RSpec.feature "ProfilePages", type: :feature do
         expect(page).to have_link('View Orders')
 
 
-    end 
+    end
   end
 
   describe "User clicks On food name on profile page" do
     it "should take user to the food description page" do
-      @user = User.create(first_name: "Toyosi", 
-                          last_name: "Famakinde", 
-                          email: "toyosif@yahoo.com", 
-                          password: "jeffrules", 
+      @user = User.create(first_name: "Toyosi",
+                          last_name: "Famakinde",
+                          email: "toyosif@yahoo.com",
+                          password: "jeffrules",
                           password_confirmation: "jeffrules")
 
       F2 = Food.create(name: "Spagetti bolognese",
                        description: "Warm yummy spagetti to increase your life span!",
                        price: 1500 )
 
-      O1 = Order.create(Status: "Completed", user_id: @user.id, total: "1500" )
+      O1 = Order.create(Status: "Completed", user_id: @user.id, transaction_id: "12XX12", total: "1500" )
 
       Order_Item1 = OrderItem.create(quantity: 3, food_id: F2.id, order_id: O1.id)
 
@@ -67,6 +67,6 @@ RSpec.feature "ProfilePages", type: :feature do
 
       expect(current_path).to eq(food_path(F2.id))
     end
-  end 
-    
+  end
+
 end

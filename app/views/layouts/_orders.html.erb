@@ -41,11 +41,14 @@
          </thead>
          <tbody>
            <% order.order_items.each do |order_item| %>
+           <% food = Food.find(order_item.food_id) %>
+           <% if food %>
              <tr>
-               <td><%=link_to "#{Food.find(order_item.food_id).name}", food_path(order_item.food_id) %></td>
-               <td><%= Food.find(order_item.food_id).price %></td>
-               <td><%= order_item.quantity %></td>
+               <td><%=link_to "#{food.name}", food_path(food.id) %></td>
+               <td><%= food.price %></td>
+               <td><%= food.quantity %></td>
              </tr>
+            <% end %>
          </tbody>
          <tfoot>
 
