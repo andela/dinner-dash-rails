@@ -11,8 +11,8 @@ class CheckoutController < ApplicationController
     @current_order.update_order(session[:order], order_params)
     if @current_order.save_order(@current_user)
       flash[:success] = "Your order has been successfully placed."
-      # Here, we'd redirect to stripe page
       redirect_to root_path
+      UserMailer.order_email(@current_user, @current_order).deliver_now
     else
       flash[:error] = "An error occured while saving your order. Please try again."
     end

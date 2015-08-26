@@ -1,0 +1,60 @@
+<div class="mailer" style="border: 1px solid black; padding: 10px; margin: 30px 100px; text-align: center">
+<%= image_tag attachments['logo3.png'].url, :width => "100px", "max-height" => "50px"  %>
+  <div class="full-height scroll-bar">
+    <table class="responsive-table">
+      <thead>
+        <tr style="background-color:#BCAAA4;">
+          <th data-field="id">Item</th>
+          <th data-field="name">Description</th>
+          <th data-field="price">Price</th>
+          <th data-field="quantity">Quantity</th>
+          <th data-field="line total">Total Amt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @current_order.ordered_items.each do |food_id, ordered_item| %>
+        <tr>
+          <td><%= ordered_item[0]['name'] %></td>
+          <td><%= ordered_item[0]['description'] %></td>
+          <td><%= ordered_item[0]['price'] %></td>
+          <td><%= ordered_item[1] %></td>
+          <td>N<%= ordered_item[0]['price'] * ordered_item[1]%></td>
+        </tr>
+        <% @current_order.sub_total += ordered_item[0]['price'] * ordered_item[1] %>
+      </tbody>
+      <% end %>
+      <tr style="border-top:1px solid black">
+        <td></td>
+        <td></td>
+        <td>Subtotal</td>
+        <td></td>
+        <td>N<%= @current_order.sub_total %></td>
+      </tr>
+      <tr>
+        <% @current_order.vat %>
+        <td></td>
+        <td></td>
+        <td>VAT</td>
+        <td></td>
+        <td>N<%= @current_order.vat %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Delivery</td>
+        <td></td>
+        <td>N<%= @current_order.delivery_cost %></td>
+      </tr>
+      <tfoot>
+        <tr style="border-top:2px solid black">
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td></td>
+          <td id="total">N<%= @current_order.total %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p>Thanks for choosing <%= link_to "DinnerDash Cafe", root_url %></p>
+</div>

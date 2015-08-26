@@ -1,0 +1,6 @@
+<div class="mailer" style="border: 1px solid black; padding: 10px; margin: 30px 100px; text-align: center">
+<%= image_tag attachments['logo3.png'].url, :width => "100px", "max-height" => "50px"  %>
+  <h3><%= "Dear #{@user.first_name}, "%></h3>
+  <h3><%= "Your order:#{@order.id} is now #{@status} " %> </h3>
+  <p>Thanks for choosing <%= link_to "DinnerDash Cafe", root_url %></p>
+</div>
