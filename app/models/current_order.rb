@@ -57,7 +57,7 @@ class Current_Order
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
 	end
 
-  def save_order
+  def save_order(current_user)
     user = current_user
     new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :transaction_id => @transaction_id)
     save_successful = new_order.save

@@ -12,7 +12,7 @@ class CheckoutController < ApplicationController
     puts order_params
     if order_params[:status].downcase === "completed"
       @current_order.update_order(session[:order], order_params)
-      if @current_order.make_payment(@current_user)
+      if @current_order.save_order(@current_user)
         flash[:success] = "Your order has been successfully placed."
         # Here, we'd redirect to stripe page
         redirect_to root_path
