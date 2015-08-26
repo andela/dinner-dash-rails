@@ -13,6 +13,7 @@ class UsersController < ApplicationController
      end
     @user[:avatar_file_name] = @avatar_url
     if @user.save
+      UserMailer.welcome_email(@user).deliver_now
       log_in @user
       flash[:success] = "Welcome #{user_params[:first_name]} to dinner dash!"
       redirect_to root_path

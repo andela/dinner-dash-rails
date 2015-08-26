@@ -10,6 +10,7 @@ class CheckoutController < ApplicationController
   def create
     @current_order.update_order(session[:order], order_params)
     if @current_order.save_order(@current_user)
+      UserMailer.order_email(@current_user, @current_order).deliver_now
       flash[:success] = "Your order has been successfully placed."
       # Here, we'd redirect to stripe page
       redirect_to root_path

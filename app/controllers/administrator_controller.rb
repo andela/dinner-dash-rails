@@ -30,6 +30,7 @@ class AdministratorController < ApplicationController
     @order_id = params["order_id"]
     @order = Order.find(@order_id)
     @order.update(Status: @status)
+    UserMailer.status_email(@order).deliver_now
     check_if_admin
   end
 end

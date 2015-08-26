@@ -1,0 +1,5 @@
+<div class="mailer">
+  <%= image_tag("logo3.png", :alt => "logo", :class => "img-logo") %>
+  <%= image_tag attachments['logo3.png'].url %>
+  <h4><%= "Your order:#{@order.id} been #{@status} " %> </h4>
+</div>
