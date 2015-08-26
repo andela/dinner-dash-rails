@@ -32,4 +32,8 @@ module ApplicationHelper
     ['Completed', 'Cancelled', 'Pending']
   end
 
+  def load_current_order
+    @current_order ||= Current_Order.new(session[:order])
+  end
+
 end
