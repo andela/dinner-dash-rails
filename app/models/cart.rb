@@ -16,7 +16,7 @@ class Cart
 
 	def delete
 		@cart_data[item_id] = 0
-	end 
+	end
 
 	private
 

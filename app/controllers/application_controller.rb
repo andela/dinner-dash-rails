@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_current_order
+    session[:order] ||= {}
     @current_order ||= Current_Order.new(session[:order])
   end
 
