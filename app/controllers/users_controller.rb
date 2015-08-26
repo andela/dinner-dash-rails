@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = "Welcome #{user_params[:first_name]} to dinner dash!"
       redirect_to root_path
+      UserMailer.welcome_email(@user).deliver_now
     else
       flash[:error] = "One or more required fields are missing"
       render "new"
