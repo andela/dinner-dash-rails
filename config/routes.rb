@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
 
   root "welcome#index"
@@ -29,4 +30,6 @@ Rails.application.routes.draw do
   patch '/foods/:food_id/edit_status' => "foods#edit_status", as: :edit_status
   delete 'logout' => 'sessions#destroy'
   delete 'carts/:item_id/', to: 'carts#destroy', as: :cart_item_delete
+
+  mount Sidekiq::Web, at: "/sidekiq"
 end
