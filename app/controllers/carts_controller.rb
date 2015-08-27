@@ -5,11 +5,11 @@ class CartsController < ApplicationController
     @total = 0
     @cart_items.each do |food_id, qty|
       food = Food.find(food_id)
-      @ordered_foods[food_id] = [food , qty]
+      @ordered_foods[food_id] = { :food => food , :qty => qty }
       check_food_status(food, qty, food_id)
     end if !session[:cart].nil?
     @current_order.ordered_items = @ordered_foods
-    session[:order] = @ordered_foods
+    session[:order]["items"] = @ordered_foods
   end
 
   def destroy

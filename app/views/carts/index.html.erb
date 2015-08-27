@@ -7,8 +7,9 @@
   <table class="hoverable">
     <thead>
       <tr style="background-color:#BCAAA4;">
-        <th data-field="id">Name</th>
-        <th data-field="name">Description</th>
+        <th data-field="id">S/N</th>
+        <th data-field="name">Name</th>
+        <th data-field="description">Description</th>
         <th data-field="price">Price</th>
         <th data-field="quantity">Quantity</th>
         <th data-field="line total">Line Total</th>
@@ -16,26 +17,24 @@
     </thead>
     <tbody>
 
-    <% @ordered_foods.each do |food_id, ordered_food| %>
-      <!-- <% unless ordered_food[0]['status'] == "available" %>
-        <p>Sorry <%= ordered_food[0]['name'] %> is currently out of stock</p>
-      <% else %> -->
+    <% @ordered_foods.each do |index, details| %>
+      <% food_id = details[:food][:id] %>
         <tr>
-          <td><%= ordered_food[0]['name'] %></td>
-          <td><%= ordered_food[0]['description'] %></td>
-          <td><%= ordered_food[0]['price'] %></td>
-          <td><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: food_id, id: ordered_food[1]}, method: :patch  do |f| %>
-            <%= f.number_field :qty, :min => 1, :value => ordered_food[1], :class => "qty qty-editable-width", "data-message" => food_id %>
+          <td><%= index %></td>
+          <td id="food_name_<%= food_id %>"><%= details[:food]['name'] %></td>
+          <td id="food_desc_<%= food_id %>"><%= details[:food]['description'] %></td>
+          <td id="food_unit_price_<%= food_id %>"><%= details[:food]['price'] %></td>
+          <td id="food_qty_<%= food_id %>"><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: details[:food][:id], id: index }, method: :patch  do |f| %>
+            <%= f.number_field details[:qty], :min => 1, :value => details[:food][:id], :class => "qty qty-editable-width", "data-message" => food_id %>
             <% end %>
           </td>
-          <td>N<span class="line-total" id="food_<%= food_id %>" data-message="<%= ordered_food[0]['price'] %>" ><%= ordered_food[0]['price'] * ordered_food[1] %></span></td>
+          <td>N<span class="line-total" id="food_sub_total_<%= details[:food][:id] %>" data-message="<%= details[:food]['price'] %>" ><%= details[:food]['price'].to_i * details[:food][:id].to_i %></span></td>
           <td>
-            <%= button_to cart_item_delete_path(food_id), :class => "clear-button", method: :delete  do %>
+            <%= button_to cart_item_delete_path(details[:food][:id]), :class => "clear-button", method: :delete  do %>
               <i class="material-icons">clear</i>
             <% end %>
           </td>
         </tr>
-      <!-- <% end %> -->
     </tbody>
     <% end %>
 
