@@ -278,6 +278,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara
+  celluloid
   cloudinary
   coffee-rails (~> 4.1.0)
   factory_girl_rails
