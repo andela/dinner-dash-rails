@@ -19,6 +19,7 @@ Rails.application.configure do
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
+  config.action_mailer.default_url_options = { :host => "dinnerdashcafe.herokuapp.com" }
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -29,8 +30,8 @@ Rails.application.configure do
      :address              => "smtp.gmail.com",
      :port                 => 587,
      :domain               => "heroku.com",
-     :user_name            => ENV['SENDGRID_USERNAME'],
-     :password             => ENV['SENDGRID_PASSWORD'],
+     :user_name            => "dinnerdashcafe@gmail.com",
+     :password             => "andeladinner",
      :authentication       => 'plain',
      :openssl_verify_mode  => 'none',
      :enable_starttls_auto => true  }

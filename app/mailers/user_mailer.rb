@@ -25,7 +25,3 @@ class UserMailer < ApplicationMailer
   end
 
 end
-  
-  
-  
-  

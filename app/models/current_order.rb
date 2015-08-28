@@ -23,17 +23,18 @@ class Current_Order
   def update_order(order, args)
     @ordered_items = order["items"] || {}
     @total = order["details"]["total"] || 0
-    @invoice = args["invoice"] || ""
-    @transaction_id = args["transaction_id"] || ""
-    @status = args["status"] || "pending"
+    @invoice = args[:invoice] || ""
+    @transaction_id = args[:transaction_id] || ""
+    @status = args[:status] || "pending"
   end
 
-  def make_payment(current_user, return_url)
+  def paypal_url(current_user, return_url)
     @user = current_user
 		values = {
 			:business => 'tru2cent-facilitator@gmail.com',
 			:cmd => '_cart',
 			:upload => 1,
+      :rm => 2,
 			:return => return_url,
 			# :invoice => 15,
       :notify_url => @user.email,
@@ -59,11 +60,11 @@ class Current_Order
 
   def save_order(current_user)
     user = current_user
-    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :transaction_id => @transaction_id)
+    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :Status => @status, :transaction_id => @transaction_id)
     save_successful = new_order.save
     if save_successful
-      @ordered_items.each do |food_id, ordered_item|
-        new_order.order_items << OrderItem.create(:food_id => ordered_item[0]["id"], :quantity => ordered_item[1])
+      @ordered_items.each do |index, details|
+        new_order.order_items << OrderItem.create(:food_id => details["food"]["id"], :quantity => details["qty"])
       end
     end
     save_successful
