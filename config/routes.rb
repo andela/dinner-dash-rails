@@ -1,10 +1,11 @@
-require 'sidekiq/web'
+# require 'sidekiq'
 Rails.application.routes.draw do
 
   root "welcome#index"
   resources :foods do
     resources :comments
   end
+  
   resources :categories
   resources :cart_items
   resources :carts
@@ -31,5 +32,5 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   delete 'carts/:item_id/', to: 'carts#destroy', as: :cart_item_delete
 
-  mount Sidekiq::Web, at: "/sidekiq"
+
 end
