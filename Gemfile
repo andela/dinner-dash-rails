@@ -64,7 +64,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'launchy'
   gem 'letter_opener'
-  gem 'slim'
 end
 
 group :production do
