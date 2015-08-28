@@ -9,7 +9,6 @@ class CheckoutController < ApplicationController
   end
 
   def create
-    puts order_params
     if order_params[:status].downcase === "completed"
       @current_order.update_order(session[:order], order_params)
       if @current_order.save_order(@current_user)
@@ -18,6 +17,7 @@ class CheckoutController < ApplicationController
         UserMailer.order_email(@current_user, @current_order).deliver_now
       else
         flash[:error] = "An error occured while saving your order. Please try again."
+        redirect_to cart_checkout_path
       end
     end
   end
