@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-
+		
 <% @current_order.ordered_items.each do |index, details| %>
 	<% @current_order.sub_total += details["food"]['price'] * details["qty"] %>
 	<tr>
