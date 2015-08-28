@@ -24,6 +24,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'figaro'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -37,6 +39,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
 gem 'cloudinary'
 gem 'will_paginate'
+
+gem 'sidekiq'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -59,6 +63,9 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'launchy'
+  gem 'letter_opener'
+  gem 'sinatra', require: false
+  gem 'slim'
 end
 
 group :production do

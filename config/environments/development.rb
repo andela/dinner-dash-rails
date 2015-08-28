@@ -12,9 +12,7 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-
-  # Don't care if the mailer can't send.
-   config.action_mailer.raise_delivery_errors = false
+  
    # Don't care if the mailer can't send.
  config.action_mailer.default_url_options = { host: "localhost:3000" }
  config.action_mailer.delivery_method = :smtp
@@ -22,8 +20,8 @@ Rails.application.configure do
      :address              => "smtp.gmail.com",
      :port                 => 587,
      :domain               => "localhost:3000",
-     :user_name            => "dinnerdashcafe@gmail.com",
-     :password             => "andeladinner",
+     :user_name            => ENV['GMAIL_USERNAME'],
+     :password             => ENV['GMAIL_PASSWORD'],
      :authentication       => 'plain',
      :openssl_verify_mode  => 'none',
      :enable_starttls_auto => true  }
