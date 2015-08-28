@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :foods do
     resources :comments
   end
+  
   resources :categories
   resources :cart_items
   resources :carts
