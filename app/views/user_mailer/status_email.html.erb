@@ -4,3 +4,10 @@
   <h3><%= "Your order:#{@order.id} is now #{@status} " %> </h3>
   <p>Thanks for choosing <%= link_to "DinnerDash Cafe", root_url %></p>
 </div>
+
+<div class="post_title_wrapper">
+	<h2><a href="<?php the_title() ?>"><?php the_title() ?></a></h2>
+	<div class="post_detail">
+    <?php corpbiz_post_meta_content(); ?>
+	<div>
+</div>
