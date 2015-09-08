@@ -1,9 +1,11 @@
+# require 'sidekiq'
 Rails.application.routes.draw do
 
   root "welcome#index"
   resources :foods do
     resources :comments
   end
+  
   resources :categories
   resources :cart_items
   resources :carts
@@ -29,4 +31,6 @@ Rails.application.routes.draw do
   patch '/foods/:food_id/edit_status' => "foods#edit_status", as: :edit_status
   delete 'logout' => 'sessions#destroy'
   delete 'carts/:item_id/', to: 'carts#destroy', as: :cart_item_delete
+
+
 end

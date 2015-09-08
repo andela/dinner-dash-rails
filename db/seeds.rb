@@ -56,10 +56,10 @@ A1 = User.create(
     role: "admin"
   )
 
-O1 = Order.create(Status: "Completed", user_id: U1.id)
-O2 = Order.create(Status: "Cancelled", user_id: U1.id)
-O3 = Order.create(Status: "Processing", user_id: U1.id)
-O4 = Order.create(Status: "Processing", user_id: U1.id)
+O1 = Order.create(Status: "Completed", transaction_id: "123ss1", user_id: U1.id)
+O2 = Order.create(Status: "Cancelled", transaction_id: "123ss2", user_id: U1.id)
+O3 = Order.create(Status: "Processing", transaction_id: "123ss3", user_id: U1.id)
+O4 = Order.create(Status: "Processing", transaction_id: "123ss4", user_id: U1.id)
 
 
 Order_Item1 = OrderItem.create(quantity: 3, food_id: F1.id, order_id: 1)

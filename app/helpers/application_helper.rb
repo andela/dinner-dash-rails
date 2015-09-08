@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def cart_properties
     cart_properties = {}
-    if session[:cart].nil?
+    if session[:cart].nil? || session[:cart].empty?
     	cart_properties["items_count"] = 0;
     	cart_properties["status"] = "empty";
     else

@@ -33,7 +33,7 @@
         </thead>
         <tbody>
           <% order.order_items.each do |order_item| %>
-            <% food = Food.find(order_item.food_id) %>
+          <% food = Food.find(order_item.food_id) %>
             <% if food %>
               <tr>
                 <td><%=link_to "#{food.name}", food_path(food.id) %></td>

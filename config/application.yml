@@ -9,7 +9,12 @@
 # production:
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+<<<<<<< HEAD
 #   
 
 GMAIL_USERNAME: "dinnerdashcafe@gmail.com"
 GMAIL_PASSWORD: "andeladinner"
+=======
+GMAIL_USERNAME: "dinnerdashcafe@gmail.com"
+GMAIL_PASSWORD: “andeladinner”
+>>>>>>> 6fd499a8b1c3ba5e9c322d49392616926640bdda

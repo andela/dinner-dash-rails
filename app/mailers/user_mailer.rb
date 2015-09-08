@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
   end
 
   def order_email(user, items)
-    @current_order = items
+    @current_order = JSON.parse(items)
     @user = user
     @order = @user.orders.last.id
     attachments.inline['logo3.png'] = File.read("app/assets/images/logo3.png")
@@ -25,7 +25,3 @@ class UserMailer < ApplicationMailer
   end
 
 end
-  
-  
-  
-  
