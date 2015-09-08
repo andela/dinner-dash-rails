@@ -15,7 +15,7 @@ class CheckoutController < ApplicationController
         session[:order] = {}
         session[:cart] = {}
         flash[:success] = "Your order has been successfully placed."
-        OrderWorker.perform_async(@current_user.id, @current_order)
+        OrderWorker.perform_async(@current_user.id, @current_order.to_json)
         redirect_to root_path
       else
         flash[:error] = "An error occured while saving your order. Please try again."
