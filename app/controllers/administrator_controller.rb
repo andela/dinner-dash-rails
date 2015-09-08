@@ -6,7 +6,7 @@ class AdministratorController < ApplicationController
   end
 
   def food_index
-    @title = "admin_foods"
+    @title = "foods"
     @foods = Food.all.order(created_at: :desc)
     check_if_admin
   end
@@ -30,7 +30,7 @@ class AdministratorController < ApplicationController
     @order_id = params["order_id"]
     @order = Order.find(@order_id)
     @order.update(Status: @status)
-    UserMailer.status_email(@order).deliver_now
+    StatusWorker.perform_async(@order_id)
     check_if_admin
   end
 end

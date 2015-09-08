@@ -46,7 +46,7 @@
              <tr>
                <td><%=link_to "#{food.name}", food_path(food.id) %></td>
                <td><%= food.price %></td>
-               <td><%= food.quantity %></td>
+               <td><%= order_item.quantity %></td>
              </tr>
             <% end %>
          </tbody>
