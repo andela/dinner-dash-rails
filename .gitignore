@@ -16,3 +16,4 @@
 !/log/.keep
 /tmp
 /public/system/users/avatars/*
+/dump.rdb
