@@ -37,7 +37,7 @@ Rails.application.configure do
      :enable_starttls_auto => true  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-
+  ENV["REDISTOGO_URL"] = "redis://redistogo:55420e2f58b221b7032863b0b9047b70@bluegill.redistogo.com:9623/"
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
