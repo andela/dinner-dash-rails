@@ -1,0 +1,72 @@
+<div class="mailer" style="border: 1px solid black; padding: 10px; margin: 30px 100px; text-align: center">
+<%= image_tag attachments['logo3.png'].url, :width => "100px", "max-height" => "50px"  %>
+  <div class="full-height scroll-bar">
+    <table class="responsive-table">
+    	<thead>
+    		<tr style="background-color:#BCAAA4;">
+    			<th data-field="id">S/N</th>
+    			<th data-field="name">Name</th>
+    			<th data-field="description">Description</th>
+    			<th data-field="price">Price</th>
+    			<th data-field="quantity">Quantity</th>
+    			<th data-field="line total">Line Total</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+
+    <% @current_order["ordered_items"].each do |index, details| %>
+    	<% @current_order["sub_total"] += details["food"]['price'] * details["qty"] %>
+    	<tr>
+    		<td><%= index %></td>
+    		<td><%= details["food"]['name'] %></td>
+    		<td><%= details["food"]['description'] %></td>
+    		<td><%= details["food"]['price'] %></td>
+    		<td><%= details["qty"] %></td>
+    		<td>N<%= @current_order["sub_total"] %></td>
+    	</tr>
+    	</tbody>
+    	<% end %>
+
+    	<!--Find a better way of doing this -->
+    	<tr style="border-top:1px solid #3e2511">
+    		<td></td>
+    		<td></td>
+    		<td></td>
+    		<td>Subtotal</td>
+    		<td></td>
+    		<td>N<%= @current_order["sub_total"] %></td>
+    	</tr>
+    	<tr>
+    		<% @current_order["vat"] %>
+    		<td></td>
+    		<td></td>
+    		<td></td>
+    		<td>VAT</td>
+    		<td></td>
+    		<td>N<%= @current_order["vat"] %></td>
+    	</tr>
+    	<tr>
+    		<td></td>
+    		<td></td>
+    		<td></td>
+    		<td>Delivery</td>
+    		<td></td>
+    		<td>N<%= @current_order["delivery_cost"] %></td>
+    	</tr>
+    	<tfoot>
+    		<!--Find a better way of doing this -->
+    		<tr style="border-top:2px solid #3e2511">
+          <% @current_order["vat"] ||= 0 %>
+    			<% @current_order["total"] = @current_order["sub_total"] + @current_order["delivery_cost"] + @current_order["vat"] %>
+    			<td></td>
+    			<td></td>
+    			<td></td>
+    			<td>Total</td>
+    			<td></td>
+    			<td id="total">N<%= @current_order["total"] %></td>
+    		</tr>
+    	</tfoot>
+    </table>
+  </div>
+  <p>Thanks for choosing <%= link_to "DinnerDash Cafe", root_path %></p>
+</div>
