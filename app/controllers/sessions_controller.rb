@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    @@request_login_url = request.referer
+    session[:referrer] = request.referer
   end
 
   def create
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if admin?
         redirect_to dashboard_path
       else
-        redirect_to @@request_login_url
+        redirect_to session[:referrer]
       end
     else
       flash.now[:danger] = "Invalid email/password confirmation"
