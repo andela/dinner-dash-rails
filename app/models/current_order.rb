@@ -53,8 +53,6 @@ class Current_Order
 			})
       counter += 1
 		end
-    # "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
-    # "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map{ |k, v| "#{k}=#{v}" }.join("&")
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
 	end
 

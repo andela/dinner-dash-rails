@@ -20,6 +20,8 @@ Rails.application.configure do
      :address              => "smtp.gmail.com",
      :port                 => 587,
      :domain               => "localhost:3000",
+    #  :user_name            => "dinnerdashcafe@gmail.com",
+    #  :password             => "andeladinner",
      :user_name            => ENV['GMAIL_USERNAME'],
      :password             => ENV['GMAIL_PASSWORD'],
      :authentication       => 'plain',
@@ -48,6 +50,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+  ENV["REDISTOGO_URL"] = "redis://redistogo:55420e2f58b221b7032863b0b9047b70@bluegill.redistogo.com:9623/"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

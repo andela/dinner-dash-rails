@@ -30,14 +30,14 @@ Rails.application.configure do
      :address              => "smtp.gmail.com",
      :port                 => 587,
      :domain               => "heroku.com",
-     :user_name            => "dinnerdashcafe@gmail.com",
-     :password             => "andeladinner",
+     :user_name            => ENV["SENDGRID_USERNAME"],
+     :password             => ENV["SENDGRID_PASSWORD"],
      :authentication       => 'plain',
      :openssl_verify_mode  => 'none',
      :enable_starttls_auto => true  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-
+  ENV["REDISTOGO_URL"] = "redis://redistogo:55420e2f58b221b7032863b0b9047b70@bluegill.redistogo.com:9623/"
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
