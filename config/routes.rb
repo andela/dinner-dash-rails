@@ -1,6 +1,3 @@
-require 'sidekiq/web'
-
-mount Sidekiq::Web => 'sidekiq'
 Rails.application.routes.draw do
 
   root "welcome#index"
