@@ -17,7 +17,5 @@
 /tmp
 /public/system/users/avatars/*
 
-
 # Ignore application configuration
 /config/application.yml
->>>>>>> 6fd499a8b1c3ba5e9c322d49392616926640bdda
