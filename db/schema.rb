@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013091148) do
+ActiveRecord::Schema.define(version: 20151013093554) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -46,11 +46,13 @@ ActiveRecord::Schema.define(version: 20151013091148) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "quantity"
-    t.integer  "order_id"
     t.integer  "food_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "order_id"
   end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
 
   create_table "orders", force: :cascade do |t|
     t.string   "Status",         default: "Pending"
