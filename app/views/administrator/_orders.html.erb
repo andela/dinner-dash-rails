@@ -1,3 +1,6 @@
+<div class="panel header-panel flow-text z-depth-3">
+  <div id="title">All Orders</div>
+</div>
 <% if @orders %>
  <%= will_paginate @orders%>
  <ul class="collapsible popout" data-collapsible="accordion">
@@ -7,7 +10,6 @@
        <li class="col m1">Order</li>
        <li class="col m2">Owner</li>
        <li class="col m1">Total</li>
-       <li class="col m1">Cost</li>
        <li class="col m3">Time</li>
        <li  class="col m2">Status</li>
        <li class="col m2"></li>
@@ -21,7 +23,6 @@
          <li class="col m1"> <%= order.id %></li>
          <li class="col m2"><%= order.user.first_name %></li>
          <li class="col m1">N<%= order.total || 0.0 %></li>
-         <li class="col m1">N<%= order.delivery_cost || 0.0 %></li>
          <li class="col m3"><%= time_ago_in_words(order.created_at, include_seconds: true) + " ago"%></li>
          <%= form_for order, :url => {:controller => 'administrator', :action => 'update', order_id: order.id, status: order.Status }, method: :patch  do |f| %>
          <li class="col m2"><%= f.select :Status, options_for_status, selected: order.Status %></li>
@@ -36,16 +37,20 @@
            <tr>
              <th data-field="name">Name</th>
              <th data-field="price">Price</th>
+             <th data-field="sale-price">Sale Price</th>
+             <th data-field="discount">Discount</th>
              <th data-field="quantity">Quantity</th>
            </tr>
          </thead>
          <tbody>
            <% order.order_items.each do |order_item| %>
-           <% food = Food.find(order_item.food_id) %>
+           <% food = Food.find_by(order_item.food_id) %>
            <% if food %>
              <tr>
                <td><%=link_to "#{food.name}", food_path(food.id) %></td>
                <td><%= food.price %></td>
+               <td><%= food.sales[:price] if food.sales[:status]%></td>
+               <td><%= food.sales[:percentage] if food.sales[:status]%>%</td>
                <td><%= order_item.quantity %></td>
              </tr>
             <% end %>
