@@ -1,9 +1,9 @@
 <div class="row full-height">
  <%=render 'layouts/dashboard_menu' %>
  <div class="col s10 full-height scroll-bar">
-   <% @title %>
-   <div class="panel header-panel flow-text z-depth-3">All <%= @title %></div>
-   <%= render :partial => "administrator/#{@title}" %>
+    <div id="show">
+      <%= render :partial => "administrator/orders" %>
+    </div>
  </div>
 </div>
 </div>

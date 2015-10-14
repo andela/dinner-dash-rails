@@ -1,8 +1,9 @@
 <div class="col s2 mini-pad z-depth-3 full-height scroll-bar table-cloth">
   <ul id="slide-out" class="side-nav fixed rel">
     <li class="first z-depth-1">Dashboard</li>
-      <li><%= link_to "Foods",  admin_foods_path %></li>
-      <li><%= link_to "Orders", admin_orders_path %></li>
-      <li><%= link_to "Users", admin_users_path %></li>
+      <li><%= link_to "Foods",  admin_foods_path, :remote => true %></li>
+      <li><%= link_to "Orders", admin_orders_path, :remote => true %></li>
+      <li><%= link_to "Users", admin_users_path, :remote => true %></li>
+      <li><%= link_to "Categories", admin_categories_path, :remote => true %></li>
   </ul>
 </div>

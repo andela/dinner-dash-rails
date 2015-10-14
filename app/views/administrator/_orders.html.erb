@@ -1,3 +1,6 @@
+<div class="panel header-panel flow-text z-depth-3">
+  <div id="title">All Orders</div>
+</div>
 <% if @orders %>
  <%= will_paginate @orders%>
  <ul class="collapsible popout" data-collapsible="accordion">
@@ -41,7 +44,7 @@
          </thead>
          <tbody>
            <% order.order_items.each do |order_item| %>
-           <% food = Food.find(order_item.food_id) %>
+           <% food = Food.find_by(order_item.food_id) %>
            <% if food %>
              <tr>
                <td><%=link_to "#{food.name}", food_path(food.id) %></td>
