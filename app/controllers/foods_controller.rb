@@ -17,7 +17,7 @@ class FoodsController < ApplicationController
      if @current_user.role === "admin" && upload_image
       @food = Food.create(food_params)
       flash[:success] = "#{@food.name} has been added successfully."
-      redirect_to admin_foods_path
+      redirect_to dashboard_path
     else
       flash[:error] = "An error occured. Try adding #{@food.name} again."
     end
@@ -34,7 +34,7 @@ class FoodsController < ApplicationController
       @food[:food_image_file_name] = @food_image_url
       @food.update(food_params)
       flash[:success] = "#{@food.name} has been updated successfully."
-      redirect_to admin_foods_path
+      redirect_to dashboard_path
     else
       flash[:error] = "An error occured. Try adding #{@food.name} again."
     end
@@ -45,7 +45,7 @@ class FoodsController < ApplicationController
     if @current_user.role === "admin" && food
       food.destroy
       flash[:success] = "#{food.name} has been deleted."
-      redirect_to admin_foods_path
+      redirect_to dashboard_path
     else
       flash[:error] = "An error occured. Try deleting #{@food.name} again."
     end

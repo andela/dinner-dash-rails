@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     if @current_user.role === "admin" && user
       user.destroy
       flash[:success] = "#{user.first_name} has been deleted."
-      redirect_to admin_users_path
+      redirect_to dashboard_path
     else
       flash[:error] = "An error occured. Try deleting #{@user.first_name} again."
     end
