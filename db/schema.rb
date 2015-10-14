@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20151014112058) do
     t.integer "quantity"
     t.integer "food_id"
     t.integer "order_id"
-    t.integer "prep_time", default: 12
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"

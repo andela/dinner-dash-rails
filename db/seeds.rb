@@ -47,15 +47,6 @@ U2 = User.create(
     password_confirmation: "whatever"
   )
 
-A1 = User.create(
-    first_name: "Nadayar",
-    last_name: "Andela",
-    email: "nadayar@andela.com",
-    password: "nadayar",
-    password_confirmation: "nadayar",
-    role: "admin"
-  )
-
 O1 = Order.create(Status: "Completed", transaction_id: "123ss1", user_id: U1.id)
 O2 = Order.create(Status: "Cancelled", transaction_id: "123ss2", user_id: U1.id)
 O3 = Order.create(Status: "Processing", transaction_id: "123ss3", user_id: U1.id)
