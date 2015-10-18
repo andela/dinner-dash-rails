@@ -1,6 +1,7 @@
+
+require "codeclimate-test-reporter"
 require "capybara/rspec"
 require 'sidekiq/testing'
-require "codeclimate-test-reporter"
 
 SimpleCov.start 'rails' do
   formatter SimpleCov::Formatter::MultiFormatter[
