@@ -1,4 +1,11 @@
 $(document).ready(function(){
+
+  $('select').material_select();
+
+  $('#sort_id').change(function(){
+    var value = this.val
+  });
+
   $('.slider').slider({
     full_width: true,
     height: 500,

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sales/new'
+
   root "welcome#index"
   resources :foods do
     resources :comments
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :administrator
   resources :about
+  resources :sales
   resources :users do
     resources :orders
   end
