@@ -61,6 +61,9 @@ group :development, :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
+  gem 'simplecov', :require => false
+  gem "codeclimate-test-reporter", require: nil
+  gem 'flog', '~> 4.3.2'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'launchy'

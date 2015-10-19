@@ -1,5 +1,7 @@
 In this project you'll use Ruby on Rails to build an online commerce platform for a restaurant to facilitate online ordering.
 
+[![Code Climate](https://codeclimate.com/github/andela/dinner-dash-rails/badges/gpa.svg)](https://codeclimate.com/github/andela/dinner-dash-rails)   [![Test Coverage](https://codeclimate.com/github/andela/dinner-dash-rails/badges/coverage.svg)](https://codeclimate.com/github/andela/dinner-dash-rails/coverage)
+
 ## Introduction
 
 ### Learning Goals
@@ -25,7 +27,7 @@ Project implementation may **not** use:
 
 1. One team member creates a repository named "dinner_dash"
 2. Add the other team members as collaborators
-3. Add your project to Waffle.io 
+3. Add your project to Waffle.io
 4. Configure [Hound](https://houndci.com/) for style guide violations
 5. Configure [Skylight](http://docs.skylight.io/getting-started/) to monitor your app's performance
 6. Create issues for user stories
@@ -158,7 +160,7 @@ To support the evaluation process, please make the following available via the `
 
 ## Submission Guidelines
 
-* Your project must be live on Heroku for your evaluation 
+* Your project must be live on Heroku for your evaluation
 * Your `README` file on GitHub should contain a link to your live site
 
 ## Extensions
@@ -304,6 +306,6 @@ following criteria:
 ### 7. Workflow
 
 * 4: Excellent use of branches, pull requests, and a project management tool.
-* 3: Good use of branches, pull requests, and a project-management tool. 
-* 2: Sporadic use of branches, pull requests, and/or project-management tool. 
+* 3: Good use of branches, pull requests, and a project-management tool.
+* 2: Sporadic use of branches, pull requests, and/or project-management tool.
 * 1: Little use of branches, pull requests, and/or a project-management tool.

@@ -1,5 +1,14 @@
+
+require "codeclimate-test-reporter"
 require "capybara/rspec"
 require 'sidekiq/testing'
+
+SimpleCov.start 'rails' do
+  formatter SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    CodeClimate::TestReporter::Formatter
+  ]
+end
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
