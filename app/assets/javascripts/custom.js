@@ -1,4 +1,14 @@
 $(document).ready(function(){
+
+
+  // $(function(){
+  //   alert("hello");
+  //   var food_id = $(this).data('message');
+  //   var qty = parseFloat($("food_qty_" +food_id).val());
+  //   var prep_time = parseFloat($('#food_prep_' + food_id).data('message'));
+  //   $('#food_prep_' + food_id).text(line_prep_total(qty, prep_time) + "mins");
+  // });
+
   $('.slider').slider({
     full_width: true,
     height: 500,
@@ -46,16 +56,21 @@ $(document).ready(function(){
     $("#cart").html('<i class="material-icons left">shopping_cart</i>' + _totalItemsInCart);
   }
 
+  var line_prep_total = function(qty, prep_time) {
+    var added_time = parseInt(qty/7) * 10;
+    var time = added_time + prep_time;
+    return time
+  }
+
+
   $(".qty-editable-width").change(function(){
     var food_id = $(this).data('message');
     var qty = parseFloat($(this).val());
     var price = parseFloat($('#food_sub_total_' + food_id).data('message'));
     var prep_time = parseFloat($('#food_prep_' + food_id).data('message'));
     var line_total = parseFloat(qty * price).toFixed(2);
-    var line_prep_total = parseFloat(qty * prep_time);
-
     $('#food_sub_total_' + food_id).text(line_total);
-    $('#food_prep_' + food_id).text(line_prep_total + "mins");
+    $('#food_prep_' + food_id).text(line_prep_total(qty, prep_time) + "mins");
 
     var _total = calcTotal();
     var _preptotal = calcPrepTotal();
@@ -75,7 +90,7 @@ $(document).ready(function(){
     var url = "/cart_items/1";
     ajax_call($(this), params, url, "PATCH", function(data){
         $("#total").text("N" + _total.toFixed(2));
-        $("#prep_total").text(_preptotal + "mins");
+        $("#prep_total").text("Your order will be ready in: " + _preptotal + "mins");
         calcTotalItemsInCart();
         $(this).prop('disabled', false);
       });

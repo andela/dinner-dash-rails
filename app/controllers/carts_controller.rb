@@ -26,6 +26,15 @@ class CartsController < ApplicationController
     else
       @total += (food.price * qty)
       @prep_total += (food.prep_time * qty)
+      require "pry-nav"; binding.pry
+      @line_prep_total = (qty * food.prep_time)
     end
   end
+
+  #  def line_prep_total(qty, prep_time) 
+  #   require "pry-nav"; binding.pry
+  #   added_time = (qty/7) * 10;
+  #   time = added_time + prep_time;
+  # end
+
 end
