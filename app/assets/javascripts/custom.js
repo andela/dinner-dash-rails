@@ -30,6 +30,13 @@ $(document).ready(function(){
     });
     return _total;
   }
+  var calcPrepTotal = function() {
+    var _preptotal = 0;
+    $(".food-prep").each(function(){
+      _preptotal += parseFloat($(this).text());
+    });
+    return _preptotal;
+  }
 
   var calcTotalItemsInCart = function() {
     var _totalItemsInCart = 0;
@@ -43,8 +50,16 @@ $(document).ready(function(){
     var food_id = $(this).data('message');
     var qty = parseFloat($(this).val());
     var price = parseFloat($('#food_sub_total_' + food_id).data('message'));
+    var prep_time = parseFloat($('#food_prep_' + food_id).data('message'));
     var line_total = parseFloat(qty * price).toFixed(2);
+    var line_prep_total = parseFloat(qty * prep_time);
+
+    $('#food_sub_total_' + food_id).text(line_total);
+    $('#food_prep_' + food_id).text(line_prep_total + "mins");
+
     var _total = calcTotal();
+    var _preptotal = calcPrepTotal();
+
     var params = {
         cart_items: {
           food_id: food_id,
@@ -52,15 +67,17 @@ $(document).ready(function(){
         },
         order_details: {
           sub_total: line_total,
-          total: _total
+          total: _total,
+          prep_time: line_prep_total,
+          prep_total: _preptotal
         }
       };
     var url = "/cart_items/1";
     ajax_call($(this), params, url, "PATCH", function(data){
-        $('#food_sub_total_' + food_id).text(line_total);
         $("#total").text("N" + _total.toFixed(2));
+        $("#prep_total").text(_preptotal + "mins");
         calcTotalItemsInCart();
-        $(this).prop('disabled', false)
+        $(this).prop('disabled', false);
       });
   });
 

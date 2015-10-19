@@ -66,7 +66,7 @@ class FoodsController < ApplicationController
   private
 
   def food_params
-    params.require(:food).permit(:id, :name, :description, :price, :category_id, :food_image, :status)
+    params.require(:food).permit(:id, :name, :description, :price, :category_id, :food_image, :status, :prep_time)
   end
 
   def upload_image
