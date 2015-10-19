@@ -32,6 +32,12 @@ class AdministratorController < ApplicationController
     end 
   end
 
+  def sale_index
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   def update
     @title = "orders"
     @orders = Order.all.paginate(page: params[:page], :per_page => 10)

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'admin/foods' => 'administrator#food_index', as: :admin_foods
   get 'admin/orders' => 'administrator#order_index', as: :admin_orders
   get 'admin/users' => 'administrator#user_index', as: :admin_users
+  get 'admin/sales' => 'administrator#sale_index', as: :admin_sales
   get 'admin/categories' => 'administrator#category_index', as: :admin_categories
   post 'login' => 'sessions#create'
   post 'checkout' => 'checkout#show', as: :checkout
