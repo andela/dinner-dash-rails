@@ -1,0 +1,34 @@
+{
+  "name":"dinner-dash-rails",
+  "scripts":{
+    "postdeploy":"bundle exec rake db:migrate"
+  },
+  "env":{
+    "CLOUDINARY_URL":{
+      "required":true
+    },
+    "LANG":{
+      "required":true
+    },
+    "RACK_ENV":{
+      "required":true
+    },
+    "RAILS_ENV":{
+      "required":true
+    },
+    "RAILS_SERVE_STATIC_FILES":{
+      "required":true
+    },
+    "REDIS_PROVIDER":{
+      "required":true
+    },
+    "SECRET_KEY_BASE":{
+      "required":true
+    }
+  },
+  "addons":[
+    "heroku-postgresql",
+    "redistogo",
+    "sendgrid"
+  ]
+}
