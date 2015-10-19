@@ -1,14 +1,5 @@
 $(document).ready(function(){
 
-
-  // $(function(){
-  //   alert("hello");
-  //   var food_id = $(this).data('message');
-  //   var qty = parseFloat($("food_qty_" +food_id).val());
-  //   var prep_time = parseFloat($('#food_prep_' + food_id).data('message'));
-  //   $('#food_prep_' + food_id).text(line_prep_total(qty, prep_time) + "mins");
-  // });
-
   $('.slider').slider({
     full_width: true,
     height: 500,

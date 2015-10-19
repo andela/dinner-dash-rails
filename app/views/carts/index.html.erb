@@ -29,7 +29,7 @@
             <%= f.number_field details[:qty], :min => 1, :value => details[:qty], :class => "qty qty-editable-width", "data-message" => food_id %>
             <% end %>
           </td>
-          <td class="food-prep" class="food_prep_<%= food_id %>" id="food_prep_<%= food_id %>" data-message="<%= details[:food]['prep_time'] %>"> mins</td>
+          <td class="food-prep" class="food_prep_<%= food_id %>" id="food_prep_<%= food_id %>" data-message="<%= details[:food]['prep_time'] %>"><%= details[:prep_time] %> mins </td>
 
           <td>N<span class="line-total" id="food_sub_total_<%= details[:food][:id] %>" data-message="<%= details[:food]['price'] %>"><%= details[:food]['price'].to_i * details[:qty].to_i %></span></td>
           <td>
@@ -46,7 +46,7 @@
       <tr style="border-top:2px solid #3e2511">
         <td></td>
         <td></td>
-        <td id="prep_total"></td>
+        <td id="prep_total">Your food will be ready in <%= @prep_total %> mins</td>
         <td>Subtotal</td>
         <td id="total">N<%= @total%></td>
       </tr>
