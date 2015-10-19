@@ -32,6 +32,6 @@ class CartItemsController < ApplicationController
 	end
 
 	def order_params
-		params.require(:order_details).permit(:sub_total, :total)
+		params.require(:order_details).permit(:sub_total, :total, :prep_time, :prep_total)
 	end
 end

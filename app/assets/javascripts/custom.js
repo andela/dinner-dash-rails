@@ -75,7 +75,7 @@ $(document).ready(function(){
           sub_total: line_total,
           total: _total,
           prep_time: line_prep_total,
-          prep_total: _preptotal
+          pickup_time: _preptotal
         }
       };
     var url = "/cart_items/1";

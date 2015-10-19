@@ -21,6 +21,7 @@
          <li class="col m1"> <%= order.id %></li>
          <li class="col m2"><%= order.user.first_name %></li>
          <li class="col m1">N<%= order.total || 0.0 %></li>
+         <li class="col m1"><%= order.pickup_time || 0.0 %> mins</li>
          <li class="col m1">N<%= order.delivery_cost || 0.0 %></li>
          <li class="col m3"><%= time_ago_in_words(order.created_at, include_seconds: true) + " ago"%></li>
          <%= form_for order, :url => {:controller => 'administrator', :action => 'update', order_id: order.id, status: order.Status }, method: :patch  do |f| %>
