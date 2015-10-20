@@ -50,7 +50,7 @@ $(document).ready(function(){
   var line_prep_total = function(qty, prep_time) {
     var added_time = parseInt(qty/7) * 10;
     var time = added_time + prep_time;
-    return time
+    return time;
   }
 
 
@@ -81,7 +81,8 @@ $(document).ready(function(){
     var url = "/cart_items/1";
     ajax_call($(this), params, url, "PATCH", function(data){
         $("#total").text("N" + _total.toFixed(2));
-        $("#prep_total").text("Your order will be ready in: " + _preptotal + "mins");
+        $("#prep_total").text("Your order will be ready in: " +
+                               _preptotal + "mins");
         calcTotalItemsInCart();
         $(this).prop('disabled', false);
       });

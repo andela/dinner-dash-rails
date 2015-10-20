@@ -9,11 +9,9 @@ class CheckoutController < ApplicationController
   end
 
   def create
-    require "pry-nav"; binding.pry
     if order_params[:status].downcase === "completed"
       @current_order.update_order(session[:order], order_params)
       if @current_order.save_order(@current_user)
-        require "pry-nav"; binding.pry
         session[:order] = {}
         session[:cart] = {}
         flash[:success] = "Your order has been successfully placed."

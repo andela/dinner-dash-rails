@@ -4,4 +4,6 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   validates :transaction_id,  presence: true, uniqueness: { case_sensitive: false }
+  default_scope{ order("created_at desc")}
+  
 end
