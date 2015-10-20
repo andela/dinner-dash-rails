@@ -25,7 +25,8 @@ class Current_Order
   def update_order(order, args)
     @ordered_items = order["items"] || {}
     @total = order["details"]["total"] || 0
-    @pickup_time = order["details"]["pickup_time"] || 0
+    @pickup_time = order["details"]["pickup_time"].to_i || 0
+    @total_pickup_time = add_extra_time(@pickup_time)
     @invoice = args[:invoice] || ""
     @transaction_id = args[:transaction_id] || ""
     @status = args[:status] || "pending"
@@ -61,7 +62,7 @@ class Current_Order
 
   def save_order(current_user)
     user = current_user
-    new_order = user.orders.new(total: @total, vat: vat, delivery_cost: @delivery_cost, invoice: @invoice, Status: @status, transaction_id: @transaction_id, pickup_time: @pickup_time)  
+    new_order = user.orders.new(total: @total, vat: vat, delivery_cost: @delivery_cost, invoice: @invoice, Status: @status, transaction_id: @transaction_id, pickup_time: @total_pickup_time)  
     save_successful = new_order.save
     if save_successful
       @ordered_items["ordered_items"].each do |index, details|
@@ -76,5 +77,13 @@ class Current_Order
   end
 
   private
+
+  def add_extra_time(pick_up_time)
+    if (Order.first.Status != "Delivered") || (Order.first.Status == "Cancelled")
+       pick_up_time + 4
+     else 
+      pick_up_time
+    end
+  end
 
 end

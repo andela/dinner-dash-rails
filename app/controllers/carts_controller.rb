@@ -11,9 +11,10 @@ class CartsController < ApplicationController
       @ordered_foods[food_id] = { food: food, qty: qty, prep_time: prep_time }
       check_food_status(food, qty, food_id, prep_time)
       @pickup_time += prep_time
+      @total_pickup_time = add_extra_time(@pickup_time)
     end unless session[:cart].nil?
     @current_order.ordered_items = @ordered_foods
-    session[:order]["details"]["pickup_time"] = @pickup_time
+    session[:order]["details"]["pickup_time"] = @total_pickup_time
     session[:order]["items"] = @ordered_foods
   end
 
@@ -28,11 +29,20 @@ class CartsController < ApplicationController
       @ordered_foods.delete(food_id)
     else
       @total += (food.price * qty)
+      # add_extra_time(prep_time)
       @prep_total += prep_time
     end
   end
 
   def line_prep_total(qty, prep_time) 
     added_time = ((qty/7) * 10) + prep_time
+  end
+
+  def add_extra_time(pick_up_time)
+    if (Order.first.Status != "Delivered") || (Order.first.Status == "Cancelled")
+       pick_up_time + 4
+     else 
+      pick_up_time
+    end
   end
 end

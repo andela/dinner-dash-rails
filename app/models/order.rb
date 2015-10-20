@@ -5,5 +5,5 @@ class Order < ActiveRecord::Base
 
   validates :transaction_id,  presence: true, uniqueness: { case_sensitive: false }
   default_scope{ order("created_at desc")}
-  
+
 end
