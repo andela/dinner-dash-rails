@@ -64,7 +64,7 @@ class Current_Order
     new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :Status => @status, :transaction_id => @transaction_id, :pickup_time => @pickup_time)  
     save_successful = new_order.save
     if save_successful
-      @ordered_items.each do |index, details|
+      @ordered_items["ordered_items"].each do |index, details|
         new_order.order_items << OrderItem.create(:food_id => details["food"]["id"], :quantity => details["qty"])
       end
     end

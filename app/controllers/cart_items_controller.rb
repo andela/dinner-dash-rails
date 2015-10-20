@@ -18,7 +18,6 @@ class CartItemsController < ApplicationController
     cart = cart_params
     food_id = cart[:food_id]
     quantity = cart[:quantity]
-    # prep_time = cart[:prep_time]
     session[:cart][food_id] = quantity.to_i
     session[:order]["items"][food_id]["qty"] = quantity.to_i
 		session[:order]["details"] = order_params
@@ -32,6 +31,6 @@ class CartItemsController < ApplicationController
 	end
 
 	def order_params
-		params.require(:order_details).permit(:sub_total, :total, :prep_time, :prep_total)
+		params.require(:order_details).permit(:sub_total, :total, :pickup_time)
 	end
 end

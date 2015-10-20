@@ -46,7 +46,7 @@
       <tr style="border-top:2px solid #3e2511">
         <td></td>
         <td></td>
-        <td id="prep_total">Your food will be ready in <%= @prep_total %> mins</td>
+        <td id="prep_total">Your food will be ready in <%= time_ago_in_words(@prep_total.minutes.from_now) %></td>
         <td>Subtotal</td>
         <td id="total">N<%= @total%></td>
       </tr>
