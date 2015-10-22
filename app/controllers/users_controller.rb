@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_if_admin, only: [:destroy]
+
   def new
     @user = User.new
   end
@@ -62,7 +64,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    if @current_user.role === "admin" && user
+    if user
       user.destroy
       flash[:success] = "#{user.first_name} has been deleted."
       redirect_to dashboard_path
