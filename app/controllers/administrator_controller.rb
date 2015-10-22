@@ -1,4 +1,5 @@
 class AdministratorController < ApplicationController
+  before_action :check_if_admin, only: :show
 
   def show
     @orders = Order.all.paginate(page: params[:page], :per_page => 10)
@@ -33,6 +34,10 @@ class AdministratorController < ApplicationController
   end
 
   def sale_index
+    @items = []
+    Food.all.each do |food| 
+      @items << food if food.sales[:status]
+    end
     respond_to do |format|
       format.js 
     end

@@ -2,8 +2,21 @@ $(document).ready(function(){
 
   $('select').material_select();
 
-  $('#sort_id').change(function(){
-    var value = this.val
+ $(".sale-editable-width").change(function(){
+   var food_id = $(this).data('message');
+  var percentage = $(this).val();
+  var food_price = $(".price_for_"+food_id).html();
+  var food_sale_price = (1 - (percentage/100)) * food_price;
+  $(".sale_price_"+food_id).text(food_sale_price);
+});
+
+
+  $('.sale_status').each(function() {
+    if ($(this).data("status") === "true") {
+      $(this).prop('checked', true);
+    } else {
+      $(this).prop('checked', false);
+    }
   });
 
   $('.slider').slider({
@@ -111,12 +124,39 @@ $(document).ready(function(){
     });
   })
 
+  $(".add_to_sale").click(function(){
+     var food_id = $(this).data('message');
+     var sale_price = $('.sale_price_'+ food_id).html();
+     var sale_percent = $('.sale-editable-width').val();
+     var url = "/foods/" + food_id ;
+     params = {
+      food: {
+        id: food_id,
+        sales: {
+          price: sale_price,
+          percentage: sale_percent,
+          status: true,
+          js: true
+        } 
+      }
+     }
+     var that = this.parentNode;
+     ajax_call($(this), params, url, "PATCH", function(data){
+      if (data.success){
+        $(that).html("Added to Sale");
+      }
+
+     });
+  });
+  
+ 
   var ajax_call = function(elem, params, url, method, callback){
     $.ajax({
       method: method,
       url: url,
       data: params,
       beforeSend: function(){
+
         elem.prop('disabled', true);
       },
       success: function(data){
