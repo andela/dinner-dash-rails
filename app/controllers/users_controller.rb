@@ -8,11 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @image = user_params[:avatar]
-     if @image && @image.size < 1.megabytes
-       upload_image(@image)
-     else
-       flash[:warning] = "file size must be between 0 and 1 megabytes"
-     end
+    uploader_checker(@image) if @image
     @user[:avatar_file_name] = @avatar_url
     if @user.save
       log_in @user
@@ -81,5 +77,13 @@ class UsersController < ApplicationController
 
   def args_params
     args = params.require(:args).permit(:show_all, :title) if params.has_key? "args"
+  end
+
+  def uploader_checker(image)
+    if image.size < 1.megabytes
+       upload_image(image)
+     else
+       flash[:warning] = "file size must be between 0 and 1 megabytes"
+     end
   end
 end
