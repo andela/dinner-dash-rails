@@ -28,7 +28,8 @@ RSpec.feature "ProfilePages", type: :feature do
         expect(page).to have_link('Edit Profile')
         expect(page).to have_link('View Orders')
 
-
+        click_link('View Orders')
+        expect(page).to have_content "All Orders"
     end
   end
 
