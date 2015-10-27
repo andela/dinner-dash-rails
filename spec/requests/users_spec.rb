@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "Users", type: :feature do
   describe "User clicks sign-up button on home page" do
@@ -85,7 +85,7 @@ RSpec.feature "Users", type: :feature do
       page.fill_in "user_email", :with => "daisi@som.com"
       page.fill_in "user_password", :with => "Daisinow"
       page.fill_in "user_password_confirmation", :with => "Daisinow"
-      page.attach_file('user[avatar]', Rails.root + 'app/assets/images/chicken.jpg')
+      page.attach_file("user[avatar]", Rails.root + "app/assets/images/chicken.jpg")
       click_button "Sign up"
       expect(current_path).to eq root_path
     end
