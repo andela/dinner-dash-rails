@@ -89,9 +89,9 @@ class FoodsController < ApplicationController
     if food_params[:sales][:js]
       food = food_params[:sales]
       food_status = (food["status"] == "true") ? true : false
-      @food.update(sales: { price: food["price"].to_f, 
-                          percentage: food["percentage"].to_f, 
-                          status: food_status })
+      @food.update(sales: { price: food["price"].to_f,
+                            percentage: food["percentage"].to_f, 
+                            status: food_status })
       render json: { success: true }
     else     
       @food.update(food_params)
