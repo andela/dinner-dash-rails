@@ -37,8 +37,7 @@ class CartsController < ApplicationController
 
   def add_extra_time(pick_up_time)
     unless Order.first.nil?
-      if (Order.first.Status != "Delivered") ||
-       (Order.first.Status == "Cancelled")
+      if (Order.first.Status != "Delivered")
         pick_up_time + 4
       else 
         pick_up_time
