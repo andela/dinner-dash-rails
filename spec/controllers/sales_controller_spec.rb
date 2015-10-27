@@ -8,7 +8,6 @@ RSpec.describe SalesController, type: :controller do
     end
   end
   it "renders all foods that are not on sales" do
-    food = create(:food)
     get :new
     expect(response).to render_template(:new)
   end

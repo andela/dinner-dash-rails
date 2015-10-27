@@ -14,6 +14,6 @@ class Food < ActiveRecord::Base
     self.sales[:price] = 0.00
     self.sales[:percentage] = 0
     self.sales[:status] = false
-    self.save
+    save
   end
 end

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_blank: true
 
-  has_many :orders,  dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   has_attached_file :avatar, styles: { :original => "150x150", :small => "64x64", :med => "200x200", :large => "300x300" }, :default_url => "yuna.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

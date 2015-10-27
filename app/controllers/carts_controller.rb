@@ -22,7 +22,7 @@ class CartsController < ApplicationController
     unless food.status == "available"
       @ordered_foods.delete(food_id)
     else
-      price =  food.sales[:status] ? food.sales[:price] : food.price 
+      price =  food.sales[:status] ? food.sales[:price] : food.price
       @total += (price * qty)
     end
   end
