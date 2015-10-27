@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
@@ -8,14 +8,12 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
     end
-
     it "should redirect an invalid user to root path" do
       get :show, id: 50000
       expect(flash[:message]).to match("We're sorry we couldn't find any information for this user.")
       expect(response).not_to render_template(:show)
     end
   end
-
   describe "PUT #update" do
     it "should render edit on unsuccessful update" do
       @user = create(:user)
@@ -23,5 +21,4 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to render_template(:edit)
     end
   end
-
 end

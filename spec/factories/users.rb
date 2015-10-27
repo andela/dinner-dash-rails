@@ -11,8 +11,7 @@ FactoryGirl.define do
       password "daisiissoawesomeforwhere"
       password_confirmation "daisiissoawesome"
     end
-
-     factory :admin do
+    factory :admin do
       email "admin@andela.com"
       password "andela"
       password_confirmation "andela"

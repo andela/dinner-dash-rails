@@ -4,5 +4,4 @@ FactoryGirl.define do
     price 7000.00
     description "Mouth watering grilled fish"
   end
-
 end

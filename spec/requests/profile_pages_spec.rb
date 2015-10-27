@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "ProfilePages", type: :feature do
   describe "User clicks My Profile" do
@@ -21,15 +21,15 @@ RSpec.feature "ProfilePages", type: :feature do
       click_link "My Profile"
       expect(current_path).to eq(user_path(@user.id))
 
-        visit user_path(@user.id)
-        expect(page).to have_content "#{@user.first_name}"
-        expect(page).to have_content "#{@user.last_name}"
-        expect(page).to have_content "#{@user.email}"
-        expect(page).to have_link('Edit Profile')
-        expect(page).to have_link('View Orders')
+      visit user_path(@user.id)
+      expect(page).to have_content "#{@user.first_name}"
+      expect(page).to have_content "#{@user.last_name}"
+      expect(page).to have_content "#{@user.email}"
+      expect(page).to have_link("Edit Profile")
+      expect(page).to have_link("View Orders")
 
-        click_link('View Orders')
-        expect(page).to have_content "All Orders"
+      click_link("View Orders")
+      expect(page).to have_content "All Orders"
     end
   end
 
@@ -62,9 +62,9 @@ RSpec.feature "ProfilePages", type: :feature do
 
       click_link "My Profile"
 
-      expect(page).to have_link('Spagetti bolognese')
+      expect(page).to have_link("Spagetti bolognese")
 
-      click_link('Spagetti bolognese')
+      click_link("Spagetti bolognese")
 
       expect(current_path).to eq(food_path(F2.id))
     end
