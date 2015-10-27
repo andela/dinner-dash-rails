@@ -31,7 +31,6 @@ RSpec.feature "Checkouts", type: :feature do
       end
 
       click_button "Checkout"
-
       expect(current_path).to eq login_path
       fill_in "session_email", with: 'seyi@andela.com'
       fill_in "session_password", with: 'seyijeff'
@@ -50,9 +49,7 @@ RSpec.feature "Checkouts", type: :feature do
       visit foods_path
       click_button "Add to cart"
       visit carts_path
-
       click_button "Checkout"
-
       expect(current_path).to eq login_path
     end
   end
