@@ -1,0 +1,41 @@
+<div class="body">
+  <div class="row">
+    <div class="input-field col s6">
+    <p>Foods</p>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="price">Item Price</th>
+            <th data-field="percentage">Percentage</th>
+            <th data-field="sale">Sale price</th>
+            <th data-field=""></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |food| %>
+                <%= form_for food do |f| %>
+            <tr>
+              <td><%= food.name %></td>
+              <td class="price_for_<%= food.id %>"><%= food.price %></td> 
+              <td id="sale_percent_<%= food.id %>">
+                <%= f.number_field "sales_percentage", min: 0.0, step: 0.5, value: 0, 
+                  class: "sale sale-editable-width", "data-message" => food.id %>
+                </td> 
+                <td class="sale_price_<%= food.id %>" data-message="<%= food.price %>"></td> 
+                <td><%= button_to "Add to Sales", {}, "data-message" => food.id, :class => "add_to_sale" %></td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="input-field col s1">
+   
+    </div>
+    <div class="input-field col s5">
+      <p>Category</p>
+    </div>
+  </div>
+</div>
