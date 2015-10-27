@@ -15,7 +15,6 @@ RSpec.feature "UserAddItemsToCarts", type: :feature do
       visit new_sale_path
       expect(page).to have_content("Fish suesue")
     end
-
-    
+ 
   end
 end

@@ -1,5 +1,5 @@
 class AdministratorController < ApplicationController
-  before_action :check_if_admin, only: :show
+  before_action :check_if_admin, only: [:show, :update]
 
   def show
     @orders = Order.all.paginate(page: params[:page], :per_page => 10)
@@ -51,6 +51,6 @@ class AdministratorController < ApplicationController
     @order = Order.find(@order_id)
     @order.update(Status: @status)
     StatusWorker.perform_async(@order_id)
-    check_if_admin
+    redirect_to dashboard_path
   end
 end

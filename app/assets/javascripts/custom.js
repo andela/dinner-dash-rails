@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  $('select').material_select();
-
  $(".sale-editable-width").change(function(){
    var food_id = $(this).data('message');
   var percentage = $(this).val();
@@ -9,7 +7,6 @@ $(document).ready(function(){
   var food_sale_price = (1 - (percentage/100)) * food_price;
   $(".sale_price_"+food_id).text(food_sale_price);
 });
-
 
   $('.sale_status').each(function() {
     if ($(this).data("status") === "true") {
