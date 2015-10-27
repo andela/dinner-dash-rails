@@ -1,10 +1,18 @@
 <div class="container">
   <h3>Log in</h3>
   <%= form_for(:session, url: login_path, html: { class: "login_form" }) do |f|%>
+  <div class="row">
+  <div class="input-field col s6">
     <%= f.label :email %>
     <%= f.text_field :email%>
+  </div>
+  </div>
+  <div class="row">
+  <div class="input-field col s6">
     <%= f.label :password %>
     <%= f.password_field :password%>
+  </div>
+  </div>
     <%= f.submit "Log in", class: "btn btn-success" %>
   <% end %>
 </div>
