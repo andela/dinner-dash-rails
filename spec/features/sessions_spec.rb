@@ -39,5 +39,4 @@ RSpec.feature "Sessions", type: :feature do
     click_link("Log out")
     expect(current_path).to eq(foods_path)
   end
-
 end
