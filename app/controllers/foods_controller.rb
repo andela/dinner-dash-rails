@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
-  before_action :check_if_admin, only: [:create, :destroy, :update, :edit_status ]
+  before_action :check_if_admin,
+  only: [:create, :destroy, :update, :edit_status]
 
   def index
     @foods = Food.all.order(created_at: :asc)
@@ -16,7 +17,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = {}
-     if upload_image
+    if upload_image
       @food = Food.create(food_params)
       flash[:success] = "#{@food.name} has been added successfully."
       redirect_to dashboard_path
@@ -33,7 +34,7 @@ class FoodsController < ApplicationController
     @food = Food.find(params[:id])
     upload_image if food_params[:food_image]
     if @food
-      save_food  
+      save_food
     else
       flash[:error] = "An error occured. Try adding #{@food.name} again."
     end
@@ -51,19 +52,21 @@ class FoodsController < ApplicationController
   end
 
   def edit_status
-   food = Food.find(food_params[:id].to_i)
-   if (!food.nil?)
-     status = food_params[:status] == "true" ? "available" : "not available"
-     food.status = status
-     food.save
-     render json: food
-   end
+    food = Food.find(food_params[:id].to_i)
+    unless food.nil?
+      status = food_params[:status] == "true" ? "available" : "not available"
+      food.status = status
+      food.save
+      render json: food
+    end
   end
 
   private
 
   def food_params
-    params.require(:food).permit(:id, :name, :description, :price, :category_id, :food_image, :status, {sales: [:percentage, :price, :status, :js]})
+    params.require(:food).permit(:id, :name, :description, :price,
+    :category_id, :food_image, :status, sales: [:percentage, :price,
+    :status, :js])
   end
 
   def upload_image
@@ -85,12 +88,13 @@ class FoodsController < ApplicationController
     if food_params[:sales][:js]
       food = food_params[:sales]
       food_status = (food["status"] == "true") ? true : false
-      @food.update(sales: {price: food["price"].to_f, percentage: food["percentage"].to_f, status: food_status})
+      @food.update(sales: { price: food["price"].to_f, 
+      percentage: food["percentage"].to_f, status: food_status })
       render json: { success: true }
-    else      
+    else     
       @food.update(food_params)
       flash[:success] = "#{@food.name} has been updated successfully."
-      redirect_to dashboard_path 
+      redirect_to dashboard_path
     end
   end
 end

@@ -81,9 +81,9 @@ class UsersController < ApplicationController
 
   def uploader_checker(image)
     if image.size < 1.megabytes
-       upload_image(image)
-     else
-       flash[:warning] = "file size must be between 0 and 1 megabytes"
-     end
+      upload_image(image)
+    else
+      flash[:warning] = "file size must be between 0 and 1 megabytes"
+    end
   end
 end
