@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :order do
+
     Status "Pending"
-    total   234344
+    total   234
     vat     45
     delivery_cost 500
     association :user
