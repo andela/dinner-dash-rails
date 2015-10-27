@@ -63,3 +63,6 @@
 		</tr>
 	</tfoot>
 </table>
+<% session[:order]["items"] = @current_order %>
+<% session[:order]["details"]["total"] = @current_order.total %>
+<% session[:order]["details"]["sub_total"] = @current_order.sub_total %>
