@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_if_admin, only: [:destroy]
+
   def new
     @user = User.new
   end
@@ -6,11 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @image = user_params[:avatar]
-     if @image && @image.size < 1.megabytes
-       upload_image(@image)
-     else
-       flash[:warning] = "file size must be between 0 and 1 megabytes"
-     end
+    uploader_checker(@image) if @image
     @user[:avatar_file_name] = @avatar_url
     if @user.save
       log_in @user
@@ -24,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     args = args_params || {}
     if @user
       if !args.nil?
@@ -62,10 +60,10 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    if @current_user.role === "admin" && user
+    if user
       user.destroy
       flash[:success] = "#{user.first_name} has been deleted."
-      redirect_to admin_users_path
+      redirect_to dashboard_path
     else
       flash[:error] = "An error occured. Try deleting #{@user.first_name} again."
     end
@@ -79,5 +77,13 @@ class UsersController < ApplicationController
 
   def args_params
     args = params.require(:args).permit(:show_all, :title) if params.has_key? "args"
+  end
+
+  def uploader_checker(image)
+    if image.size < 1.megabytes
+       upload_image(image)
+     else
+       flash[:warning] = "file size must be between 0 and 1 megabytes"
+     end
   end
 end

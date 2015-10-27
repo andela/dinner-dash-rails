@@ -58,7 +58,7 @@ class Current_Order
 
   def save_order(current_user)
     user = current_user
-    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :Status => @status, :transaction_id => @transaction_id)
+    new_order = user.orders.new(:total => @total, :vat => vat, :delivery_cost => @delivery_cost, :invoice => @invoice, :transaction_id => @transaction_id)
     save_successful = new_order.save
     if save_successful
       @ordered_items.each do |index, details|
