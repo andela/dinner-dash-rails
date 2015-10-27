@@ -16,6 +16,8 @@
 !/log/.keep
 /tmp
 /public/system/users/avatars/*
+dump.rdb
+coverage/
 
 # Ignore application configuration
 /config/application.yml
