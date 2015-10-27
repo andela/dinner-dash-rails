@@ -25,7 +25,7 @@ module SessionsHelper
 
   def check_if_admin
     if admin?
-      render template: 'administrator/show.html.erb'
+      true
     else 
       redirect_to root_path
       flash[:danger] = "You do not have access to the Admin page"

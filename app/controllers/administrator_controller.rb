@@ -1,26 +1,46 @@
 class AdministratorController < ApplicationController
+  before_action :check_if_admin, only: [:show, :update]
+
   def show
     @orders = Order.all.paginate(page: params[:page], :per_page => 10)
-    @title = "orders"
-    check_if_admin
   end
 
   def food_index
-    @title = "foods"
     @foods = Food.all.order(created_at: :desc)
-    check_if_admin
+    respond_to do |format|
+      format.js 
+    end 
   end
 
   def order_index
-    @title = "orders"
     @orders = Order.all.paginate(page: params[:page], :per_page => 10)
-    check_if_admin
+    respond_to do |format|
+      format.js 
+    end 
   end
 
   def user_index
-    @title = "users"
     @users = User.all.paginate(page: params[:page], :per_page => 10).order(created_at: :desc)
-    check_if_admin
+    respond_to do |format|
+      format.js 
+    end 
+  end
+
+  def category_index
+    @categories = Category.all.paginate(page: params[:page], :per_page => 10)
+    respond_to do |format|
+      format.js 
+    end 
+  end
+
+  def sale_index
+    @items = []
+    Food.all.each do |food| 
+      @items << food if food.sales[:status]
+    end
+    respond_to do |format|
+      format.js 
+    end
   end
 
   def update
@@ -31,6 +51,6 @@ class AdministratorController < ApplicationController
     @order = Order.find(@order_id)
     @order.update(Status: @status)
     StatusWorker.perform_async(@order_id)
-    check_if_admin
+    redirect_to dashboard_path
   end
 end
