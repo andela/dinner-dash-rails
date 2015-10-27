@@ -7,7 +7,12 @@
       <div class="col s12 m6 l4">
         <div class="card">
           <div class="card-image">
-            <span class="price-tag"> N<%= food.price%></span>
+          <% if food.sales[:status] %>
+            <span class="price-tag"><s> N<%= food.price%></s></span>
+            <span class="price-tag">Sales! N<%= food.sales[:price]%></span>
+          <% else %>
+            <span class="price-tag">N<%= food.price%></span>
+          <% end %>
             <span class="activator"><i class="material-icons right">more_vert</i></span>
             <%= link_to(food) do %>
               <%= image_tag((food.food_image.url || "nigerian-jollof-rice.jpg"), :width => "100%", :height => "auto", :style => "max-width:100%", :class => "image-thumb", :alt => "food") %>
@@ -25,7 +30,12 @@
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%= food.name%><i class="material-icons right">close</i></span>
+            <% if food.sales[:status] %>
+            <p><s><%= food.price%></s></p>
+            <p>New Price: <%= food.sales[:price]%></p>
+            <% else %>
             <p><%= food.price%></p>
+            <% end %>
             <p><%= food.description%></p>
           </div>
         </div>
