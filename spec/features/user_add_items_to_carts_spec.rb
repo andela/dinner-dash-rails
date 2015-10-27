@@ -36,12 +36,4 @@ end
     end
   end
 
-  #   scenario "user chooses to add the same item again" do
-  #     visit foods_path
-  #     3.times do
-  #       click_button "Add to cart"
-  #     end
-  #     expect(page).to have_css("#cart", text: "3")
-  #   end
-  # end
 end
