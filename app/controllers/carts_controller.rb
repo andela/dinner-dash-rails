@@ -4,7 +4,6 @@ class CartsController < ApplicationController
     @ordered_foods = {}
     @total = 0
     @pickup_time = 0
-    @prep_total = 0
     @cart_items.each do |food_id, qty, prep_time|
       food = Food.find_by_id(food_id)
       prep_time = line_prep_total(qty, food.prep_time).to_i 
@@ -29,8 +28,6 @@ class CartsController < ApplicationController
       @ordered_foods.delete(food_id)
     else
       @total += (food.price * qty)
-      # add_extra_time(prep_time)
-      @prep_total += prep_time
     end
   end
 
@@ -39,8 +36,9 @@ class CartsController < ApplicationController
   end
 
   def add_extra_time(pick_up_time)
-    if (Order.first.Status != "Delivered") || (Order.first.Status == "Cancelled")
-       pick_up_time + 4
+    if (Order.first.Status != "Delivered") ||
+       (Order.first.Status == "Cancelled")
+      pick_up_time + 4
      else 
       pick_up_time
     end

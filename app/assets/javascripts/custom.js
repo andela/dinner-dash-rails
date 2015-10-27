@@ -106,6 +106,7 @@ $(document).ready(function(){
         "    <p>" + comment.comment + "</p>" +
         "  </div>"
       );
+        $("#comment").val('');
     })
   });
 
