@@ -5,18 +5,18 @@ RSpec.feature "Checkouts", type: :feature do
   O1 = Order.create(Status: "Completed", total: 23600,
                     vat: 2100, delivery_cost: 500, user_id: 6, 
                     created_at: "2015-10-20 15:49:28",
-                    updated_at: "2015-10-20 15:49:28", 
-                    transaction_id: "1VX775486T314881H", 
+                    updated_at: "2015-10-20 15:49:28",
+                    transaction_id: "1VX775486T314881H",
                     invoice: "", pickup_time: 26)
   
   O2 = Order.create(Status: "Completed", total: 23600, 
                     vat: 2100, delivery_cost: 500,
                     user_id: 6,
-                    created_at: "2015-10-20 15:49:28", 
-                    updated_at: "2015-10-20 15:49:28", 
+                    created_at: "2015-10-20 15:49:28",
+                    updated_at: "2015-10-20 15:49:28",
                     transaction_id: "1VX775486T314881H",
-                     invoice: "",
-                      pickup_time: 26)
+                    invoice: "",
+                    pickup_time: 26)
   end
 
   describe "User can check out from Carts page" do
@@ -25,10 +25,10 @@ RSpec.feature "Checkouts", type: :feature do
                   description: "tasty coconut rice cooked with shrimps",
                   price: 4000)
       Order.create(Status: "Completed",
-                   total: 23600, vat: 2100, delivery_cost: 500,
-                   user_id: 6, created_at: "2015-10-20 15:49:28",
-                    updated_at: "2015-10-20 15:49:28", transaction_id: "1VX775486T314881H",
-                   invoice: "", pickup_time: 26)
+                  total: 23600, vat: 2100, delivery_cost: 500,
+                  user_id: 6, created_at: "2015-10-20 15:49:28",
+                  updated_at: "2015-10-20 15:49:28", transaction_id: "1VX775486T314881H",
+                  invoice: "", pickup_time: 26)
       visit foods_path
       click_button "Add to cart"
 
@@ -76,8 +76,8 @@ RSpec.feature "Checkouts", type: :feature do
 
   describe "Non logged in user have to login to checkout" do
     scenario "non logged in user should be redirected to login form on checkout attempt" do
-      Food.create(name: "coconut rice", 
-                  description: "tasty coconut rice cooked with shrimps", 
+      Food.create(name: "coconut rice",
+                  description: "tasty coconut rice cooked with shrimps",
                   price: 4000)
       visit foods_path
       click_button "Add to cart"
