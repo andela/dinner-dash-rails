@@ -10,7 +10,8 @@ RSpec.describe UsersController, type: :controller do
     end
     it "should redirect an invalid user to root path" do
       get :show, id: 500
-      expect(flash[:message]).to match("We're sorry we couldn't find any information for this user.")
+      expect(flash[:message]).to match("We're sorry we couldn't"\
+                                      " find any information for this user.")
       expect(response).not_to render_template(:show)
     end
   end
