@@ -18,4 +18,26 @@ RSpec.feature "Sessions", type: :feature do
     click_button('Log in')
     expect(current_path).to eq(foods_path)
   end
+
+  scenario "redirect admin to dashboard path on log in" do
+    @user = create(:admin)
+    visit root_path
+    click_link('Log in')
+    fill_in "session_email", with: 'admin@andela.com'
+    fill_in "session_password", with: 'andela'
+    click_button('Log in')
+    expect(current_path).to eq(dashboard_path)
+  end
+
+  scenario "log out a user" do
+    @user = create(:user)
+    visit root_path
+    click_link('Log in')
+    fill_in "session_email", with: 'seyi@andela.com'
+    fill_in "session_password", with: 'seyijeff'
+    click_button('Log in')
+    click_link('Log out')
+    expect(current_path).to eq(foods_path)
+  end
+
 end
