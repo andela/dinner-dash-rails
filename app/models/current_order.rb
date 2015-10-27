@@ -66,8 +66,8 @@ class Current_Order
     if save_successful
       @ordered_items.each do |index, details|
         new_order.order_items <<
-        OrderItem.create(food_id: details["food"]["id"],
-                         quantity: details["qty"])
+          OrderItem.create(food_id: details["food"]["id"],
+                           quantity: details["qty"])
       end
     end
     save_successful

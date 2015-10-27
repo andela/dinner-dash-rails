@@ -1,60 +1,48 @@
-F1 = Food.create(
-      name: "Spagetti bolognese",
-      description: "Warm yummy spagetti to increase your life span!",
-      price: 1500, sales: { price: 1000.00, percentage: 25, status: true })
+F1 = Food.create(name: "Spagetti bolognese",
+                 description: "Yummy spagetti to increase your life span!",
+                 price: 1500, 
+                 sales: { price: 1000.00, percentage: 25, status: true })
 
-F2 = Food.create(
-      name: "Steaks",
-      description: "Nice mix of african specials and barbecue sauce",
-      price: 750,
-      status: "available"
-                )
+F2 = Food.create(name: "Steaks",
+                 description: "Nice mix of african special barbecue sauce",
+                 price: 750,
+                 status: "available")
 
 F3 = Food.create(name: "Lobsters",
-      description: "Crispy sea food delicacy to make your holiday",
-      price: 1200
-                )
+                 description: "Crispy sea food delicacy to make your holiday",
+                 price: 1200)
 
-C1 = Category.create(
-    title: "Entree",
-    description: "Home made food ready to eat")
+C1 = Category.create(title: "Entree",
+                     description: "Home made food ready to eat")
 
-C2 = Category.create(
-    title: "Desserts",
-    description: "Finger-licking desserts made from our great family recipe")
+C2 = Category.create(title: "Desserts",
+                     description: "Finger-licking desserts")
 
-U1 = User.create(
-    first_name: "Damilola",
-    last_name: "Roberts",
-    email: "dr@yahoo.com",
-    password: "whatever",
-    password_confirmation: "whatever"
-  )
-U3 = User.create(
-    first_name: "Adenike",
-    last_name: "Roberts",
-    email: "adenike@yahoo.com",
-    password: "whatever",
-    password_confirmation: "whatever",
-    role: "admin"
-  )
+U1 = User.create(first_name: "Damilola",
+                 last_name: "Roberts",
+                 email: "dr@yahoo.com",
+                 password: "whatever",
+                 password_confirmation: "whatever")
 
-U2 = User.create(
-    first_name: "Jeff",
-    last_name: "Roberts",
-    email: "jr@yahoo.com",
-    password: "whatever",
-    password_confirmation: "whatever"
-  )
+U3 = User.create(first_name: "Adenike",
+                 last_name: "Roberts",
+                 email: "adenike@yahoo.com",
+                 password: "whatever",
+                 password_confirmation: "whatever",
+                 role: "admin")
 
-A1 = User.create(
-    first_name: "Nadayar",
-    last_name: "Andela",
-    email: "nadayar@andela.com",
-    password: "nadayar",
-    password_confirmation: "nadayar",
-    role: "admin"
-  )
+U2 = User.create(first_name: "Jeff",
+                 last_name: "Roberts",
+                 email: "jr@yahoo.com",
+                 password: "whatever",
+                 password_confirmation: "whatever")
+
+A1 = User.create(first_name: "Nadayar",
+                 last_name: "Andela",
+                 email: "nadayar@andela.com",
+                 password: "nadayar",
+                 password_confirmation: "nadayar",
+                 role: "admin")
 
 O1 = Order.create(Status: "Completed", transaction_id: "123ss1", user_id: U1.id)
 O2 = Order.create(Status: "Cancelled", transaction_id: "123ss2", user_id: U1.id)
@@ -83,5 +71,4 @@ Comment2 = Comment.create(comment: "I love it!!", food_id: F1.id, user_id: U2.id
 
 F4 = Food.create(name: "Akara",
                  description: "Home made akara",
-                 price: 500
-                )
+                 price: 500)

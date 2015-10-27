@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     render template: 'foods/index.html.erb'
   end
-  
+
   def category_params
     params.require(:category).permit(:title, :description)
   end

@@ -1,35 +1,35 @@
 $(document).ready(function(){
 
- $(".sale-editable-width").change(function(){
-   var food_id = $(this).data('message');
-  var percentage = $(this).val();
-  var food_price = $(".price_for_"+food_id).html();
-  var food_sale_price = (1 - (percentage/100)) * food_price;
-  $(".sale_price_"+food_id).text(food_sale_price);
-});
+  $(".sale-editable-width").change(function(){
+    var food_id = $(this).data("message");
+    var percentage = $(this).val();
+    var food_price = $(".price_for_"+food_id).html();
+    var food_sale_price = (1 - (percentage/100)) * food_price;
+    $(".sale_price_"+food_id).text(food_sale_price);
+  });
 
-  $('.sale_status').each(function() {
+  $(".sale_status").each(function() {
     if ($(this).data("status") === "true") {
-      $(this).prop('checked', true);
+      $(this).prop("checked", true);
     } else {
-      $(this).prop('checked', false);
+      $(this).prop("checked", false);
     }
   });
 
-  $('.slider').slider({
+  $(".slider").slider({
     full_width: true,
     height: 500,
     //indicators: false
   });
-  $('.food_status').each(function() {
+  $(".food_status").each(function() {
     if ($(this).data("status") === "available") {
-      $(this).prop('checked', true);
+      $(this).prop("checked", true);
     } else {
-      $(this).prop('checked', false);
+      $(this).prop("checked", false);
     }
   });
 
-  $('.parallax').parallax();
+  $(".parallax").parallax();
 
   $(".select_field").change(function() {
       var url = $(".select_field").val();
@@ -37,7 +37,7 @@ $(document).ready(function(){
   });
 
   $(".show-material-message").each(function(){
-    Materialize.toast($(this).data('message'), 5000, 'rounded');
+    Materialize.toast($(this).data("message"), 5000, "rounded");
   });
 
   var calcTotal = function() {
@@ -53,13 +53,13 @@ $(document).ready(function(){
     $(".qty").each(function(){
       _totalItemsInCart += parseInt($(this).val());
     });
-    $("#cart").html('<i class="material-icons left">shopping_cart</i>' + _totalItemsInCart);
+    $("#cart").html("<i class="material-icons left">shopping_cart</i>" + _totalItemsInCart);
   }
 
   $(".qty-editable-width").change(function(){
-    var food_id = $(this).data('message');
+    var food_id = $(this).data("message");
     var qty = parseFloat($(this).val());
-    var price = parseFloat($('#food_sub_total_' + food_id).data('message'));
+    var price = parseFloat($("#food_sub_total_ "+ food_id).data("message"));
     var line_total = parseFloat(qty * price).toFixed(2);
     var _total = calcTotal();
     var params = {
@@ -74,10 +74,10 @@ $(document).ready(function(){
       };
     var url = "/cart_items/1";
     ajax_call($(this), params, url, "PATCH", function(data){
-        $('#food_sub_total_' + food_id).text(line_total);
+        $("#food_sub_total_" + food_id).text(line_total);
         $("#total").text("N" + _total.toFixed(2));
         calcTotalItemsInCart();
-        $(this).prop('disabled', false)
+        $(this).prop("disabled", false)
       });
   });
 
@@ -122,9 +122,9 @@ $(document).ready(function(){
   })
 
   $(".add_to_sale").click(function(){
-     var food_id = $(this).data('message');
-     var sale_price = $('.sale_price_'+ food_id).html();
-     var sale_percent = $('.sale-editable-width').val();
+     var food_id = $(this).data("message");
+     var sale_price = $(".sale_price_"+ food_id).html();
+     var sale_percent = $(".sale-editable-width").val();
      var url = "/foods/" + food_id ;
      params = {
       food: {
@@ -154,21 +154,21 @@ $(document).ready(function(){
       data: params,
       beforeSend: function(){
 
-        elem.prop('disabled', true);
+        elem.prop("disabled", true);
       },
       success: function(data){
-        elem.prop('disabled', false);
+        elem.prop("disabled", false);
         callback(data);
       },
       error: function(){
-        Materialize.toast(elem.data('An error occured. Please try again'), 5000, 'rounded');
+        Materialize.toast(elem.data("An error occured. Please try again"), 5000, "rounded");
       },
       complete: function(){
       }
     });
   };
 
-  $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
-  $('.food_upload_progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
+  $(".cloudinary-fileupload").bind("fileuploadprogress", function(e, data) {
+  $(".food_upload_progress_bar").css("width", Math.round((data.loaded * 100.0) / data.total) + "%");
 });
 });//end document ready

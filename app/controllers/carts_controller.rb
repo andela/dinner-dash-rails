@@ -26,5 +26,4 @@ class CartsController < ApplicationController
       @total += (price * qty)
     end
   end
-
 end
