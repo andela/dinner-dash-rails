@@ -7,11 +7,11 @@ RSpec.feature "Foods", type: :feature do
                         password: "jeffrules",
                         password_confirmation: "jeffrules",
                         role: "admin")
+    
     Category.create(title: "Entree", description: "first meal")
-    @F1 = Food.create(
-        name: "Spaghetti",
-        description: "Best spaghetti ever",
-        price: 1500.00 )
+    @F1 = Food.create(name: "Spaghetti",
+                      description: "Best spaghetti ever",
+                      price: 1500.00 )
     visit root_path
     click_link('Log in')
     expect(current_path).to eq(login_path)
@@ -30,12 +30,15 @@ RSpec.feature "Foods", type: :feature do
     expect(current_path).to eq("/admin")
     visit("foods/new")
     expect(page).to have_content("Create new food")
+
       page.fill_in "food_name", :with => "Pancake n Syrup"
-      page.fill_in "food_description", :with => "Juicy syrup on fresh home-baked pancakes"
+      page.fill_in "food_description", 
+                    :with => "Juicy syrup on fresh home-baked pancakes"
       page.fill_in "food_price", :with => 100
       page.fill_in "food_prep_time", :with => 12
       select('Entree', from: 'food_category_id')
       page.attach_file('food[food_image]', Rails.root + 'app/assets/images/chicken.jpg')
+
       click_button "Add food"
       expect(current_path).to eq admin_foods_path
 
