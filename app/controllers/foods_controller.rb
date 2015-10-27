@@ -67,7 +67,7 @@ class FoodsController < ApplicationController
     params.require(:food).permit(:id, :name, :description, :price,
                                  :category_id, :food_image, :status,
                                  sales: [:percentage, :price,
-                                 :status, :js])
+                                         :status, :js])
   end
 
   def upload_image
@@ -90,10 +90,10 @@ class FoodsController < ApplicationController
       food = food_params[:sales]
       food_status = (food["status"] == "true") ? true : false
       @food.update(sales: { price: food["price"].to_f,
-                            percentage: food["percentage"].to_f, 
+                            percentage: food["percentage"].to_f,
                             status: food_status })
       render json: { success: true }
-    else     
+    else
       @food.update(food_params)
       flash[:success] = "#{@food.name} has been updated successfully."
       redirect_to dashboard_path

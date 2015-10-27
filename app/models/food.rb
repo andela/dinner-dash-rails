@@ -11,9 +11,9 @@ class Food < ActiveRecord::Base
 
   def create_sale
     self.sales = Hash.new
-    self.sales[:price] = 0.00
-    self.sales[:percentage] = 0
-    self.sales[:status] = false
+    sales[:price] = 0.00
+    sales[:percentage] = 0
+    sales[:status] = false
     save
   end
 end
