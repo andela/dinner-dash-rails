@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Update Order Status", type: :feature do
   describe "update the status of an order" do
     scenario "admin updates the status of an order" do
-      order = create(:order)
+      create(:order)
       admin = create(:admin)
       visit root_path
       click_link("Log in")

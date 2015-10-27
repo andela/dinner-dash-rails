@@ -8,12 +8,12 @@ F2 = Food.create(
       description: "Nice mix of african specials and barbecue sauce",
       price: 750,
       status: "available"
-    )
+                )
 
 F3 = Food.create(name: "Lobsters",
       description: "Crispy sea food delicacy to make your holiday",
       price: 1200
-    )
+                )
 
 C1 = Category.create(
     title: "Entree",
@@ -82,6 +82,6 @@ Comment1 = Comment.create(comment: "Best food ever", food_id: F1.id, user_id: U1
 Comment2 = Comment.create(comment: "I love it!!", food_id: F1.id, user_id: U2.id)
 
 F4 = Food.create(name: "Akara",
-      description: "Home made akara",
-      price: 500
-    )
+                 description: "Home made akara",
+                 price: 500
+                )
