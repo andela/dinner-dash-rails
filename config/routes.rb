@@ -39,5 +39,4 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
   delete "carts/:item_id/", to: "carts#destroy", as: :cart_item_delete
 
-
 end

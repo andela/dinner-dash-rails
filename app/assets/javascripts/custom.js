@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
   $(".sale-editable-width").change(function(){
-    var food_id = $(this).data("message");
+    var foodId = $(this).data("message");
     var percentage = $(this).val();
-    var food_price = $(".price_for_"+food_id).html();
-    var food_sale_price = (1 - (percentage/100)) * food_price;
-    $(".sale_price_"+food_id).text(food_sale_price);
+    var foodPrice = $(".price_for_"+foodId).html();
+    var foodSalePrice = (1 - (percentage/100)) * foodPrice;
+    $(".sale_price_"+foodId).text(foodSalePrice);
   });
 
   $(".sale_status").each(function() {

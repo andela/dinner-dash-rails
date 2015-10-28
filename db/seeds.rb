@@ -1,6 +1,6 @@
 F1 = Food.create(name: "Spagetti bolognese",
                  description: "Yummy spagetti to increase your life span!",
-                 price: 1500, 
+                 price: 1500,
                  sales: { price: 1000.00, percentage: 25, status: true })
 
 F2 = Food.create(name: "Steaks",
@@ -49,7 +49,6 @@ O2 = Order.create(Status: "Cancelled", transaction_id: "123ss2", user_id: U1.id)
 O3 = Order.create(Status: "Processing", transaction_id: "123ss3", user_id: U1.id)
 O4 = Order.create(Status: "Processing", transaction_id: "123ss4", user_id: U1.id)
 
-
 Order_Item1 = OrderItem.create(quantity: 3, food_id: F1.id, order_id: 1)
 Order_Item2 = OrderItem.create(quantity: 2, food_id: F2.id, order_id: 1)
 Order_Item3 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 1)
@@ -61,7 +60,6 @@ Order_Item8 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 3)
 Order_Item9 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 4)
 Order_Item10 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 4)
 Order_Item11 = OrderItem.create(quantity: 5, food_id: F3.id, order_id: 4)
-
 
 C1.foods << F1
 C2.foods << F3
