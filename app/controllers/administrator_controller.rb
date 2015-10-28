@@ -2,30 +2,29 @@ class AdministratorController < ApplicationController
   before_action :check_if_admin, only: [:show, :update]
 
   def show
-    @orders = Order.all.paginate(page: params[:page], :per_page => 10)
+    @orders = Order.all.paginate(page: params[:page], per_page: 10)
   end
 
   def food_index
     @foods = Food.all.order(created_at: :desc)
     respond_to do |format|
-      format.js 
-    end 
+      format.js
+    end
   end
 
   def order_index
     @orders = Order.all.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
-      format.js 
-    end 
+      format.js
+    end
   end
 
   def user_index
-    @users = User.all.paginate(
-                               page: params[:page], 
+    @users = User.all.paginate(page: params[:page],
                                per_page: 10).order(created_at: :desc)
     respond_to do |format|
-      format.js 
-    end 
+      format.js
+    end
   end
 
   def category_index
