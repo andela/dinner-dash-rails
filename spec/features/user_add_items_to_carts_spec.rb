@@ -7,7 +7,7 @@ RSpec.feature "UserAddItemsToCarts", type: :feature do
       description: "Warm yummy spagetti to increase your life span!",
       price: 1500,
       prep_time: 12)
-    O1 = Order.create(Status: "Completed", total: 23600,
+    O1 = Order.create(Status: "Completed", total: 236,
                       vat: 2100, delivery_cost: 500, user_id: 6,
                       created_at: "2015-10-20 15:49:28",
                       updated_at: "2015-10-20 15:49:28",
@@ -30,7 +30,7 @@ RSpec.feature "UserAddItemsToCarts", type: :feature do
       expect(page).to have_css(".line-total", text: "6000")
       expect(page).to have_css("#total", text: "6000")
       expect(page).to have_css("#prep_total",
-                                text: "Your food will be ready in 16 minutes MAX")
+                               text: "Your food will be ready in 16 minutes MAX")
     end
   end
 end

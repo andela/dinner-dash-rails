@@ -1,57 +1,59 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 
 <div class="full-height scroll-bar">
-  <% if @ordered_foods.length == 0 %>
-      <p>Your cart is empty</p>
-  <% else %>
-  <table class="hoverable">
-    <thead>
-      <tr style="background-color:#BCAAA4;">
-        <th data-field="id">S/N</th>
-        <th data-field="name">Name</th>
-        <th data-field="description">Description</th>
-        <th data-field="price">Price</th>
-        <th data-field="quantity">Quantity</th>
-        <th data-field="quantity">Delivery Time</th>
-        <th data-field="line total">Line Total</th>
-      </tr>
-    </thead>
-    <tbody>
-
-    <% @ordered_foods.each do |index, details| %>
-      <% food_id = details[:food][:id] %>
-        <tr>
-          <td><%= index %></td>
-          <td id="food_name_<%= food_id %>"><%= details[:food]['name'] %></td>
-          <td id="food_desc_<%= food_id %>"><%= details[:food]['description'] %></td>
-          <td id="food_unit_price_<%= food_id %>"><%= details[:food]['price'] %></td>
-          <td id="food_qty_<%= food_id %>"><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: details[:food][:id], id: index }, method: :patch  do |f| %>
-            <%= f.number_field details[:qty], :min => 1, :value => details[:qty], :class => "qty qty-editable-width", "data-message" => food_id %>
-            <% end %>
-          </td>
-          <td class="food-prep" class="food_prep_<%= food_id %>" id="food_prep_<%= food_id %>" data-message="<%= details[:food]['prep_time'] %>"><%= details[:prep_time] %> mins </td>
-
-          <td>N<span class="line-total" id="food_sub_total_<%= details[:food][:id] %>" data-message="<%= details[:food]['price'] %>"><%= details[:food]['price'].to_i * details[:qty].to_i %></span></td>
-          <td>
-            <%= button_to cart_item_delete_path(details[:food][:id]), :class => "clear-button", method: :delete  do %>
-              <i class="material-icons">clear</i>
-            <% end %>
-          </td>
+  <div class="pad-bottom">
+    <% if @ordered_foods.length == 0 %>
+        <p>Your cart is empty</p>
+    <% else %>
+    <table class="hoverable">
+      <thead>
+        <tr style="background-color:#BCAAA4;">
+          <th data-field="id">S/N</th>
+          <th data-field="name">Name</th>
+          <th data-field="description">Description</th>
+          <th data-field="price">Price</th>
+          <th data-field="quantity">Quantity</th>
+          <th data-field="quantity">Delivery Time</th>
+          <th data-field="line total">Line Total</th>
         </tr>
-    </tbody>
-    <% end %>
+      </thead>
+      <tbody>
 
-    <tfoot>
-      <!--Find a better way of doing this -->
-      <tr style="border-top:2px solid #3e2511">
-        <td></td>
-        <td></td>
-        <td id="prep_total">Your food will be ready in <%= time_ago_in_words(@total_pickup_time.minutes.from_now)%> MAX</td>
-        <td>Subtotal</td>
-        <td id="total">N<%= @total%></td>
-      </tr>
-    </tfoot>
-  </table>
-  <%= button_to 'Checkout', checkout_path, :class => "btn" %>
-  <% end %>
+      <% @ordered_foods.each do |index, details| %>
+        <% food_id = details[:food][:id] %>
+          <tr>
+            <td><%= index %></td>
+            <td id="food_name_<%= food_id %>"><%= details[:food]['name'] %></td>
+            <td id="food_desc_<%= food_id %>"><%= details[:food]['description'] %></td>
+            <td id="food_unit_price_<%= food_id %>"><%= details[:food]['price'] %></td>
+            <td id="food_qty_<%= food_id %>"><%=form_for 'quantity', :url => {:controller => 'cart_items', :action => 'update', food_id: details[:food][:id], id: index }, method: :patch  do |f| %>
+              <%= f.number_field details[:qty], :min => 1, :value => details[:qty], :class => "qty qty-editable-width", "data-message" => food_id %>
+              <% end %>
+            </td>
+            <td class="food-prep" class="food_prep_<%= food_id %>" id="food_prep_<%= food_id %>" data-message="<%= details[:food]['prep_time'] %>"><%= details[:prep_time] %> mins </td>
+
+            <td>N<span class="line-total" id="food_sub_total_<%= details[:food][:id] %>" data-message="<%= details[:food]['price'] %>"><%= details[:food]['price'].to_i * details[:qty].to_i %></span></td>
+            <td>
+              <%= button_to cart_item_delete_path(details[:food][:id]), :class => "clear-button", method: :delete  do %>
+                <i class="material-icons">clear</i>
+              <% end %>
+            </td>
+          </tr>
+      </tbody>
+      <% end %>
+
+      <tfoot>
+        <!--Find a better way of doing this -->
+        <tr style="border-top:2px solid #3e2511">
+          <td></td>
+          <td></td>
+          <td id="prep_total">Your food will be ready in <%= time_ago_in_words(@total_pickup_time.minutes.from_now)%> MAX</td>
+          <td>Subtotal</td>
+          <td id="total">N<%= @total%></td>
+        </tr>
+      </tfoot>
+    </table>
+    <%= button_to 'Checkout', checkout_path, :class => "btn" %>
+    <% end %>
+  </div>
 </div>

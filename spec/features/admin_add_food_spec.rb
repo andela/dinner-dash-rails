@@ -7,7 +7,7 @@ RSpec.feature "Foods", type: :feature do
                         password: "jeffrules",
                         password_confirmation: "jeffrules",
                         role: "admin")
-    
+
     Category.create(title: "Entree", description: "first meal")
     @F1 = Food.create(name: "Spaghetti",
                       description: "Best spaghetti ever",
@@ -38,10 +38,8 @@ RSpec.feature "Foods", type: :feature do
       page.fill_in "food_prep_time", :with => 12
       select('Entree', from: 'food_category_id')
       page.attach_file('food[food_image]', Rails.root + 'app/assets/images/chicken.jpg')
-
       click_button "Add food"
       expect(current_path).to eq admin_foods_path
-
      expect(page).to have_content("Pancake n Syrup")
   end
 

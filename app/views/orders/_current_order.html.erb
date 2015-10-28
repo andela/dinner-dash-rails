@@ -46,9 +46,17 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td>Delivery</td>
+		<td>Delivery cost</td>
 		<td></td>
 		<td>N<%= @current_order.delivery_cost %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>Delivery time</td>
+		<td></td>
+		<td><%= @current_order.pickup_time %> minutes</td>
 	</tr>
 	<tfoot>
 		<!--Find a better way of doing this -->
