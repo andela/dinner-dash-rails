@@ -26,13 +26,13 @@ Rails.application.routes.draw do
   get "admin/users" => "administrator#user_index", as: :admin_users
   get "admin/sales" => "administrator#sale_index", as: :admin_sales
   get "admin/categories" => "administrator#category_index",
-                            as: :admin_categories
+      as: :admin_categories
   post "login" => "sessions#create"
   post "checkout" => "checkout#show", as: :checkout
   post "carts/checkout" => "carts#checkout", as: :cart_checkout
   post "payment" => "checkout#create", as: :payment
   post "/foods/:food_id/comments(.:format)" => "comments#create",
-                                               as: :create_food_comment
+       as: :create_food_comment
   post "/payment/processed" => "checkout#create", as: :payment_completed
   patch "order_status" => "administrator#update", as: :order_status
   patch "/foods/:food_id/edit_status" => "foods#edit_status", as: :edit_status
