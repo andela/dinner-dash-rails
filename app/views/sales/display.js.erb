@@ -1,0 +1,13 @@
+$("#list_items").html("<%= j render 'add_food_sale' %>");
+
+$(".sale-editable-width").change(function(){
+   var food_id = $(this).data('message');
+  var percentage = $(this).val();
+  var food_price = $(".price_for_"+food_id).html();
+  var food_sale_price = (1 - (percentage/100)) * food_price;
+  $(".sale_price_"+food_id).text(food_sale_price);
+});
+
+$('#add_sale').click(function(){
+  $.get("/foods");
+})
