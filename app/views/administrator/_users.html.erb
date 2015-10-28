@@ -1,3 +1,6 @@
+<div class="panel header-panel flow-text z-depth-3">
+  <div id="title">All Users</div>
+  </div>
 <div class="full-height scroll-bar">
   <table class="striped">
     <thead>
@@ -20,7 +23,7 @@
           <td><%= user.email %></td>
           <td><%= user.created_at.strftime("%Y - %e - %d") %></td>
           <td>
-            <%= button_to user_path(user.id), :class => "clear-button", method: :delete  do %>
+            <%= button_to user_path(user.id), :class => "clear-button", method: :delete, data: { :confirm=>'You sure?' } do %>
               <i class="material-icons">clear</i>
             <% end %>
           </td>

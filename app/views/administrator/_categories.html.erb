@@ -1,0 +1,44 @@
+<div class="panel header-panel flow-text z-depth-3">
+  <div id="title">All Categories</div>
+</div>
+<div class="full-height scroll-bar">
+  <div class="header">
+    <div class="row">
+  </div>
+
+  </div><!--end of header-->
+  <div class="body">
+    <table class="striped">
+    <thead>
+      <tr>
+        <th data-field="id">Name</th>
+        <th data-field="name">Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @categories.each do |category| %>
+        <a href = "/>">
+        <tr>
+          <td><%=link_to "#{category.title}", edit_category_path(category.id) %></td>
+          <td><%= category.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div><!--end of header-->
+
+  <div class="footer">
+    <div class="row">
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons">add</i>
+        </a>
+        <ul>
+          <li><a href="/categories/new" class="btn-floating red"><i class="material-icons">web</i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
