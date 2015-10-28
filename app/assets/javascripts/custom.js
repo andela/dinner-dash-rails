@@ -53,7 +53,7 @@ $(document).ready(function(){
     $(".qty").each(function(){
       _totalItemsInCart += parseInt($(this).val());
     });
-    $("#cart").html("<i class="material-icons left">shopping_cart</i>" + _totalItemsInCart);
+    $("#cart").html("<i class='material-icons left'>shopping_cart</i>" + _totalItemsInCart);
   }
 
   $(".qty-editable-width").change(function(){
@@ -122,9 +122,9 @@ $(document).ready(function(){
   })
 
   $(".add_to_sale").click(function(){
-     var food_id = $(this).data("message");
-     var sale_price = $(".sale_price_"+ food_id).html();
-     var sale_percent = $(".sale-editable-width").val();
+     var food_id = $(this).data('message');
+     var sale_price = $('.sale_price_'+ food_id).html();
+     var sale_percent = $('.sale-editable-width').val();
      var url = "/foods/" + food_id ;
      params = {
       food: {
@@ -146,7 +146,6 @@ $(document).ready(function(){
      });
   });
   
- 
   var ajax_call = function(elem, params, url, method, callback){
     $.ajax({
       method: method,

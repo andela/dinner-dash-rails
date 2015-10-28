@@ -37,6 +37,8 @@
            <tr>
              <th data-field="name">Name</th>
              <th data-field="price">Price</th>
+             <th data-field="sale-price">Sale Price</th>
+             <th data-field="discount">Discount</th>
              <th data-field="quantity">Quantity</th>
            </tr>
          </thead>
@@ -47,6 +49,8 @@
              <tr>
                <td><%=link_to "#{food.name}", food_path(food.id) %></td>
                <td><%= food.price %></td>
+               <td><%= food.sales[:price] if food.sales[:status]%></td>
+               <td><%= food.sales[:percentage] if food.sales[:status]%>%</td>
                <td><%= order_item.quantity %></td>
              </tr>
             <% end %>
