@@ -1,0 +1,44 @@
+$('#show').html("<%=j render 'administrator/sales' %>"); 
+$('.remove_from_sale').click(function(){
+     var food_id = $(this).data('message');
+     var url = "/foods/" + food_id ;
+     params = {
+      food: {
+        id: food_id,
+        sales: {
+          price: 0.0,
+          percentage: 0,
+          status: false,
+          js: true
+        } 
+      }
+     }
+     var that = this.parentNode;
+     ajax_call($(this), params, url, "PATCH", function(data){
+      if (data.success){
+        $(that).html("Removed from Sale");
+      }
+     });
+  });
+  
+ 
+  var ajax_call = function(elem, params, url, method, callback){
+    $.ajax({
+      method: method,
+      url: url,
+      data: params,
+      beforeSend: function(){
+
+        elem.prop('disabled', true);
+      },
+      success: function(data){
+        elem.prop('disabled', false);
+        callback(data);
+      },
+      error: function(){
+        Materialize.toast(elem.data('An error occured. Please try again'), 5000, 'rounded');
+      },
+      complete: function(){
+      }
+    });
+  };

@@ -1,0 +1,5 @@
+MetricFu::Configuration.run do |config|
+  config.configure_metric(:rcov) do |rcov|
+    rcov.enabled = false
+  end
+end
