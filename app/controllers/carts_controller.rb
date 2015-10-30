@@ -31,6 +31,8 @@ class CartsController < ApplicationController
     end
   end
 
+private
+
   def line_prep_total(qty, prep_time) 
     added_time = ((qty/7) * 10) + prep_time
   end
