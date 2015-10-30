@@ -23,6 +23,13 @@
       </div>
     </div>
     <div class="row">
+      <div class="input-field col s6">
+        <%=f.text_field :prep_time, :class => "validate" %>
+        <%= f.label "Prep time in mins" %>
+        <div class = "error"><%= @food.errors.messages[:prep_time][0] %></div>
+      </div>
+    </div>
+    <div class="row">
       <div class="input-field col s12">
           <%= f.collection_select(:category_id, Category.all, :id, :title, {}, { :class => "select_box", :style => "display:block;" }) %>
           <div class = "error"><%= @food.errors.messages[:category_id][0] %></div>
@@ -36,6 +43,6 @@
         <div class="determinate" style="width: 70%"></div>
       </div>
     </div>
-  <%= f.submit "Sign up", :class => "btn waves-effect waves-light" %>
+  <%= f.submit "Add food", :class => "btn waves-effect waves-light" %>
   <% end %>
 </div>
