@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def options_for_status
-    ['Completed', 'Cancelled', 'Pending']
+    ['Completed', 'Cancelled', 'Pending', 'Delivered']
   end
 
   def load_current_order

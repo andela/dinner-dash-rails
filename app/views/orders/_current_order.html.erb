@@ -11,11 +11,14 @@
 	</thead>
 	<tbody>
 		
+<%  @current_order.sub_total = 0 %>
 <% @current_order.ordered_items.each do |index, details| %>
-<% if details["food"]['sales'][:status] %>
-<% @current_order.sub_total += details["food"]['sales'][:price] * details["qty"] %>
+<% if details["food"]["sales"]["status"] %>
+<% @item_total_price = details["food"]['sales']["price"] * details["qty"]
+@current_order.sub_total += details["food"]['sales']["price"] * details["qty"] %>
 <% else %>
-	<% @current_order.sub_total += details["food"]['price'] * details["qty"] %>
+	<% @item_total_price = details["food"]["price"] * details["qty"]
+	@current_order.sub_total += details["food"]['price'] * details["qty"] %>
 	<% end %>
 	<tr>
 		<td><%= index %></td>
@@ -27,7 +30,7 @@
 			<td><%= details["food"]['price'] %></td>
 		<% end %>
 		<td><%= details["qty"] %></td>
-		<td>N<%= @current_order.sub_total %></td>
+		<td>N<%= @item_total_price %></td>
 	</tr>
 	</tbody>
 	<% end %>
@@ -54,9 +57,17 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td>Delivery</td>
+		<td>Delivery cost</td>
 		<td></td>
 		<td>N<%= @current_order.delivery_cost %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>Delivery time</td>
+		<td></td>
+		<td><%= @current_order.pickup_time %> minutes</td>
 	</tr>
 	<tfoot>
 		<!--Find a better way of doing this -->

@@ -16,7 +16,7 @@ $(document).ready(function(){
     }
   });
 
-  $(".slider").slider({
+  $('.slider').slider({
     full_width: true,
     height: 500,
     //indicators: false
@@ -47,6 +47,13 @@ $(document).ready(function(){
     });
     return _total;
   }
+  var calcPrepTotal = function() {
+    var _preptotal = 0;
+    $(".food-prep").each(function(){
+      _preptotal += parseFloat($(this).text());
+    });
+    return _preptotal;
+  }
 
   var calcTotalItemsInCart = function() {
     var _totalItemsInCart = 0;
@@ -56,12 +63,25 @@ $(document).ready(function(){
     $("#cart").html("<i class='material-icons left'>shopping_cart</i>" + _totalItemsInCart);
   }
 
+  var line_prep_total = function(qty, prep_time) {
+    var added_time = parseInt(qty/7) * 10;
+    var time = added_time + prep_time;
+    return time;
+  }
+
+
   $(".qty-editable-width").change(function(){
     var food_id = $(this).data("message");
     var qty = parseFloat($(this).val());
-    var price = parseFloat($("#food_sub_total_ "+ food_id).data("message"));
+    var price = parseFloat($('#food_sub_total_' + food_id).data('message'));
+    var prep_time = parseFloat($('#food_prep_' + food_id).data('message'));
     var line_total = parseFloat(qty * price).toFixed(2);
+    $('#food_sub_total_' + food_id).text(line_total);
+    $('#food_prep_' + food_id).text(line_prep_total(qty, prep_time) + "mins");
+
     var _total = calcTotal();
+    var _preptotal = calcPrepTotal();
+
     var params = {
         cart_items: {
           food_id: food_id,
@@ -69,15 +89,19 @@ $(document).ready(function(){
         },
         order_details: {
           sub_total: line_total,
-          total: _total
+          total: _total,
+          prep_time: line_prep_total,
+          pickup_time: _preptotal
         }
       };
     var url = "/cart_items/1";
     ajax_call($(this), params, url, "PATCH", function(data){
-        $("#food_sub_total_" + food_id).text(line_total);
+
         $("#total").text("N" + _total.toFixed(2));
+        $("#prep_total").text("Your order will be ready in: " +
+                               _preptotal + "mins");
         calcTotalItemsInCart();
-        $(this).prop("disabled", false)
+        $(this).prop('disabled', false);
       });
   });
 
@@ -99,6 +123,7 @@ $(document).ready(function(){
         "    <p>" + comment.comment + "</p>" +
         "  </div>"
       );
+        $("#comment").val('');
     })
   });
 
